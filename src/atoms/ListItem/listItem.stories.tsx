@@ -5,7 +5,7 @@ import HumanImage from "../../static/images/Human.png";
 import { action } from "@storybook/addon-actions";
 
 export default {
-  title: "ListItem",
+  title: "Atoms/ListItem",
   component: ListItem,
 };
 

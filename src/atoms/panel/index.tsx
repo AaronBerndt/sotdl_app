@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import {
   ExpansionPanel,
   ExpansionPanelSummary,
@@ -30,16 +31,12 @@ const useStyles = makeStyles((theme) => ({
 
 function Panel({ title, summary, details }: PanelProps) {
   const { heading, secondaryHeading } = useStyles();
-  const [expanded, setExpanded] = useState(false);
-
-  const onClick = () => setExpanded(!expanded);
 
   return (
-    <ExpansionPanel expanded={expanded} onClick={onClick}>
+    <ExpansionPanel>
       <ExpansionPanelSummary>
         <Typography className={heading}>{title}</Typography>
         <Typography className={secondaryHeading}>{summary}</Typography>
-        {expanded ? <ExpandLess /> : <ExpandMore />}
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>{details}</ExpansionPanelDetails>
     </ExpansionPanel>

@@ -3,7 +3,7 @@ import { action } from "@storybook/addon-actions";
 import Panel from "./index";
 
 export default {
-  title: "Panel",
+  title: "Atoms/Panel",
   component: Panel,
 };
 

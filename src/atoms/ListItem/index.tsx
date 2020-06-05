@@ -24,7 +24,7 @@ function DynamicList({ title, icon, onClickFunction }: ListItem) {
     <>
       <StyledListItem button onClick={onClickFunction} divider>
         <ListItemAvatar>
-          <Avatar src={icon}></Avatar>
+          <Avatar src={icon} variant="square"></Avatar>
         </ListItemAvatar>
         <ListItemText primary={title} />
       </StyledListItem>

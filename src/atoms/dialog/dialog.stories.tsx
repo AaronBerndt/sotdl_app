@@ -2,7 +2,7 @@ import React from "react";
 import Dialog from "./index";
 
 export default {
-  title: "Dialog",
+  title: "Atoms/Dialog",
   component: Dialog,
 };
 
