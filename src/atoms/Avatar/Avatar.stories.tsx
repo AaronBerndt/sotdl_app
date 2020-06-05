@@ -8,3 +8,7 @@ export default {
 
 export const dwarf = () => <Avatar type="dwarf" />;
 export const human = () => <Avatar type="human" />;
+export const goblin = () => <Avatar type="goblin" />;
+export const clockwork = () => <Avatar type="clockwork" />;
+export const orc = () => <Avatar type="orc" />;
+export const changeling = () => <Avatar type="changeling" />;

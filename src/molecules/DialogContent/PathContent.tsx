@@ -1,12 +1,5 @@
 import React from "react";
-import Panel from "../../atoms/Panel/index";
-import Avatar from "../../atoms/Avatar/Avatar";
-import styled from "styled-components"; /* }; */
-
-/* type Ancestry = { */
-/*   name: string; */
-/*   description: string; */
-/*   starting_attributes: object<any> */
+import { Panel, Avatar } from "../../atoms/";
 
 interface PathDialogContentProps {
   pathInfo: any;

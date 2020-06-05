@@ -11,7 +11,7 @@ import {
 
 export type DialogProps = {
   title: string;
-  content: string;
+  children?: any;
   actionName: string;
   isOpen: boolean;
 };
@@ -26,13 +26,13 @@ const StyledButton = styled(Button)`
   color: white;
 `;
 
-function DynamicDialog({ title, content, actionName, isOpen }: DialogProps) {
+function DynamicDialog({ title, children, actionName, isOpen }: DialogProps) {
   const [open, setOpen] = useState(isOpen);
   return (
     <>
       <Dialog open={open}>
         <StyledDialogTitle>{title}</StyledDialogTitle>
-        <DialogContent>{content}</DialogContent>
+        <DialogContent>{children}</DialogContent>
         <DialogActions>
           <StyledButton>{actionName}</StyledButton>
           <Button onClick={() => setOpen(false)}>CANCEL</Button>

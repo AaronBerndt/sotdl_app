@@ -1,9 +1,9 @@
 import React from "react";
-import AncestryDialogContent from "./DialogContext";
+import AncestryDialog from "./AncestryDialog";
 
 export default {
-  title: "Atoms/Dialog/AncestryDialogContent",
-  component: AncestryDialogContent,
+  title: "Organisms/AncestryDialog",
+  component: AncestryDialog,
 };
 
 const ancestryObject = {
@@ -64,5 +64,5 @@ const ancestryObject = {
 };
 
 export const isOpen = () => (
-  <AncestryDialogContent ancestryInfo={ancestryObject} />
+  <AncestryDialog ancestryInfo={ancestryObject} isOpen={true} />
 );

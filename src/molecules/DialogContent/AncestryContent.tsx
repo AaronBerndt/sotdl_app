@@ -1,12 +1,5 @@
-import React, { useState } from "react";
-import Panel from "../Panel";
-import Avatar from "../Avatar/Avatar";
-import styled from "styled-components"; /* }; */
-
-/* type Ancestry = { */
-/*   name: string; */
-/*   description: string; */
-/*   starting_attributes: object<any> */
+import React from "react";
+import { Panel, Avatar } from "../../atoms";
 
 interface AncestryDialogContentProps {
   ancestryInfo: any;
