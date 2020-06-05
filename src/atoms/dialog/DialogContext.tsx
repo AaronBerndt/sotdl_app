@@ -6,9 +6,12 @@ import styled from "styled-components"; /* }; */
 /* type Ancestry = { */
 /*   name: string; */
 /*   description: string; */
-/*   starting_attributes: object<any> */ interface AncestryDialogContentProps {
+/*   starting_attributes: object<any> */
+
+interface AncestryDialogContentProps {
   ancestryInfo: any;
 }
+
 function AncestryDialogContent({ ancestryInfo }: AncestryDialogContentProps) {
   const {
     name,

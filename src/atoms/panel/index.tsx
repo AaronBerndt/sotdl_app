@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 
 import {
   ExpansionPanel,
   ExpansionPanelSummary,
   ExpansionPanelDetails,
-  Typography,
   makeStyles,
+  ListItem,
+  ListItemText,
 } from "@material-ui/core";
+import { ExpandMore } from "@material-ui/icons";
 
 interface PanelProps {
   title: string;
@@ -34,9 +36,10 @@ function Panel({ title, summary, details }: PanelProps) {
 
   return (
     <ExpansionPanel>
-      <ExpansionPanelSummary>
-        <Typography className={heading}>{title}</Typography>
-        <Typography className={secondaryHeading}>{summary}</Typography>
+      <ExpansionPanelSummary expandIcon={<ExpandMore />}>
+        <ListItem>
+          <ListItemText primary={title} secondary={`${summary}`} />
+        </ListItem>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>{details}</ExpansionPanelDetails>
     </ExpansionPanel>
