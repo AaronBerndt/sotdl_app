@@ -1,10 +1,10 @@
 import React from "react";
+import styled from "styled-components";
+
 import {
-  List,
   ListItem,
   ListItemText,
   ListItemAvatar,
-  Card,
   Avatar,
 } from "@material-ui/core";
 
@@ -13,17 +13,21 @@ export type ListItem = {
   icon: any;
   onClickFunction?: any;
 };
+
+const StyledListItem = styled(ListItem)`
+  background: gray;
+  font: gray;
+`;
+
 function DynamicList({ title, icon, onClickFunction }: ListItem) {
   return (
     <>
-      <Card>
-        <ListItem button onClick={onClickFunction}>
-          <ListItemAvatar>
-            <Avatar src={icon}></Avatar>
-          </ListItemAvatar>
-          <ListItemText primary={title} />
-        </ListItem>
-      </Card>
+      <StyledListItem button onClick={onClickFunction} divider>
+        <ListItemAvatar>
+          <Avatar src={icon}></Avatar>
+        </ListItemAvatar>
+        <ListItemText primary={title} />
+      </StyledListItem>
     </>
   );
 }
