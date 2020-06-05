@@ -1,16 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-
-import {
-  ListItem,
-  ListItemText,
-  ListItemAvatar,
-  Avatar,
-} from "@material-ui/core";
+import Avatar from "../Avatar/Avatar";
+import { ListItem, ListItemText, ListItemAvatar } from "@material-ui/core";
 
 export type ListItem = {
   title: string;
-  icon: any;
   onClickFunction?: any;
 };
 
@@ -19,12 +13,12 @@ const StyledListItem = styled(ListItem)`
   font: gray;
 `;
 
-function DynamicList({ title, icon, onClickFunction }: ListItem) {
+function DynamicList({ title, onClickFunction }: ListItem) {
   return (
     <>
       <StyledListItem button onClick={onClickFunction} divider>
         <ListItemAvatar>
-          <Avatar src={icon} variant="square"></Avatar>
+          <Avatar type={title.toLowerCase()} />
         </ListItemAvatar>
         <ListItemText primary={title} />
       </StyledListItem>

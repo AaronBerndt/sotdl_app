@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import Panel from "../Panel";
-import styled from "styled-components";
+import Avatar from "../Avatar/Avatar";
+import styled from "styled-components"; /* }; */
 
 /* type Ancestry = { */
 /*   name: string; */
 /*   description: string; */
-/*   starting_attributes: object<any> */
-/* }; */
-
-interface AncestryDialogContentProps {
+/*   starting_attributes: object<any> */ interface AncestryDialogContentProps {
   ancestryInfo: any;
 }
 function AncestryDialogContent({ ancestryInfo }: AncestryDialogContentProps) {
@@ -22,7 +20,11 @@ function AncestryDialogContent({ ancestryInfo }: AncestryDialogContentProps) {
 
   return (
     <>
-      <h1>{name}</h1>
+      <div>
+        <h1>{name}</h1>
+        <Avatar type={name} />
+      </div>
+
       <p>{description}</p>
       <h1>Starting Attribute Scores</h1>
       <p>{`Strength ${sa.strength} , Agility ${sa.agility}, Intellect ${sa.intellect}, Will ${sa.will}`}</p>

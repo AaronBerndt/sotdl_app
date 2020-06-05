@@ -13,11 +13,10 @@ function DialogList({ listItemArray, dialogTitle }: DialogListProps) {
   console.log(open);
   return (
     <List>
-      {listItemArray.map(({ title, icon }, i) => (
+      {listItemArray.map(({ title }, i) => (
         <>
           <ListItem
             title={title}
-            icon={icon}
             onClickFunction={() => setOpen(true)}
             key={i}
           />
