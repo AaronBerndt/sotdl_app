@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Avatar from "../Avatar/Avatar";
 import { ListItem, ListItemText, ListItemAvatar } from "@material-ui/core";
 
-export type ListItem = {
+export type ListItemType = {
   title: string;
   onClickFunction?: any;
 };
@@ -13,7 +13,7 @@ const StyledListItem = styled(ListItem)`
   font: gray;
 `;
 
-function DynamicList({ title, onClickFunction }: ListItem) {
+function DynamicListItem({ title, onClickFunction }: ListItemType) {
   return (
     <>
       <StyledListItem button onClick={onClickFunction} divider>
@@ -26,4 +26,4 @@ function DynamicList({ title, onClickFunction }: ListItem) {
   );
 }
 
-export default DynamicList;
+export default DynamicListItem;

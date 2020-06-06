@@ -12,3 +12,4 @@ export const goblin = () => <Avatar type="goblin" />;
 export const clockwork = () => <Avatar type="clockwork" />;
 export const orc = () => <Avatar type="orc" />;
 export const changeling = () => <Avatar type="changeling" />;
+export const isLarge = () => <Avatar type="dwarf" isLarge />;

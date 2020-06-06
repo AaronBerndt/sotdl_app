@@ -1,6 +1,6 @@
 import React from "react";
 
-import ListItem from "./index";
+import ListItem from "./ListItem";
 import { action } from "@storybook/addon-actions";
 
 export default {

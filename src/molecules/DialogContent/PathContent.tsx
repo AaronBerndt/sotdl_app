@@ -1,10 +1,21 @@
 import React from "react";
+import styled from "styled-components";
 import { Panel, Avatar } from "../../atoms/";
 
 interface PathDialogContentProps {
   pathInfo: any;
   isPath?: boolean;
 }
+
+const StyledHeader = styled.h1`
+position:: 'abosolute'
+`;
+
+const StyledAvatar = styled(Avatar)`
+position:: 'abosolute'
+left: 50%;
+`;
+
 function PathDialogContent({ pathInfo, isPath }: PathDialogContentProps) {
   const {
     name,
@@ -14,16 +25,26 @@ function PathDialogContent({ pathInfo, isPath }: PathDialogContentProps) {
     features,
     characteristics,
   } = pathInfo;
+
+  const filterCharacteristics = (filterBy) => {
+    const filterArray = characteristics.filter(({ type }) => type === filterBy);
+  };
+  characteristics.map(({ name, value, level }, i: number) => (
+    <Panel
+      title={name}
+      summary={`Level ${level}`}
+      details={`+ ${value}`}
+      key={i}
+    />
+  ));
   return (
     <>
       <div>
-        <h1>{name}</h1>
-        <Avatar type={name} />
+        <StyledHeader>{name}</StyledHeader>
+        <StyledAvatar type={name} isLarge />
       </div>
 
-      <p>{type}</p>
       <p>{description}</p>
-      <p>{professions}</p>
 
       {features.map(({ name, description, level }, i: number) => (
         <Panel
@@ -33,6 +54,8 @@ function PathDialogContent({ pathInfo, isPath }: PathDialogContentProps) {
           key={i}
         />
       ))}
+      <Panel title={"Professitons"} summary={`Level 1`} details={professions} />
+
       {characteristics.map(({ name, value, level }, i: number) => (
         <Panel
           title={name}

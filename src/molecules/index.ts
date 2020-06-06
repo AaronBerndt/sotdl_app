@@ -1,4 +1,3 @@
-import PathContent from "./DialogContent/PathContent";
-import AncestryContent from "./DialogContent/AncestryContent";
+import { PathContent, AncestryContent } from "./DialogContent/";
 
 export { PathContent, AncestryContent };

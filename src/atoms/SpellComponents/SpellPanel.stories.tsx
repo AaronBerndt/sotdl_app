@@ -7,5 +7,5 @@ export default {
 };
 
 export const withProps = () => (
-  <SpellPanel name="Flense" tradition="Air" type="Attack" level={1} />
+  <SpellPanel name="Flense" tradition="Air" level={1} />
 );

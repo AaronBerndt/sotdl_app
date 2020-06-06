@@ -9,7 +9,6 @@ export default {
 export const isOpen = () => (
   <Dialog
     title="Confirm Ancestry"
-    content="Confirm Ancestry"
     actionName="Confirm Ancestry"
     isOpen={true}
   />
@@ -18,7 +17,6 @@ export const isOpen = () => (
 export const notOpen = () => (
   <Dialog
     title="Confirm Ancestry"
-    content="Confirm Ancestry"
     actionName="Confirm Ancestry"
     isOpen={false}
   />
