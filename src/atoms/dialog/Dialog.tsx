@@ -27,15 +27,14 @@ const StyledButton = styled(Button)`
 `;
 
 function DynamicDialog({ title, children, actionName, isOpen }: DialogProps) {
-  const [open, setOpen] = useState(isOpen);
   return (
     <>
-      <Dialog open={open}>
+      <Dialog open={isOpen}>
         <StyledDialogTitle>{title}</StyledDialogTitle>
         <DialogContent>{children}</DialogContent>
         <DialogActions>
           <StyledButton>{actionName}</StyledButton>
-          <Button onClick={() => setOpen(false)}>CANCEL</Button>
+          <Button> >CANCEL</Button>
         </DialogActions>
       </Dialog>
     </>

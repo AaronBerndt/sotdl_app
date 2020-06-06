@@ -11,16 +11,16 @@ export const withProps = () => (
   <List
     listItemArray={[
       {
-        title: "Human",
+        name: "Human",
       },
       {
-        title: "Dwarf",
+        name: "Dwarf",
       },
       {
-        title: "Orc",
+        name: "Orc",
       },
       {
-        title: "Goblin",
+        name: "Goblin",
       },
     ]}
     onClickFunction={action("button-click")}
