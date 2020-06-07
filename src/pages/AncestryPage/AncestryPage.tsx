@@ -1,12 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { List } from "../molecules/";
-import { AncestryDialog } from "../organisms/";
+import React, { useState, useEffect, createContext } from "react";
+import { List } from "../../molecules/";
+import { AncestryDialog } from "../../organisms/";
+import { useToggle } from "../../hooks/";
 import axios from "axios";
+
+export const AncestryPageContext = createContext({
+  open: false,
+});
 
 function AncestryPage() {
   const [ancestryList, setAncestryList] = useState([]);
   const [selectedAncestryIndex, setSelectedAncestryIndex] = useState(0);
-  const [isOpen, setIsOpen] = useState(false);
+  const { open, togggleOpen } = useToggle();
 
   const getData = async () => {
     const { data } = await axios("http://localhost:3000/ancestries");
@@ -21,16 +26,15 @@ function AncestryPage() {
 
   const listItemOnClick = (index: number) => {
     setSelectedAncestryIndex(index);
-    setIsOpen(true);
+    togggleOpen();
   };
-
   return (
     <>
       <List listItemArray={ancestryList} onClickFunction={listItemOnClick} />
-      <AncestryDialog
-        ancestryInfo={ancestryList[selectedAncestryIndex]}
-        isOpen={isOpen}
-      />
+
+      <AncestryPageContext.Provider value={{ open }}>
+        <AncestryDialog ancestryInfo={ancestryList[selectedAncestryIndex]} />
+      </AncestryPageContext.Provider>
     </>
   );
 }

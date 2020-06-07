@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import {
@@ -34,7 +34,7 @@ function DynamicDialog({ title, children, actionName, isOpen }: DialogProps) {
         <DialogContent>{children}</DialogContent>
         <DialogActions>
           <StyledButton>{actionName}</StyledButton>
-          <Button> >CANCEL</Button>
+          <Button> CANCEL</Button>
         </DialogActions>
       </Dialog>
     </>
