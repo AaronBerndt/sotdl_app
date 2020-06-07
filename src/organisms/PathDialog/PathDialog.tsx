@@ -4,15 +4,17 @@ import { PathContent } from "../../molecules/";
 
 interface PathDialogProps {
   pathInfo: any;
-  isOpen: boolean;
+  isOpen: any;
+  onClickFuncion: any;
 }
 
-function PathDialog({ pathInfo, isOpen }: PathDialogProps) {
+function PathDialog({ pathInfo, isOpen, onClickFuncion }: PathDialogProps) {
   return (
     <Dialog
       title={`Confirm ${pathInfo.type} Path`}
       actionName="Confirm Path"
       isOpen={isOpen}
+      onClickFuncion={onClickFuncion}
     >
       <PathContent pathInfo={pathInfo} />
     </Dialog>

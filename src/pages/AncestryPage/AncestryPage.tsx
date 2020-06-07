@@ -1,17 +1,22 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect, createContext, useReducer } from "react";
 import { List } from "../../molecules/";
 import { AncestryDialog } from "../../organisms/";
-import { useToggle } from "../../hooks/";
 import axios from "axios";
 
-export const AncestryPageContext = createContext({
-  open: false,
-});
+export const AncestryDialogContext = createContext({});
 
-function AncestryPage() {
+function reducer(state, action) {
+  const actionSwitch = {
+    toggle: { open: !state.open },
+  };
+
+  return actionSwitch[action.type];
+}
+
+export function AncestryPage() {
   const [ancestryList, setAncestryList] = useState([]);
   const [selectedAncestryIndex, setSelectedAncestryIndex] = useState(0);
-  const { open, togggleOpen } = useToggle();
+  const [state, dispatch] = useReducer(reducer, { open: false });
 
   const getData = async () => {
     const { data } = await axios("http://localhost:3000/ancestries");
@@ -26,15 +31,17 @@ function AncestryPage() {
 
   const listItemOnClick = (index: number) => {
     setSelectedAncestryIndex(index);
-    togggleOpen();
+    dispatch({ type: "toggle" });
   };
+
   return (
     <>
       <List listItemArray={ancestryList} onClickFunction={listItemOnClick} />
-
-      <AncestryPageContext.Provider value={{ open }}>
-        <AncestryDialog ancestryInfo={ancestryList[selectedAncestryIndex]} />
-      </AncestryPageContext.Provider>
+      <AncestryDialog
+        ancestryInfo={ancestryList[selectedAncestryIndex]}
+        isOpen={state}
+        onClickFuncion={() => dispatch({ type: "toggle" })}
+      />
     </>
   );
 }

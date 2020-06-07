@@ -1,5 +1,6 @@
 import React from "react";
 import AncestryDialog from "./AncestryDialog";
+import { action } from "@storybook/addon-actions";
 
 export default {
   title: "Organisms/AncestryDialog",
@@ -63,6 +64,12 @@ const ancestryObject = {
   ],
 };
 
+const mockStatus = (openStatus: boolean) => ({ open: openStatus });
+
 export const isOpen = () => (
-  <AncestryDialog ancestryInfo={ancestryObject} isOpen={true} />
+  <AncestryDialog
+    ancestryInfo={ancestryObject}
+    isOpen={mockStatus(true)}
+    onClickFuncion={action("button-click")}
+  />
 );

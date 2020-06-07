@@ -1,3 +1,3 @@
-import AncestryPage, { AncestryPageContext } from "./AncestryPage";
+import AncestryPage, { AncestryDialogContext } from "./AncestryPage";
 
-export { AncestryPage, AncestryPageContext };
+export { AncestryPage, AncestryDialogContext };

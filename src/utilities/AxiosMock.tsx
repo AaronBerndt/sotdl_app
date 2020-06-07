@@ -12,7 +12,6 @@ const apiMock = new MockAdapter(axios);
 const AxiosMock = ({ children, mock }: IProps) => {
   useEffect(() => {
     mock(apiMock);
-    console.log(apiMock);
     return () => {
       apiMock.reset();
     };

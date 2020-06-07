@@ -13,9 +13,9 @@ export type DialogProps = {
   title: string;
   children?: any;
   actionName: string;
-  isOpen: boolean;
+  onClickFuncion: any;
+  isOpen: any;
 };
-
 const StyledDialogTitle = styled(DialogTitle)`
   background-color: #262e37;
   color: white;
@@ -26,15 +26,23 @@ const StyledButton = styled(Button)`
   color: white;
 `;
 
-function DynamicDialog({ title, children, actionName, isOpen }: DialogProps) {
+function DynamicDialog({
+  title,
+  children,
+  actionName,
+  onClickFuncion,
+  isOpen,
+}: DialogProps) {
+  const { open } = isOpen;
+
   return (
     <>
-      <Dialog open={isOpen}>
+      <Dialog open={open}>
         <StyledDialogTitle>{title}</StyledDialogTitle>
         <DialogContent>{children}</DialogContent>
         <DialogActions>
           <StyledButton>{actionName}</StyledButton>
-          <Button> CANCEL</Button>
+          <Button onClick={onClickFuncion}>CANCEL</Button>
         </DialogActions>
       </Dialog>
     </>
