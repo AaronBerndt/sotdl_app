@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Dialog } from "../../atoms/";
 import { AncestryContent } from "../../molecules/";
-import { AncestryDialogContext } from "../../pages/AncestryPage/AncestryPage";
 
 interface AncestryDialogProps {
   ancestryInfo: any;
@@ -26,4 +25,4 @@ function AncestryDialog({
   );
 }
 
-export default AncestryDialog;
+export default ancestrydialog;
