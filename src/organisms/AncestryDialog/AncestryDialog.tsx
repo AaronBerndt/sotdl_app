@@ -25,4 +25,4 @@ function AncestryDialog({
   );
 }
 
-export default ancestrydialog;
+export default Ancestrydialog;
