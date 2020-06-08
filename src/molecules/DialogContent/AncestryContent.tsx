@@ -9,7 +9,6 @@ function AncestryDialogContent({ ancestryInfo }: AncestryDialogContentProps) {
   const {
     name,
     description,
-    starting_attributes: sa,
     languages,
     features,
     characteristics,
@@ -23,11 +22,7 @@ function AncestryDialogContent({ ancestryInfo }: AncestryDialogContentProps) {
       </div>
 
       <p>{description}</p>
-      <h1>Starting Attribute Scores</h1>
-      <p>{`Strength ${sa.strength} , Agility ${sa.agility}, Intellect ${sa.intellect}, Will ${sa.will}`}</p>
-      <p>{`Health:  +${sa.health} Perception: +${sa.perception} Defense: +${sa.defense}
-	   Power: +${sa.power} Insanity: +${sa.insanity} Corruption: +${sa.corruption}`}</p>
-      <p>{`Speed: ${sa.speed}`}</p>
+      <p>{`Languages: ${languages}`}</p>
 
       {features.map(({ name, description, level }, i: number) => (
         <Panel
@@ -46,7 +41,7 @@ function AncestryDialogContent({ ancestryInfo }: AncestryDialogContentProps) {
         />
       ))}
     </>
-  )
+  );
 }
 
 export default AncestryDialogContent;

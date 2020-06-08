@@ -10,22 +10,6 @@ const ancestryObject = {
   name: "Dwarf",
   description:
     "Dwarfs live under the mountains in elaborate subterranean cities. From them, they launch expeditions deep into the earth to pry gold and silver from the unyielding rock. They hoard their treasures in great vaults and view other peoples with distrust, suspecting them all of coveting their wealth. The dwarfs have few friends and gain little aid when the forces of darkness overrun their strongholds to lay claim to their vaults. Thus many dwarfs wander the lands, homeless, friendless, searching for a new place to call their own",
-  starting_attributes: {
-    strength: 10,
-    agility: 9,
-    intellect: 10,
-    will: 10,
-    healing_rate: 0.25,
-    perception: 1,
-    defense: 0,
-    health: 4,
-    size: 0.5,
-    speed: 8,
-    power: 0,
-    damage: 0,
-    insanity: 0,
-    corruption: 0,
-  },
   languages: "Common, Dwarfish",
   professions: "Common",
   features: [
@@ -55,6 +39,14 @@ const ancestryObject = {
     },
   ],
   characteristics: [
+    { name: "Strength", value: 10, level: 0 },
+    { name: "Agility", value: 9, level: 0 },
+    { name: "Intellect", value: 10, level: 0 },
+    { name: "Will", value: 10, level: 0 },
+    { name: "Perception", value: 1, level: 0 },
+    { name: "Health", value: 4, level: 0 },
+    { name: "Size", value: 0.5, level: 0 },
+    { name: "Speed", value: 8, level: 0 },
     {
       name: "Health",
       value: 6,
