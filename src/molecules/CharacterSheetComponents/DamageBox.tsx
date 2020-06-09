@@ -7,13 +7,14 @@ interface DamageBoxProps {
 }
 
 const DamageButton = styled(Button)`
-background-color:red
-background:white
+  background-color: red;
+
+  color: white;
 `;
 
 const HealButton = styled(Button)`
-background-color:green
-background:white
+  background-color: green;
+  color: white;
 `;
 
 function DamageBox({ healthTotal }: DamageBoxProps) {

@@ -1,5 +1,5 @@
 import React from "react";
-interface DetailsBox {
+interface DetailsBoxProps {
   name: string;
   ancestry: string;
   novicePath: string;
@@ -7,14 +7,15 @@ interface DetailsBox {
   masterPath: string;
   level: number;
 }
-function CharacteristicsBox({
+
+function DetailsBox({
   name,
   ancestry,
   novicePath,
   expertPath,
   masterPath,
   level,
-}: DetailsBox) {
+}: DetailsBoxProps) {
   const isNovice = (type: string) => type === "Novice";
   const ifExists = (path: string, type: string) =>
     path ? (isNovice(type) ? path : `/ ${path}`) : "";
@@ -30,4 +31,4 @@ function CharacteristicsBox({
   );
 }
 
-export default CharacteristicsBox;
+export default DetailsBox;
