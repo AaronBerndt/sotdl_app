@@ -2,7 +2,7 @@ import React from "react";
 import DefenseBox from "./DefenseBox";
 
 export default {
-  title: "Atoms/CharacterSheetComponents/DefenseBox",
+  title: "Molecules/CharacterSheetComponents/DefenseBox",
   component: DefenseBox,
 };
 

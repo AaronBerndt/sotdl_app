@@ -3,8 +3,8 @@ import { useState, useCallback } from "react";
 function useDice() {
   const [result, setResult] = useState(0);
 
-  const rollDice = (sides) => {
-    var result = Math.floor(Math.random() * sides) + 1;
+  const rollDice = (sides: number) => {
+    const result = Math.floor(Math.random() * sides) + 1;
     return result;
   };
 
@@ -35,3 +35,5 @@ function useDice() {
     }, []),
   };
 }
+
+export default useDice;

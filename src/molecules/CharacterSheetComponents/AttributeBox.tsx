@@ -1,5 +1,6 @@
 import React from "react";
-import { Badge, TextField, Button } from "@material-ui/core";
+import { Badge, Button } from "@material-ui/core";
+import { TextField } from "../../atoms";
 
 interface AttributeBoxProps {
   name: string;
@@ -16,28 +17,17 @@ function AttributeBox({
   withMod,
   withNoRoll,
 }: AttributeBoxProps) {
+  console.log(value);
   const mod = value - 10 > 0 ? `+ ${value - 10}` : value - 10;
   return (
     <>
       <Button onClick={onClickFuncion} size="small" disabled={withNoRoll}>
         {withMod ? (
           <Badge badgeContent={value} color="primary">
-            <TextField
-              label={name}
-              variant="outlined"
-              defaultValue={mod}
-              size="small"
-              disabled
-            />
+            <TextField name={name} value={mod} />
           </Badge>
         ) : (
-          <TextField
-            label={name}
-            variant="outlined"
-            defaultValue={value}
-            size="small"
-            disabled
-          />
+          <TextField name={name} value={value} />
         )}
       </Button>
     </>

@@ -8,8 +8,9 @@ interface HealthBoxProps {
 function HealthBox({ healthTotal, damage }: HealthBoxProps) {
   return (
     <>
-      <p>`Health: ${healthTotal}`</p>
+      <p>{`Health: ${healthTotal}`}</p>
       <p>{`Damage: ${damage}`}</p>
+      {damage === healthTotal ? <p>Make Death Saves</p> : null}
     </>
   );
 }

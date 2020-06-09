@@ -3,7 +3,7 @@ import AttributeBox from "./AttributeBox";
 import { action } from "@storybook/addon-actions";
 
 export default {
-  title: "Atoms/CharacterSheetComponents/AttributeBox",
+  title: "Molecules/CharacterSheetComponents/AttributeBox",
   component: AttributeBox,
 };
 
