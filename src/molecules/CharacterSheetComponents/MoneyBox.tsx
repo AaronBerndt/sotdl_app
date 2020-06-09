@@ -20,7 +20,7 @@ function MoneyBox({ moneyObject }: MoneyBoxProps) {
 
   return (
     <>
-      <Button>
+      <Button variant="outlined">
         <p>{`${formatMoney(bits, "bits")} ${formatMoney(
           copper,
           "copper"
