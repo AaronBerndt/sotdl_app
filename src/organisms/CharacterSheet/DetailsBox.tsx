@@ -15,8 +15,8 @@ function CharacteristicsBox({
   masterPath,
   level,
 }: DetailsBox) {
-  const isNovice = (type) => type === "Novice";
-  const ifExists = (path, type) =>
+  const isNovice = (type: string) => type === "Novice";
+  const ifExists = (path: string, type: string) =>
     path ? (isNovice(type) ? path : `/ ${path}`) : "";
   return (
     <>
