@@ -3,21 +3,14 @@ const characterData = {
   description: "Murder Hobo",
   level: 4,
   ancestry: "Dwarf",
+  novicePath: "Warrior",
+  expertPath: "Berserker",
+  masterPath: "",
   languages: ["Common", "Dwarf"],
   profession: [
     {
       name: "Guard",
       type: "Martial",
-    },
-  ],
-  paths: [
-    {
-      name: "Warrior",
-      type: "Novice",
-    },
-    {
-      name: "Berserker",
-      type: "Expert",
     },
   ],
   characteristics: [
@@ -146,7 +139,15 @@ const characterData = {
         availability: "U",
       },
     ],
-    other: [],
+    magicItems: [],
+    other: [
+      {
+        name: "Backpack",
+        description: "You can carry stuff ",
+        price: "1 cc",
+        availability: "U",
+      },
+    ],
     money: {
       bits: 0,
       copper: 15,

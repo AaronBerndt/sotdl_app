@@ -54,6 +54,7 @@ function CharacterSheetPage() {
     masterPath,
     characteristics,
     features,
+    spells,
   } = characterData;
   return (
     <>
@@ -73,9 +74,9 @@ function CharacterSheetPage() {
             level={level}
           />
 
-          <CharacterContentBox>
+          <CharacterContentBox spellArrayLength={spells.length}>
+            <p>Tab 1</p>
             <FeaturesBox featuresArray={features} level={level} />
-            <p>Tab 2</p>
             <p>Tab 3</p>
           </CharacterContentBox>
         </>

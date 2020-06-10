@@ -8,11 +8,6 @@ interface FeaturesBoxProps {
   level: number;
 }
 
-const StyledCard = styled(Card)`
-  width: 583px;
-  height: 600px;
-`;
-
 function FeaturesBox({ featuresArray, level }: FeaturesBoxProps) {
   return (
     <>

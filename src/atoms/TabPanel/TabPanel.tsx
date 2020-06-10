@@ -16,7 +16,7 @@ function TabPanel({ children, value, index, ...other }: TabPanelProps) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Box p={3}>{children}</Box>}
+      {value === index ? children : null}
     </div>
   );
 }
