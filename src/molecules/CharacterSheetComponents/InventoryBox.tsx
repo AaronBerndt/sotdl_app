@@ -6,44 +6,11 @@ import {
   TableRow,
   TableCell,
 } from "@material-ui/core";
-type Weapons = {
-  name: string;
-  damage: string;
-  hands: string;
-  properties?: string;
-  type: string;
-  price: string;
-  availability: string;
-};
-
-type Armor = {
-  name: string;
-  value: string;
-  type: string;
-  price: string;
-  availability: string;
-  properties?: string;
-};
-
-type otherItems = {
-  name: string;
-  price: string;
-  availability: string;
-  description: string;
-};
-
-type Items = {
-  weapons: Array<Weapons>;
-  armor: Array<Armor>;
-  other: Array<otherItems>;
-};
 interface InventoryBoxProps {
-  itemsObject: Items;
+  inventoryArray: Array<any>;
 }
 
-function InventoryBox({ itemsObject }: InventoryBoxProps) {
-  const { weapons, armor, other } = itemsObject;
-  const inventoryArray = [weapons, armor, other].map((array) => array).flat(1);
+function InventoryBox({ inventoryArray }: InventoryBoxProps) {
   const cells = ["name", "price", "availability"];
   return (
     <>
