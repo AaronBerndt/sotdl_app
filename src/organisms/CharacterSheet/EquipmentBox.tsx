@@ -31,25 +31,34 @@ type otherItems = {
   description: string;
 };
 
+type Money = {
+  bits: number;
+  copper: number;
+  silver: number;
+  gold: number;
+};
+
 type Items = {
   weapons: Array<Weapons>;
   armor: Array<Armor>;
   other: Array<otherItems>;
+  money: Money;
 };
 
 interface EquipmentBoxProps {
   itemsObject: Items;
+  strength: number;
 }
 
-function EquipmentBox({ itemsObject }: EquipmentBoxProps) {
+function EquipmentBox({ itemsObject, strength }: EquipmentBoxProps) {
   const { money } = itemsObject;
   const { weapons, armor, other } = itemsObject;
   const inventoryArray = [weapons, armor, other].map((array) => array).flat(1);
   return (
     <>
-      <EncumbranceBox />
+      <EncumbranceBox inventoryArray={inventoryArray} strength={strength} />
       <MoneyBox moneyObject={money} />
-      <InventoryBox />
+      <InventoryBox inventoryArray={inventoryArray} />
     </>
   );
 }
