@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { DetailsBox, CharacteristicsBox } from "../../organisms";
+import {
+  DetailsBox,
+  CharacteristicsBox,
+  FeaturesBox,
+  CharacterContentBox,
+} from "../../organisms";
 import axios from "axios";
 
 function CharacterSheetPage() {
@@ -48,6 +53,7 @@ function CharacterSheetPage() {
     expertPath,
     masterPath,
     characteristics,
+    features,
   } = characterData;
   return (
     <>
@@ -66,6 +72,12 @@ function CharacterSheetPage() {
             onClickFuncion={() => console.log("Hello")}
             level={level}
           />
+
+          <CharacterContentBox>
+            <FeaturesBox featuresArray={features} level={level} />
+            <p>Tab 2</p>
+            <p>Tab 3</p>
+          </CharacterContentBox>
         </>
       )}
     </>

@@ -4,6 +4,8 @@ import {
   LifeWorkSpaceBox,
   DetailsBox,
   CharacteristicsBox,
+  FeaturesBox,
+  CharacterContentBox,
 } from "./CharacterSheet";
 
 export {
@@ -12,4 +14,6 @@ export {
   LifeWorkSpaceBox,
   DetailsBox,
   CharacteristicsBox,
+  FeaturesBox,
+  CharacterContentBox,
 };
