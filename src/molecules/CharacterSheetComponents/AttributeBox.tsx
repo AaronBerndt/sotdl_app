@@ -17,7 +17,6 @@ function AttributeBox({
   withMod,
   withNoRoll,
 }: AttributeBoxProps) {
-  console.log(value);
   const mod = value - 10 > 0 ? `+ ${value - 10}` : value - 10;
   return (
     <>
