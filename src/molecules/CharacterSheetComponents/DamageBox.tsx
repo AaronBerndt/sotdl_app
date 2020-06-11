@@ -4,6 +4,9 @@ import { Button, TextField } from "@material-ui/core";
 
 interface DamageBoxProps {
   healthTotal: number;
+  currentDamage: number;
+  damageButtonClick: any;
+  healingButtonClick: any;
 }
 
 const DamageButton = styled(Button)`
@@ -17,38 +20,32 @@ const HealButton = styled(Button)`
   color: white;
 `;
 
-function DamageBox({ healthTotal }: DamageBoxProps) {
+function DamageBox({
+  healthTotal,
+  currentDamage,
+  healingButtonClick,
+  damageButtonClick,
+}: DamageBoxProps) {
   const [amount, setAmount] = useState(0);
-  const [damage, dispatch] = useReducer(reducer, 0);
-  function reducer(state, action) {
-    const actionObject = {
-      damage: () => state + action.value,
-      heal: () => state - action.value,
-      toZero: () => 0,
-    };
 
-    return actionObject[action.type]();
-  }
-
-  const addDamage = () => dispatch({ type: "damage", value: Number(amount) });
-  const removeDamage = () => {
-    const newDamage = damage - Number(amount);
-    dispatch(
-      newDamage <= 0 ? { type: "toZero" } : { type: "heal", value: amount }
-    );
-  };
   const onChange = (e) => setAmount(e.target.value);
 
   return (
     <>
-      <p>{`Damage: ${damage}`}</p>
-      {damage === healthTotal ? <p>Make Death Saves</p> : null}
+      <p>{`Damage: ${currentDamage}`}</p>
+      {currentDamage >= healthTotal ? <p>Make Death Saves</p> : null}
       <TextField onChange={onChange} />
 
-      <DamageButton variant="contained" onClick={addDamage}>
+      <DamageButton
+        variant="contained"
+        onClick={() => damageButtonClick(amount)}
+      >
         Damage
       </DamageButton>
-      <HealButton variant="contained" onClick={removeDamage}>
+      <HealButton
+        variant="contained"
+        onClick={() => healingButtonClick(amount)}
+      >
         Heal
       </HealButton>
     </>

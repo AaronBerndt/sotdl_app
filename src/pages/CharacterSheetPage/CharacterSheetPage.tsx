@@ -64,9 +64,9 @@ function CharacterSheetPage() {
     items,
   } = characterData;
 
-  const filterAndSum = (name) =>
+  const filterAndSum = (nameArray) =>
     sumArray(
-      filterByLevelAndName(characteristics, name, level).map(
+      filterByLevelAndMutiple(characteristics, nameArray, level).map(
         ({ value }) => value
       )
     );
@@ -75,17 +75,13 @@ function CharacterSheetPage() {
     value,
   });
 
-  const strength = filterAndSum("Strength");
-  const agility = filterAndSum("Agility");
-  const intellect = filterAndSum("Intellect");
-  const will = filterAndSum("Will");
-  const perception = sumArray(
-    filterByLevelAndMutiple(
-      characteristics,
-      ["Intellect", "Perception"],
-      level
-    ).map(({ value }) => value)
-  );
+  const health = filterAndSum(["Strength", "Health"]);
+  const strength = filterAndSum(["Strength"]);
+  const agility = filterAndSum(["Agility"]);
+  const intellect = filterAndSum(["Intellect"]);
+  const will = filterAndSum(["Will"]);
+  const perception = filterAndSum(["Intellect", "Perception"]);
+  const speed = filterAndSum(["Speed"]);
 
   const characteristicsArray = [
     createCharacteristic("Strength", strength),

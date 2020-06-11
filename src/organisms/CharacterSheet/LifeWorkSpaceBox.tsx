@@ -1,51 +1,56 @@
-import React from "react";
-import { AttributeBox } from "../../molecules";
-import {
-  filterByLevelAndName,
-  filterByLevelAndMutiple,
-  sumArray,
-} from "../../utilities";
+import React, { useReducer } from "react";
+import { AttributeBox, DamageBox } from "../../molecules";
 
 interface LifeWorkSpaceBoxProps {
-  characteristicsArray: any;
-  level: number;
+  health: number;
   onClickFuncion: any;
 }
 
-function LifeWorkSpaceBox({
-  characteristicsArray,
-  level,
-  onClickFuncion,
-}: LifeWorkSpaceBoxProps) {
+function LifeWorkSpaceBox({ health, onClickFuncion }: LifeWorkSpaceBoxProps) {
+  const [damage, dispatch] = useReducer(reducer, 0);
+  const healingRate = Math.floor(health / 4);
+
+  function reducer(state, action) {
+    const actionObject = {
+      damage: () => state + action.value,
+      heal: () => state - action.value,
+      toZero: () => 0,
+    };
+
+    return actionObject[action.type]();
+  }
+
+  const addDamage = (amount) =>
+    dispatch({ type: "damage", value: Number(amount) });
+
+  const removeDamage = (amount) => {
+    const newDamage = damage - Number(amount);
+    dispatch(
+      newDamage <= 0 ? { type: "toZero" } : { type: "heal", value: amount }
+    );
+  };
+
   return (
     <>
       <AttributeBox
         name="Health"
-        value={sumArray(
-          filterByLevelAndMutiple(
-            characteristicsArray,
-            ["Strength", "Health"],
-            level
-          ).map(({ value }) => value)
-        )}
+        value={health}
         onClickFuncion={onClickFuncion}
         withMod={false}
-        withNoRoll={false}
+        withNoRoll={true}
       />
       <AttributeBox
         name="Healing Rate"
-        value={Math.floor(
-          sumArray(
-            filterByLevelAndMutiple(
-              characteristicsArray,
-              ["Strength", "Health"],
-              level
-            ).map(({ value }) => value)
-          ) / 4
-        )}
-        onClickFuncion={onClickFuncion}
+        value={Math.floor(health / 4)}
+        onClickFuncion={() => removeDamage(healingRate)}
         withMod={false}
         withNoRoll={false}
+      />
+      <DamageBox
+        healthTotal={health}
+        currentDamage={damage}
+        healingButtonClick={removeDamage}
+        damageButtonClick={addDamage}
       />
     </>
   );
