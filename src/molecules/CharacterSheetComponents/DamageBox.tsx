@@ -1,6 +1,7 @@
-import React, { useState, useReducer } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Button, TextField } from "@material-ui/core";
+import { AttributeBox } from "../../molecules";
 
 interface DamageBoxProps {
   healthTotal: number;
@@ -30,15 +31,17 @@ function DamageBox({
 
   const onChange = (e) => setAmount(e.target.value);
 
+  const isDying = currentDamage >= healthTotal;
   return (
     <>
-      <p>{`Damage: ${currentDamage}`}</p>
-      {currentDamage >= healthTotal ? <p>Make Death Saves</p> : null}
+      <p>{`Damage: ${currentDamage}/${healthTotal}`}</p>
+      {isDying ? <p>Make Death Saves</p> : null}
       <TextField onChange={onChange} />
 
       <DamageButton
         variant="contained"
         onClick={() => damageButtonClick(amount)}
+        disabled={isDying}
       >
         Damage
       </DamageButton>

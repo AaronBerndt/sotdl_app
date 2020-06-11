@@ -5,13 +5,10 @@ import {
   FeaturesBox,
   CharacterContentBox,
   EquipmentBox,
+  LifeWorkSpaceBox,
 } from "../../organisms";
 import axios from "axios";
-import {
-  sumArray,
-  filterByLevelAndName,
-  filterByLevelAndMutiple,
-} from "../../utilities";
+import { sumArray, filterByLevelAndMutiple } from "../../utilities";
 
 function CharacterSheetPage() {
   const [characterData, setCharacterData] = useState({
@@ -95,20 +92,22 @@ function CharacterSheetPage() {
     <>
       {characterData.name === "" ? null : (
         <>
-          <DetailsBox
-            name={name}
-            ancestry={ancestry}
-            novicePath={novicePath}
-            expertPath={expertPath}
-            masterPath={masterPath}
-            level={level}
-          />
+          <>
+            <DetailsBox
+              name={name}
+              ancestry={ancestry}
+              novicePath={novicePath}
+              expertPath={expertPath}
+              masterPath={masterPath}
+              level={level}
+            />
+            <LifeWorkSpaceBox health={health} />
+          </>
           <CharacteristicsBox
             characteristicsArray={characteristicsArray}
             onClickFuncion={() => console.log("Hello")}
             level={level}
           />
-
           <CharacterContentBox spellArrayLength={spells.length}>
             <p>Tab 1</p>
             <FeaturesBox featuresArray={features} level={level} />

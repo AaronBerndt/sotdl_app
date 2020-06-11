@@ -3,10 +3,9 @@ import { AttributeBox, DamageBox } from "../../molecules";
 
 interface LifeWorkSpaceBoxProps {
   health: number;
-  onClickFuncion: any;
 }
 
-function LifeWorkSpaceBox({ health, onClickFuncion }: LifeWorkSpaceBoxProps) {
+function LifeWorkSpaceBox({ health }: LifeWorkSpaceBoxProps) {
   const [damage, dispatch] = useReducer(reducer, 0);
   const healingRate = Math.floor(health / 4);
 
@@ -15,13 +14,18 @@ function LifeWorkSpaceBox({ health, onClickFuncion }: LifeWorkSpaceBoxProps) {
       damage: () => state + action.value,
       heal: () => state - action.value,
       toZero: () => 0,
+      toMax: () => health,
     };
 
     return actionObject[action.type]();
   }
 
   const addDamage = (amount) =>
-    dispatch({ type: "damage", value: Number(amount) });
+    dispatch(
+      amount + damage >= health
+        ? { type: "toMax" }
+        : { type: "damage", value: Number(amount) }
+    );
 
   const removeDamage = (amount) => {
     const newDamage = damage - Number(amount);
@@ -35,7 +39,7 @@ function LifeWorkSpaceBox({ health, onClickFuncion }: LifeWorkSpaceBoxProps) {
       <AttributeBox
         name="Health"
         value={health}
-        onClickFuncion={onClickFuncion}
+        onClickFuncion={() => null}
         withMod={false}
         withNoRoll={true}
       />
