@@ -4,8 +4,14 @@ import {
   CharacteristicsBox,
   FeaturesBox,
   CharacterContentBox,
+  EquipmentBox,
 } from "../../organisms";
 import axios from "axios";
+import {
+  sumArray,
+  filterByLevelAndName,
+  filterByLevelAndMutiple,
+} from "../../utilities";
 
 function CharacterSheetPage() {
   const [characterData, setCharacterData] = useState({
@@ -55,7 +61,40 @@ function CharacterSheetPage() {
     characteristics,
     features,
     spells,
+    items,
   } = characterData;
+
+  const filterAndSum = (name) =>
+    sumArray(
+      filterByLevelAndName(characteristics, name, level).map(
+        ({ value }) => value
+      )
+    );
+  const createCharacteristic = (name, value) => ({
+    name,
+    value,
+  });
+
+  const strength = filterAndSum("Strength");
+  const agility = filterAndSum("Agility");
+  const intellect = filterAndSum("Intellect");
+  const will = filterAndSum("Will");
+  const perception = sumArray(
+    filterByLevelAndMutiple(
+      characteristics,
+      ["Intellect", "Perception"],
+      level
+    ).map(({ value }) => value)
+  );
+
+  const characteristicsArray = [
+    createCharacteristic("Strength", strength),
+    createCharacteristic("Agility", agility),
+    createCharacteristic("Intellect", intellect),
+    createCharacteristic("Will", will),
+    createCharacteristic("Perception", perception),
+  ];
+
   return (
     <>
       {characterData.name === "" ? null : (
@@ -69,7 +108,7 @@ function CharacterSheetPage() {
             level={level}
           />
           <CharacteristicsBox
-            characteristicsArray={characteristics}
+            characteristicsArray={characteristicsArray}
             onClickFuncion={() => console.log("Hello")}
             level={level}
           />
@@ -77,7 +116,7 @@ function CharacterSheetPage() {
           <CharacterContentBox spellArrayLength={spells.length}>
             <p>Tab 1</p>
             <FeaturesBox featuresArray={features} level={level} />
-            <p>Tab 3</p>
+            <EquipmentBox itemsObject={items} strength={strength} />
           </CharacterContentBox>
         </>
       )}

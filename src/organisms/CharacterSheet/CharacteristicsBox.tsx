@@ -14,45 +14,21 @@ interface CharacteristicsBoxProps {
 
 function CharacteristicsBox({
   characteristicsArray,
-  level,
   onClickFuncion,
 }: CharacteristicsBoxProps) {
-  const characteristicsWithModsArray = [
-    "Strength",
-    "Agility",
-    "Intellect",
-    "Will",
-  ];
   return (
     <>
-      {characteristicsWithModsArray.map((name, i) => {
+      {characteristicsArray.map(({ name, value }, i) => {
         return (
           <AttributeBox
             name={name}
-            value={sumArray(
-              filterByLevelAndName(characteristicsArray, name, level).map(
-                ({ value }) => value
-              )
-            )}
+            value={value}
             onClickFuncion={onClickFuncion}
             withMod={true}
             withNoRoll={false}
           />
         );
       })}
-      <AttributeBox
-        name="Perception"
-        value={sumArray(
-          filterByLevelAndMutiple(
-            characteristicsArray,
-            ["Intellect", "Perception"],
-            level
-          ).map(({ value }) => value)
-        )}
-        onClickFuncion={onClickFuncion}
-        withMod={true}
-        withNoRoll={false}
-      />
     </>
   );
 }

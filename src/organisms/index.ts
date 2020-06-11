@@ -6,6 +6,7 @@ import {
   CharacteristicsBox,
   FeaturesBox,
   CharacterContentBox,
+  EquipmentBox,
 } from "./CharacterSheet";
 
 export {
@@ -16,4 +17,5 @@ export {
   CharacteristicsBox,
   FeaturesBox,
   CharacterContentBox,
+  EquipmentBox,
 };
