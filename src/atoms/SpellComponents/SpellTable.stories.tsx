@@ -1,5 +1,6 @@
 import React from "react";
 import SpellTable from "./SpellTable";
+import { action } from "@storybook/addon-actions";
 
 export default {
   title: "Atoms/SpellComponents/SpellTable",
@@ -26,24 +27,27 @@ const spellArray = [
   },
 ];
 
+const onClick = action("button-click");
+export const noSpells = () => (
+  <SpellTable spellArray={[]} casting={1} onClickFuncion={onClick} />
+);
+
 export const casting1 = () => (
-  <SpellTable spellArray={spellArray} casting={1} />
+  <SpellTable spellArray={spellArray} casting={1} onClickFuncion={onClick} />
 );
 
 export const casting2 = () => (
-  <SpellTable spellArray={spellArray} casting={2} />
+  <SpellTable spellArray={spellArray} casting={2} onClickFuncion={onClick} />
 );
 
-
 export const casting3 = () => (
-  <SpellTable spellArray={spellArray} casting={3} />
+  <SpellTable spellArray={spellArray} casting={3} onClickFuncion={onClick} />
 );
 
 export const casting4 = () => (
-  <SpellTable spellArray={spellArray} casting={4} />
+  <SpellTable spellArray={spellArray} casting={4} onClickFuncion={onClick} />
 );
 
-
 export const casting10 = () => (
-  <SpellTable spellArray={spellArray} casting={10} />
+  <SpellTable spellArray={spellArray} casting={10} onClickFuncion={onClick} />
 );

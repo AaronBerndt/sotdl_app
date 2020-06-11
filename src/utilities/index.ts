@@ -1,6 +1,7 @@
 import {
   filterByLevelAndName,
   filterByLevel,
+  filterByNumber,
   filterByLevelAndMutiple,
 } from "./filterUtil";
 import sumArray from "./sumArray";
@@ -11,6 +12,7 @@ export {
   filterByLevelAndName,
   filterByLevel,
   filterByLevelAndMutiple,
+  filterByNumber,
   sumArray,
   isZero,
   lengthIsZero,

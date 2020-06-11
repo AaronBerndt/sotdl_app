@@ -7,10 +7,12 @@ import {
   TableCell,
   Checkbox,
 } from "@material-ui/core";
+import {lengthIsZero} from "../../utilities";
 
 interface SpellTableProps {
   spellArray: Array<any>;
   casting: number;
+  onClickFuncion: any;
 }
 
 function SpellCheckBox() {
@@ -27,34 +29,36 @@ function SpellCheckBox() {
   );
 }
 
-function SpellTable({ spellArray, casting }: SpellTableProps) {
+function SpellTable({ spellArray, casting, onClickFuncion }: SpellTableProps) {
   const cells = ["name", "type", "casting"];
   return (
     <>
-      <Table>
-        <TableHead>
-          <TableRow>
-            {["Name", "Type", "Casting"].map((header, i) => (
-              <TableCell key={i}>{header}</TableCell>
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {spellArray.map((item, i) => (
-            <TableRow key={i}>
-              {cells.map((cell, i) => (
-                <TableCell key={i}>
-                  {cell === "casting"
-                    ? [...Array(casting).keys()].map((item, i) => (
-                        <SpellCheckBox key={i} />
-                      ))
-                    : item[cell]}
-                </TableCell>
+      {lengthIsZero(spellArray) ? null : (
+        <Table>
+          <TableHead>
+            <TableRow>
+              {["Name", "Type", "Casting"].map((header, i) => (
+                <TableCell key={i}>{header}</TableCell>
               ))}
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHead>
+          <TableBody>
+            {spellArray.map((item, i) => (
+              <TableRow key={i} onClick={onClickFuncion}>
+                {cells.map((cell, i) => (
+                  <TableCell key={i}>
+                    {cell === "casting"
+                      ? [...Array(casting).keys()].map((item, i) => (
+                          <SpellCheckBox key={i} />
+                        ))
+                      : item[cell]}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      )}
     </>
   );
 }

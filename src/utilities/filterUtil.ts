@@ -22,4 +22,15 @@ function filterByLevel(array: any, level: number) {
   return filteredArray;
 }
 
-export { filterByLevelAndName, filterByLevel, filterByLevelAndMutiple };
+function filterByNumber(array: any, number: number) {
+  const filteredArray = array.filter((value) => value.level === number);
+
+  return filteredArray;
+}
+
+export {
+  filterByLevelAndName,
+  filterByLevel,
+  filterByNumber,
+  filterByLevelAndMutiple,
+};
