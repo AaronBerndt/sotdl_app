@@ -4,5 +4,15 @@ import Panel from "./Panel";
 import ListItem from "./ListItem";
 import TextField from "./TextField";
 import TabPanel from "./TabPanel";
+import FilterTextField from "./FilterTextField";
 import { SpellTable } from "./SpellComponents";
-export { Dialog, Panel, Avatar, ListItem, TextField, TabPanel, SpellTable };
+export {
+  Dialog,
+  Panel,
+  Avatar,
+  ListItem,
+  TextField,
+  TabPanel,
+  SpellTable,
+  FilterTextField,
+};

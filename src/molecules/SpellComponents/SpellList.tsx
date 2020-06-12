@@ -1,5 +1,5 @@
-import React from "react";
-import { SpellTable } from "../../atoms";
+import React, { useState } from "react";
+import { SpellTable, FilterTextField } from "../../atoms";
 import { filterByNumber } from "../../utilities";
 
 interface SpellListProps {
@@ -25,17 +25,32 @@ const castingObject = {
 
 function SpellList({ spellArray, power }: SpellListProps) {
   const castings = castingObject[power];
+  const [filteredSpellList, setFilteredSpellList] = useState(spellArray);
 
-  const onClick = () => console.log("Hello WOrld");
+  const onChange = (e) => {
+    const inputValue = e.target.value;
+
+    const newList = spellArray.filter(
+      (spell: any) =>
+        spell.name.includes(inputValue) || spell.type.includes(inputValue)
+    );
+
+    setFilteredSpellList(inputValue.length !== 0 ? newList : spellArray);
+  };
+
   return (
     <>
+      <FilterTextField
+        label="Filter By Spell Name | Type | Level"
+        onChangeFunction={onChange}
+      />
       {castings.map((castObject: any, i: number) => (
         <>
           <p>{`Level ${i}`}</p>
           <SpellTable
-            spellArray={filterByNumber(spellArray, i)}
+            spellArray={filterByNumber(filteredSpellList, i)}
             casting={castObject[i]}
-            onClickFuncion={() => onClick}
+            onClickFuncion={() => null}
           />
         </>
       ))}
