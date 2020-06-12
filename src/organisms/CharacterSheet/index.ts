@@ -4,6 +4,7 @@ import CharacteristicsBox from "./CharacteristicsBox";
 import FeaturesBox from "./FeaturesBox";
 import CharacterContentBox from "./CharacterContentBox";
 import EquipmentBox from "./EquipmentBox";
+import SpellBox from "./SpellBox";
 
 export {
   LifeWorkSpaceBox,
@@ -12,4 +13,5 @@ export {
   FeaturesBox,
   CharacterContentBox,
   EquipmentBox,
+  SpellBox,
 };

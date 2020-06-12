@@ -22,6 +22,17 @@ const spellArray = [
   createSpell(2, "Attack"),
 ];
 
-export const powerZero = () => <SpellList spellArray={spellArray} power={0} />;
-export const powerOne = () => <SpellList spellArray={spellArray} power={1} />;
-export const powerTwo = () => <SpellList spellArray={spellArray} power={2} />;
+export const powerZero = () => (
+  <SpellList spellArray={spellArray} castings={[{ 0: 1 }]} />
+);
+
+export const powerOne = () => (
+  <SpellList spellArray={spellArray} castings={[{ 0: 2 }, { 1: 1 }]} />
+);
+
+export const powerTwo = () => (
+  <SpellList
+    spellArray={spellArray}
+    castings={[{ 0: 3 }, { 1: 2 }, { 2: 1 }]}
+  />
+);

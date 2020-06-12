@@ -6,6 +6,7 @@ import {
   CharacterContentBox,
   EquipmentBox,
   LifeWorkSpaceBox,
+  SpellBox,
 } from "../../organisms";
 import axios from "axios";
 import { sumArray, filterByLevelAndMutiple } from "../../utilities";
@@ -79,6 +80,7 @@ function CharacterSheetPage() {
   const will = filterAndSum(["Will"]);
   const perception = filterAndSum(["Intellect", "Perception"]);
   const speed = filterAndSum(["Speed"]);
+  const power = filterAndSum(["Power"]);
 
   const characteristicsArray = [
     createCharacteristic("Strength", strength),
@@ -112,6 +114,7 @@ function CharacterSheetPage() {
             <p>Tab 1</p>
             <FeaturesBox featuresArray={features} level={level} />
             <EquipmentBox itemsObject={items} strength={strength} />
+            <SpellBox spellArray={spells} power={power} />
           </CharacterContentBox>
         </>
       )}

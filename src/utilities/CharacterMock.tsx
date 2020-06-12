@@ -43,6 +43,12 @@ const mockCharacter = (level) => ({
       value: 6,
       level: 3,
     },
+    {
+      name: "Power",
+      value: 2,
+      level: 3,
+    },
+
     { name: "Strength", value: 1, level: 1 },
     { name: "Will", value: 1, level: 1 },
     { name: "Strength", value: 1, level: 3 },
@@ -173,7 +179,26 @@ const mockCharacter = (level) => ({
       level: 10,
     },
   ],
-  spells: [],
+  spells: [
+    {
+      name: "Flense",
+      tradition: "Air",
+      type: "Attack",
+      level: 1,
+      characteristics: {
+        target: "One creature or object within short range",
+        duration: 0,
+      },
+      description:
+        "Windborne grit scours your target. Make a Will attack roll against the target’s Strength. On a success, the target takes 2d6 + 3 damage. A living creature that becomes incapacitated by this damage dies instantly, its flesh (if any) stripped from its bones.",
+      extra_effects: [
+        {
+          name: "Attack Roll 20+",
+          description: "The target takes 2d6 extra damage.",
+        },
+      ],
+    },
+  ],
   items: {
     weapons: [
       {
