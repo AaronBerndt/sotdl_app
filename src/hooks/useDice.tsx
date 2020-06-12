@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { isZero, sumArray } from "../utilities";
 
 function useDice() {
   const [result, setResult] = useState(0);
@@ -8,29 +9,26 @@ function useDice() {
     return result;
   };
 
-  const rollD6 = rollDice(6);
-  const rollD20 = rollDice(20);
-
   const rollMutipleDice = (type: string, amount: number) =>
-    Array(amount).map(() => (type === "d20" ? rollD20 : rollD6));
-
-  const getDiceTotal = (array: any) =>
-    array.reduce(
-      (previousValue: number, currentValue: number) =>
-        currentValue + previousValue,
-      0
-    );
+    [...Array(amount).keys()].map(() => rollDice(type === "d6" ? 6 : 3));
 
   return {
     diceResult: result,
     rollAttackRoll: useCallback((modifier, boonAmount, baneAmount) => {
-      const d20Result = rollD20;
-      const boonResult = Math.max(...rollMutipleDice("d6", boonAmount));
-      const baneResult = Math.max(...rollMutipleDice("d6", baneAmount));
-      setResult(d20Result + boonResult - baneResult + modifier);
+      const d20Result = rollDice(20);
+      const amountIsZero = (amount) =>
+        isZero(amount) ? 0 : Math.max(...rollMutipleDice("d6", amount));
+
+      const boonResult = amountIsZero(boonAmount);
+      const baneResult = amountIsZero(baneAmount);
+
+      setResult(
+        d20Result + Math.max(boonResult) - Math.max(baneResult) + modifier
+      );
     }, []),
-    rollDamageRoll: useCallback((number, extraDamage) => {
-      const diceSum = getDiceTotal(rollMutipleDice("d6", number));
+
+    rollDamageRoll: useCallback((number, type, extraDamage) => {
+      const diceSum = sumArray(rollMutipleDice(type, number));
       setResult(diceSum + extraDamage);
     }, []),
   };

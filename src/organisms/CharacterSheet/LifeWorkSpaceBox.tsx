@@ -1,5 +1,6 @@
 import React, { useReducer } from "react";
 import { AttributeBox, DamageBox } from "../../molecules";
+import { Grid } from "@material-ui/core";
 
 interface LifeWorkSpaceBoxProps {
   health: number;
@@ -22,7 +23,7 @@ function LifeWorkSpaceBox({ health }: LifeWorkSpaceBoxProps) {
 
   const addDamage = (amount) =>
     dispatch(
-      amount + damage >= health
+      amount + damage <= health
         ? { type: "toMax" }
         : { type: "damage", value: Number(amount) }
     );
@@ -36,26 +37,28 @@ function LifeWorkSpaceBox({ health }: LifeWorkSpaceBoxProps) {
 
   return (
     <>
-      <AttributeBox
-        name="Health"
-        value={health}
-        onClickFuncion={() => null}
-        withMod={false}
-        withNoRoll={true}
-      />
-      <AttributeBox
-        name="Healing Rate"
-        value={Math.floor(health / 4)}
-        onClickFuncion={() => removeDamage(healingRate)}
-        withMod={false}
-        withNoRoll={false}
-      />
-      <DamageBox
-        healthTotal={health}
-        currentDamage={damage}
-        healingButtonClick={removeDamage}
-        damageButtonClick={addDamage}
-      />
+      <Grid container direction="row" alignItems="flex-start">
+        <AttributeBox
+          name="Health"
+          value={health}
+          onClickFuncion={() => null}
+          withMod={false}
+          withNoRoll={true}
+        />
+        <AttributeBox
+          name="Healing Rate"
+          value={Math.floor(health / 4)}
+          onClickFuncion={() => removeDamage(healingRate)}
+          withMod={false}
+          withNoRoll={false}
+        />
+        <DamageBox
+          healthTotal={health}
+          currentDamage={damage}
+          healingButtonClick={removeDamage}
+          damageButtonClick={addDamage}
+        />
+      </Grid>
     </>
   );
 }

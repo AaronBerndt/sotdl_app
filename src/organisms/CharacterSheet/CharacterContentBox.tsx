@@ -8,6 +8,7 @@ import { isZero } from "../../utilities";
 interface CharacterContentBoxProps {
   children: any;
   spellArrayLength: number;
+  power: number;
 }
 
 const StyledCard = styled(Card)`
@@ -18,12 +19,14 @@ const StyledCard = styled(Card)`
 function CharacterContentBox({
   children,
   spellArrayLength,
+  power,
 }: CharacterContentBoxProps) {
   const [currentTab, selectCurrentTab] = useState(0);
   const onChange = (e, newValue) => selectCurrentTab(newValue);
-  const tabArray = isZero(spellArrayLength)
-    ? ["Action", "Talents", "Equipment"]
-    : ["Action", "Talents", "Equipment", "Spells"];
+  const tabArray =
+    isZero(spellArrayLength) && isZero(power)
+      ? ["Action", "Talents", "Equipment"]
+      : ["Action", "Talents", "Equipment", "Spells"];
   return (
     <>
       <StyledCard>

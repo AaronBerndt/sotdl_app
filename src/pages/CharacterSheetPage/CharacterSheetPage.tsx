@@ -10,6 +10,7 @@ import {
 } from "../../organisms";
 import axios from "axios";
 import { sumArray, filterByLevelAndMutiple } from "../../utilities";
+import { Grid } from "@material-ui/core";
 
 function CharacterSheetPage() {
   const [characterData, setCharacterData] = useState({
@@ -94,23 +95,21 @@ function CharacterSheetPage() {
     <>
       {characterData.name === "" ? null : (
         <>
-          <>
-            <DetailsBox
-              name={name}
-              ancestry={ancestry}
-              novicePath={novicePath}
-              expertPath={expertPath}
-              masterPath={masterPath}
-              level={level}
-            />
-            <LifeWorkSpaceBox health={health} />
-          </>
+          <DetailsBox
+            name={name}
+            ancestry={ancestry}
+            novicePath={novicePath}
+            expertPath={expertPath}
+            masterPath={masterPath}
+            level={level}
+          />
+          <LifeWorkSpaceBox health={health} />
           <CharacteristicsBox
             characteristicsArray={characteristicsArray}
             onClickFuncion={() => console.log("Hello")}
             level={level}
           />
-          <CharacterContentBox spellArrayLength={spells.length}>
+          <CharacterContentBox power={power} spellArrayLength={spells.length}>
             <p>Tab 1</p>
             <FeaturesBox featuresArray={features} level={level} />
             <EquipmentBox itemsObject={items} strength={strength} />
