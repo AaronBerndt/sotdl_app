@@ -11,6 +11,7 @@ import {
 import axios from "axios";
 import { sumArray, filterByLevelAndMutiple } from "../../utilities";
 import { Grid } from "@material-ui/core";
+import { useDice } from "../../hooks";
 
 function CharacterSheetPage() {
   const [characterData, setCharacterData] = useState({
@@ -106,7 +107,7 @@ function CharacterSheetPage() {
           <LifeWorkSpaceBox health={health} />
           <CharacteristicsBox
             characteristicsArray={characteristicsArray}
-            onClickFuncion={() => console.log("Hello")}
+            onClickFuncion={() => console.log("button 1")}
             level={level}
           />
           <CharacterContentBox power={power} spellArrayLength={spells.length}>

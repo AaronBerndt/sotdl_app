@@ -20,7 +20,11 @@ function AttributeBox({
   const mod = value - 10 > 0 ? `+ ${value - 10}` : value - 10;
   return (
     <>
-      <Button onClick={onClickFuncion} size="small" disabled={withNoRoll}>
+      <Button
+        onClick={() => onClickFuncion(mod, 0, 0)}
+        size="small"
+        disabled={withNoRoll}
+      >
         {withMod ? (
           <Badge badgeContent={value} color="primary">
             <TextField name={name} value={mod} />
