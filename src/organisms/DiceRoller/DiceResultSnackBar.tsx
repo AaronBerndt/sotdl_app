@@ -59,6 +59,11 @@ function DiceResultSnackBar({
       parseInt(`${number}`)
     )
   );
+
+  const finalResultMessage =
+    rollType === "Challenge"
+      ? `${finalResult >= 10 ? "Pass" : "Fail"}(${finalResult})`
+      : finalResult;
   return (
     <>
       <Snackbar
@@ -78,7 +83,7 @@ function DiceResultSnackBar({
               {!isZero(baneResult) && (
                 <BaneResult>{` - ${baneResult}`}</BaneResult>
               )}
-              <FinalResult>{`= ${finalResult}`}</FinalResult>
+              <FinalResult>{finalResultMessage}</FinalResult>
             </div>
           </div>
         }

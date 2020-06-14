@@ -12,7 +12,7 @@ const BoonButton = styled(Button)`
 `;
 
 const BBTextField = styled(MaterialTextField)`
-  color: red;
+  color: "red";
 `;
 
 interface BBBoxProps {
@@ -33,12 +33,14 @@ function BBBox({
     ? boonAmount
     : baneAmount;
 
+  console.log(defaultAmount);
   return (
     <>
       <BBTextField
         label="Boon/Banes"
         variant="outlined"
-        defaultValue={defaultAmount}
+        defaultValue={0}
+        value={defaultAmount}
         size="small"
         disabled
       />

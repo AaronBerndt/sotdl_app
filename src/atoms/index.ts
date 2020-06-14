@@ -6,6 +6,7 @@ import TextField from "./TextField";
 import TabPanel from "./TabPanel";
 import FilterTextField from "./FilterTextField";
 import { SpellTable } from "./SpellComponents";
+import { DataPreview, DropDown } from "./AddContent";
 export {
   Dialog,
   Panel,
@@ -15,4 +16,6 @@ export {
   TabPanel,
   SpellTable,
   FilterTextField,
+  DataPreview,
+  DropDown,
 };

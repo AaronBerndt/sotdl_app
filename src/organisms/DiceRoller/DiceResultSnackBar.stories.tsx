@@ -31,7 +31,7 @@ export const withBane = () => (
   <DiceResultSnackBar
     rollReason="Strength"
     rollType="Challenge"
-    diceResult={10}
+    diceResult={1}
     modifier={3}
     boonResult={0}
     baneResult={3}
