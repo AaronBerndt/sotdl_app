@@ -6,23 +6,18 @@ interface DropDownProps {
   label: string;
   data: Array<any>;
   filterBy: string;
-  onChange: any;
+  onChange?: any;
 }
 
 function DropDown({ label, data, filterBy, onChange }: DropDownProps) {
   return (
     <Autocomplete
       options={data}
-      onChange={(e) => onChange(`${e.target.innerHTML}`)}
+      onChange={onChange ? (e) => onChange(`${e.target.innerHTML}`) : false}
       getOptionLabel={(option) => option[filterBy]}
       style={{ width: 300 }}
       renderInput={(params) => (
-        <TextField
-          {...params}
-          label={label}
-          variant="outlined"
-          onChange={onChange}
-        />
+        <TextField {...params} label={label} variant="outlined" />
       )}
     />
   );
