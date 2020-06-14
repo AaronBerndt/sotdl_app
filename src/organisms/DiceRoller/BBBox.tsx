@@ -1,38 +1,50 @@
-import React, { useReducer } from "react";
+import React from "react";
 import styled from "styled-components";
 import { TextField as MaterialTextField, Button } from "@material-ui/core";
+import { isZero } from "../../utilities";
 
-const StyledButton = styled(Button)`
-  color: ${({ inputType }) => {
-    return inputType === "boon" ? "lightBlue" : "red ";
-  }})}
+const BaneButton = styled(Button)`
+  background-color: red;
 `;
 
-function reducer(state, action) {
-  const actionObject = {
-    "add boon": () => (state >= 0 ? state + 1 : 1),
-    "add bane": () => (state <= 0 ? state - 1 : -1),
-    reset: () => 0,
-  };
+const BoonButton = styled(Button)`
+  background-color: lightBlue;
+`;
 
-  return actionObject[action.type]();
+const BBTextField = styled(MaterialTextField)`
+  color: red;
+`;
+
+interface BBBoxProps {
+  boonAmount: number;
+  baneAmount: number;
+  boonOnClick: any;
+  baneOnClick: any;
 }
+function BBBox({
+  boonAmount,
+  baneAmount,
+  boonOnClick,
+  baneOnClick,
+}: BBBoxProps) {
+  const defaultAmount = isZero(boonAmount + baneAmount)
+    ? 0
+    : boonAmount > baneAmount
+    ? boonAmount
+    : baneAmount;
 
-function BBBox() {
-  const [state, dispatch] = useReducer(reducer, 0);
-  const name = state === 0 ? "Banes/Boons" : state >= 1 ? "Boon" : "Bane";
   return (
     <>
-      <MaterialTextField
-        label={name}
+      <BBTextField
+        label="Boon/Banes"
         variant="outlined"
-        defaultValue={state}
+        defaultValue={defaultAmount}
         size="small"
         disabled
       />
 
-      <StyledButton inputType="boon">Add Boon</StyledButton>
-      <StyledButton inputType="bane">Add Bane</StyledButton>
+      <BoonButton onClick={() => boonOnClick()}>Add Boon</BoonButton>
+      <BaneButton onClick={() => baneOnClick()}>Add Bane</BaneButton>
     </>
   );
 }

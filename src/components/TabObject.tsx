@@ -1,6 +1,7 @@
 import React from "react";
-import PathView from "./Views/PathView";
-import AncestryView from "./Views/AncestryView";
+/* import PathView from "../pages/PathsPage"; */
+import { AncestryPage } from "../pages/AncestryPage";
+import CharacterSheetPage from "../pages/CharacterSheetPage/";
 
 const createTab = (name: string, view: any) => ({ name, view });
 const tabArray = [
@@ -10,8 +11,8 @@ const tabArray = [
       <p>Stuff</p>
     </>
   ),
-  createTab("Ancestry", AncestryView),
-  createTab("paths", PathView),
+  createTab("Ancestry", AncestryPage),
+  createTab("ChracterSheet", CharacterSheetPage),
 ];
 
 export default tabArray;

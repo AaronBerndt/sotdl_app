@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import {
   DetailsBox,
   CharacteristicsBox,
@@ -12,8 +12,17 @@ import {
 } from "../../organisms";
 import axios from "axios";
 import { sumArray, filterByLevelAndMutiple } from "../../utilities";
-import { Grid } from "@material-ui/core";
 import { useDice } from "../../hooks";
+
+function reducer(state, action) {
+  const actionObject = {
+    "add boon": () => ({ boonAmount: state.boonAmount + 1, baneAmount: 0 }),
+    "add bane": () => ({ boonAmount: 0, baneAmount: state.baneAmount + 1 }),
+    reset: () => ({ boonAmount: 0, baneAmount: 0 }),
+  };
+  console.log(state);
+  return actionObject[action.type]();
+}
 
 function CharacterSheetPage() {
   const [characterData, setCharacterData] = useState({
@@ -50,8 +59,12 @@ function CharacterSheetPage() {
   const [rollReason, setRollReason] = useState("");
   const [rollType, setRollType] = useState("");
   const [modifier, setModifier] = useState(0);
-  const [boonAmount, setBoonAmount] = useState(0);
-  const [baneAmount, setBaneAmount] = useState(1);
+
+  const [{ boonAmount, baneAmount }, dispatch] = useReducer(reducer, {
+    boonAmount: 0,
+    baneAmount: 0,
+  });
+
   const {
     diceResult: { diceResult, boonResult, baneResult },
     rollAttackRoll,
@@ -112,6 +125,8 @@ function CharacterSheetPage() {
     setRollType("Challenge");
     setModifier(mod);
   };
+
+  console.log(boonAmount, baneAmount);
   return (
     <>
       {characterData.name === "" ? null : (
@@ -125,7 +140,13 @@ function CharacterSheetPage() {
             level={level}
           />
           <LifeWorkSpaceBox health={health} />
-          <BBBox />
+          <BBBox
+            boonAmount={boonAmount}
+            baneAmount={baneAmount}
+            baneOnClick={() => dispatch({ type: "add bane" })}
+            boonOnClick={() => dispatch({ type: "add boon" })}
+          />
+
           <CharacteristicsBox
             characteristicsArray={characteristicsArray}
             onClickFuncion={makeChallengeRoll}
