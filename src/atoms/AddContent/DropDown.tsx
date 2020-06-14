@@ -6,13 +6,14 @@ interface DropDownProps {
   label: string;
   data: Array<any>;
   filterBy: string;
-  defaultValue: any;
+  onChange: any;
 }
 
-function DropDown({ label, data, filterBy, defaultValue }: DropDownProps) {
+function DropDown({ label, data, filterBy, onChange }: DropDownProps) {
   return (
     <Autocomplete
       options={data}
+      onChange={(e) => onChange(`${e.target.innerHTML}`)}
       getOptionLabel={(option) => option[filterBy]}
       style={{ width: 300 }}
       renderInput={(params) => (
@@ -20,7 +21,7 @@ function DropDown({ label, data, filterBy, defaultValue }: DropDownProps) {
           {...params}
           label={label}
           variant="outlined"
-          defaultValue="Hello World"
+          onChange={onChange}
         />
       )}
     />
