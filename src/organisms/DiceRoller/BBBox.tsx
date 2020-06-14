@@ -3,8 +3,9 @@ import styled from "styled-components";
 import { TextField as MaterialTextField, Button } from "@material-ui/core";
 
 const StyledButton = styled(Button)`
-  color: ${({ inputType }) =>
-    inputType === "boon" ? "lightBlue" : "lightRed "};
+  color: ${({ inputType }) => {
+    return inputType === "boon" ? "lightBlue" : "red ";
+  }})}
 `;
 
 function reducer(state, action) {
@@ -31,7 +32,7 @@ function BBBox() {
       />
 
       <StyledButton inputType="boon">Add Boon</StyledButton>
-      <StyledButton inputType="bane">Add Boon</StyledButton>
+      <StyledButton inputType="bane">Add Bane</StyledButton>
     </>
   );
 }

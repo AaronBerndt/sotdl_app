@@ -20,13 +20,25 @@ function CharacteristicsBox({
     <>
       {characteristicsArray.map(({ name, value }, i) => {
         return (
-          <AttributeBox
-            name={name}
-            value={value}
-            onClickFuncion={onClickFuncion}
-            withMod={true}
-            withNoRoll={false}
-          />
+          <>
+            {name === "Speed" ? (
+              <AttributeBox
+                name={name}
+                value={value}
+                onClickFuncion={onClickFuncion}
+                withMod={false}
+                withNoRoll={true}
+              />
+            ) : (
+              <AttributeBox
+                name={name}
+                value={value}
+                onClickFuncion={onClickFuncion}
+                withMod={true}
+                withNoRoll={false}
+              />
+            )}
+          </>
         );
       })}
     </>

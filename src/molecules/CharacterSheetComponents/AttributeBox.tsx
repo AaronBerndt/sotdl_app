@@ -17,17 +17,18 @@ function AttributeBox({
   withMod,
   withNoRoll,
 }: AttributeBoxProps) {
-  const mod = value - 10 > 0 ? `+ ${value - 10}` : value - 10;
+  const mod = value - 10 > 0 ? `${value - 10}` : value - 10;
+  const modLabel = value - 10 > 0 ? `+ ${value - 10}` : value - 10;
   return (
     <>
       <Button
-        onClick={() => onClickFuncion(mod, 0, 0)}
+        onClick={() => onClickFuncion(mod, name)}
         size="small"
         disabled={withNoRoll}
       >
         {withMod ? (
           <Badge badgeContent={value} color="primary">
-            <TextField name={name} value={mod} />
+            <TextField name={name} value={modLabel} />
           </Badge>
         ) : (
           <TextField name={name} value={value} />

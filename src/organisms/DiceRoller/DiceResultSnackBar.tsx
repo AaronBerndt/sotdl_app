@@ -1,7 +1,7 @@
 import React from "react";
 import { Snackbar } from "@material-ui/core";
 import styled from "styled-components";
-import { isZero } from "../../utilities";
+import { isZero, sumArray } from "../../utilities";
 
 interface DiceResultSnackBarProps {
   rollReason: any;
@@ -54,12 +54,16 @@ function DiceResultSnackBar({
   boonResult,
   baneResult,
 }: DiceResultSnackBarProps) {
-  const finalResult = diceResult + boonResult + modifier - baneResult;
+  const finalResult = sumArray(
+    [diceResult, boonResult, modifier, -baneResult].map((number) =>
+      parseInt(`${number}`)
+    )
+  );
   return (
     <>
       <Snackbar
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-        open={true}
+        open={rollReason !== ""}
         message={
           <div>
             <div>

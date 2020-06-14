@@ -10,6 +10,7 @@ import {
   SpellBox,
 } from "./CharacterSheet";
 
+import { BBBox, DiceResultSnackBar } from "./DiceRoller";
 export {
   PathDialog,
   AncestryDialog,
@@ -20,4 +21,6 @@ export {
   CharacterContentBox,
   EquipmentBox,
   SpellBox,
+  BBBox,
+  DiceResultSnackBar,
 };

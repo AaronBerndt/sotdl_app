@@ -16,17 +16,12 @@ const StyledCard = styled(Card)`
   height: 600px;
 `;
 
-function CharacterContentBox({
-  children,
-  spellArrayLength,
-  power,
-}: CharacterContentBoxProps) {
+function CharacterContentBox({ children, power }: CharacterContentBoxProps) {
   const [currentTab, selectCurrentTab] = useState(0);
   const onChange = (e, newValue) => selectCurrentTab(newValue);
-  const tabArray =
-    isZero(spellArrayLength) && isZero(power)
-      ? ["Action", "Talents", "Equipment"]
-      : ["Action", "Talents", "Equipment", "Spells"];
+  const tabArray = isZero(power)
+    ? ["Action", "Talents", "Equipment"]
+    : ["Action", "Talents", "Equipment", "Spells"];
   return (
     <>
       <StyledCard>
