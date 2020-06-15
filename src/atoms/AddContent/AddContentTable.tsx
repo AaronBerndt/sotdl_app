@@ -6,6 +6,7 @@ import { DropDown } from ".";
 interface AddContentTableProps {
   name: string;
   data: any;
+  onChangeFunction: any;
 }
 
 const levelArray = [...Array(10).keys()].map((value) => ({
@@ -24,7 +25,11 @@ const characteristicsArray = [
   "Corruption",
 ].map((name) => ({ name }));
 
-function AddContentTable({ name, data }: AddContentTableProps) {
+function AddContentTable({
+  name,
+  data,
+  onChangeFunction,
+}: AddContentTableProps) {
   const label = name === "Features" ? "Description" : "Value";
   const cell = name === "Features" ? "description" : "value";
   const nameRow =
@@ -43,8 +48,6 @@ function AddContentTable({ name, data }: AddContentTableProps) {
           ),
         };
 
-  const [tableData, setTableData] = useState(data);
-
   return (
     <MuiThemeProvider>
       <link
@@ -56,8 +59,29 @@ function AddContentTable({ name, data }: AddContentTableProps) {
           onRowAdd: (newData) =>
             new Promise((resolve, reject) => {
               setTimeout(() => {
-                console.log(newData);
-                setTableData([...tableData, newData]);
+                onChangeFunction([...data, newData]);
+
+                resolve();
+              }, 1000);
+            }),
+          onRowUpdate: (newData, { tableData }) =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                const dataUpdate = [...data];
+                const index = tableData.id;
+                dataUpdate[index] = newData;
+                onChangeFunction([...dataUpdate]);
+
+                resolve();
+              }, 1000);
+            }),
+          onRowDelete: (oldData) =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                const dataDelete = [...data];
+                const index = oldData.tableData.id;
+                dataDelete.splice(index, 1);
+                onChangeFunction([...dataDelete]);
 
                 resolve();
               }, 1000);
@@ -82,7 +106,7 @@ function AddContentTable({ name, data }: AddContentTableProps) {
             ),
           },
         ]}
-        data={tableData}
+        data={data}
         title={name}
         options={{
           actionsColumnIndex: -1,

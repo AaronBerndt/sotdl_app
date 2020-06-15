@@ -11,7 +11,10 @@ import {
 } from "./CharacterSheet";
 
 import { BBBox, DiceResultSnackBar } from "./DiceRoller";
+import AddContentForm from "./AddContent";
+
 export {
+  AddContentForm,
   PathDialog,
   AncestryDialog,
   LifeWorkSpaceBox,

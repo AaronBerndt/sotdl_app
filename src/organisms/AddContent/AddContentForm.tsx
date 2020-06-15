@@ -4,14 +4,17 @@ import {
   CardHeader,
   CardContent,
   CardActions,
-  TextField,
+  Button,
 } from "@material-ui/core";
-import { DropDown, AddContentTable } from "../../atoms";
+import { Form } from "react-final-form";
+
+import { FormInput, FormDropdown, AddContentTable } from "../../atoms";
 
 interface AddContentFormProps {
   contentType: any;
+  onChangeFunction: any;
 }
-
+const typeArray = [{ name: "Novice" }, { name: "Expert" }, { name: "Master" }];
 const traditionArray = [
   "Air",
   "Alchemy",
@@ -55,53 +58,75 @@ const traditionArray = [
   "Water",
 ].map((name) => ({ name: name }));
 
-function AddContentForm({ contentType }: AddContentFormProps) {
+function AddContentForm({
+  contentType,
+  onChangeFunction,
+}: AddContentFormProps) {
   const [characteristicsArray, setCharacteristicsArray] = useState([]);
   const [featuresArray, setFeaturesArray] = useState([]);
+
+  const onSubmit = (values) => {
+    onChangeFunction({
+      ...values,
+      characteristics: characteristicsArray,
+      features: featuresArray,
+    });
+  };
   return (
     <Card>
       <CardHeader title={`Add ${contentType}`} />
-      <CardContent>
-        <TextField label="Name" variant="outlined" />
-        <TextField label="Description." variant="outlined" />
+      <Form
+        onSubmit={onSubmit}
+        render={({ handleSubmit, values, form }) => (
+          <form>
+            <CardContent>
+              <FormInput label="Name" name="name" />
+              <FormInput label="Description." name="description" />
+              {contentType == "Ancestry" ? (
+                <>
+                  <FormInput label="Languages" name="languages" />
+                  <FormInput label="Professions" name="professions" />
+                </>
+              ) : null}
+              {contentType == "Path" ? (
+                <FormDropdown label="Type" name="type" data={typeArray} />
+              ) : null}
+              {contentType == "Spell" ? (
+                <>
+                  <FormDropdown
+                    label="Tradition"
+                    name="tradition"
+                    data={traditionArray}
+                  />
+                  <FormDropdown
+                    label="Type"
+                    name="type"
+                    data={[{ name: "Attack" }, { name: "Utility" }]}
+                  />
+                </>
+              ) : null}
+              {contentType == "Ancestry" || contentType === "Path" ? (
+                <>
+                  <AddContentTable
+                    name="Features"
+                    data={featuresArray}
+                    onChangeFunction={setFeaturesArray}
+                  />
+                  <AddContentTable
+                    name="Characteristics"
+                    data={characteristicsArray}
+                    onChangeFunction={setCharacteristicsArray}
+                  />
+                </>
+              ) : null}
+            </CardContent>
 
-        {contentType == "Ancestry" ? (
-          <>
-            <TextField label="Languages." variant="outlined" />
-            <TextField label="Professions." variant="outlined" />
-          </>
-        ) : null}
-        {contentType == "Path" ? (
-          <DropDown
-            label="Type"
-            data={[{ name: "Novice" }, { name: "Expert" }, { name: "Master" }]}
-            filterBy="name"
-          />
-        ) : null}
-        {contentType == "Spell" ? (
-          <>
-            <DropDown
-              label="Type"
-              data={[{ name: "Attack" }, { name: "Utility" }]}
-              filterBy="name"
-            />
-            <TextField label="Target." variant="outlined" />
-            <TextField label="Area." variant="outlined" />
-            <TextField label="Duration." variant="outlined" />
-          </>
-        ) : null}
-
-        {contentType == "Ancestry" || contentType === "Path" ? (
-          <>
-            <AddContentTable name="Features" data={featuresArray} />
-            <AddContentTable
-              name="Characteristics"
-              data={characteristicsArray}
-            />
-          </>
-        ) : null}
-      </CardContent>
-      <CardActions></CardActions>
+            <CardActions>
+              <Button onClick={() => handleSubmit()}>Submit</Button>
+            </CardActions>
+          </form>
+        )}
+      />
     </Card>
   );
 }
