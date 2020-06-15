@@ -17,7 +17,7 @@ export function PathPage() {
   const [state, dispatch] = useReducer(reducer, { open: false });
 
   const getData = async () => {
-    const { data } = await axios("http://localhost:3000/paths");
+    const { data } = await axios("https://sotdl-api.herokuapp.com/paths");
     setPathList(data);
   };
 

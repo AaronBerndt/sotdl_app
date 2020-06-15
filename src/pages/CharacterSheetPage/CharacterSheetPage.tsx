@@ -52,8 +52,10 @@ function CharacterSheetPage() {
   });
 
   const getData = async () => {
-    const { data } = await axios("http://localhost:3000/characters?name=Ordo");
-    setCharacterData(data);
+    const { data } = await axios(
+      "https://sotdl-api.herokuapp.com/characters?name=Ordo"
+    );
+    setCharacterData(data[0]);
   };
 
   const [rollReason, setRollReason] = useState("");
@@ -125,7 +127,6 @@ function CharacterSheetPage() {
     setModifier(mod);
   };
 
-  console.log(boonAmount, baneAmount);
   return (
     <>
       {characterData.name === "" ? null : (

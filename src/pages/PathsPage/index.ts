@@ -1,2 +1,2 @@
 import PathPage from "./PathPage";
-export { PathPage };
+export default PathPage;

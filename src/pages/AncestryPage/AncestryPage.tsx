@@ -19,7 +19,7 @@ export function AncestryPage() {
   const [state, dispatch] = useReducer(reducer, { open: false });
 
   const getData = async () => {
-    const { data } = await axios("http://localhost:3000/ancestries");
+    const { data } = await axios("https://sotdl-api.herokuapp.com/ancestries");
     setAncestryList(data);
   };
 
