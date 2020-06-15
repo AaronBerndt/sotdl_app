@@ -1,0 +1,5 @@
+{
+  "name": "sotl-app",
+  "description": "React TypeScript Frontend for sotl app",
+  "image": "heroku/nodejs"
+}

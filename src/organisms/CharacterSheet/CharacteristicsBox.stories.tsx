@@ -21,5 +21,6 @@ export const levelZero = () => (
   <CharacteristicsBox
     characteristicsArray={sampleData}
     onClickFuncion={onClick}
+    level={0}
   />
 );

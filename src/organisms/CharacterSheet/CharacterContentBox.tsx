@@ -32,11 +32,7 @@ function CharacterContentBox({ children, power }: CharacterContentBoxProps) {
         />
         <CardContent>
           {children.map((child, i) => (
-            <TabPanel
-              value={currentTab}
-              index={i}
-              style={{ maxHeight: "500px", overflow: "auto" }}
-            >
+            <TabPanel value={currentTab} index={i}>
               {child}
             </TabPanel>
           ))}

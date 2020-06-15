@@ -15,7 +15,7 @@ const Preview = styled.pre`
 function DataPreview({ data }: DataPreviewProps) {
   return (
     <>
-      <Preview>{JSON.stringify(data, 0, 2)}</Preview>
+      <Preview>{JSON.stringify(data)}</Preview>
     </>
   );
 }

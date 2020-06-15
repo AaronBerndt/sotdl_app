@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import MaterialTable from "material-table";
-import { MuiThemeProvider, TextField } from "@material-ui/core";
+import { MuiThemeProvider } from "@material-ui/core";
 import { DropDown } from ".";
 
 interface AddContentTableProps {
@@ -49,7 +49,7 @@ function AddContentTable({
         };
 
   return (
-    <MuiThemeProvider>
+    <MuiThemeProvider theme={""}>
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -57,26 +57,26 @@ function AddContentTable({
       <MaterialTable
         editable={{
           onRowAdd: (newData) =>
-            new Promise((resolve, reject) => {
+            new Promise((resolve) => {
               setTimeout(() => {
                 onChangeFunction([...data, newData]);
 
                 resolve();
               }, 1000);
             }),
-          onRowUpdate: (newData, { tableData }) =>
-            new Promise((resolve, reject) => {
+          onRowUpdate: (newData, oldData: any) =>
+            new Promise((resolve) => {
               setTimeout(() => {
                 const dataUpdate = [...data];
-                const index = tableData.id;
+                const index = oldData.tableData.id;
                 dataUpdate[index] = newData;
                 onChangeFunction([...dataUpdate]);
 
                 resolve();
               }, 1000);
             }),
-          onRowDelete: (oldData) =>
-            new Promise((resolve, reject) => {
+          onRowDelete: (oldData: any) =>
+            new Promise((resolve) => {
               setTimeout(() => {
                 const dataDelete = [...data];
                 const index = oldData.tableData.id;

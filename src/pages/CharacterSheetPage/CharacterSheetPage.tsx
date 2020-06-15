@@ -68,7 +68,6 @@ function CharacterSheetPage() {
   const {
     diceResult: { diceResult, boonResult, baneResult },
     rollAttackRoll,
-    rollDamageRoll,
   } = useDice();
 
   useEffect(() => {

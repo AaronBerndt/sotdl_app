@@ -1,6 +1,5 @@
 import React from "react";
-import styled from "styled-components";
-import { Card, CardHeader, CardContent, List } from "@material-ui/core";
+import { List } from "@material-ui/core";
 import { filterByLevel } from "../../utilities";
 
 interface FeaturesBoxProps {
@@ -13,11 +12,11 @@ function FeaturesBox({ featuresArray, level }: FeaturesBoxProps) {
     <>
       <List>
         {filterByLevel(featuresArray, level).map(
-          ({ name, description, page, book }, i) => (
-            <>
+          ({ name, description, page, book }, i: number) => (
+            <div key={i}>
               <h4>{`${name} ${book}, pg. ${page}`}</h4>
               <p>{description}</p>
-            </>
+            </div>
           )
         )}
       </List>

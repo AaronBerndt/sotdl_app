@@ -19,16 +19,12 @@ left: 50%;
 function PathDialogContent({ pathInfo, isPath }: PathDialogContentProps) {
   const {
     name,
-    type,
     description,
     professions,
     features,
     characteristics,
   } = pathInfo;
 
-  const filterCharacteristics = (filterBy) => {
-    const filterArray = characteristics.filter(({ type }) => type === filterBy);
-  };
   characteristics.map(({ name, value, level }, i: number) => (
     <Panel
       title={name}

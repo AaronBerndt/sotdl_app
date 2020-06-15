@@ -1,6 +1,6 @@
 import React from "react";
 import LifeWorkSpaceBox from "./LifeWorkSpaceBox";
-import {action} from "@storybook/addon-actions";
+import { action } from "@storybook/addon-actions";
 
 export default {
   title: "Organisms/CharacterSheetComponents/LifeWorkSpaceBox",
@@ -8,6 +8,4 @@ export default {
 };
 
 const onClick = action("button-click");
-export const noDamage = () => (
-  <LifeWorkSpaceBox health={30} onClickFuncion={onClick} />
-);
+export const noDamage = () => <LifeWorkSpaceBox health={30} />;

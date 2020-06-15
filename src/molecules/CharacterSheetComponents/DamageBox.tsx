@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Button, TextField } from "@material-ui/core";
-import { AttributeBox } from "../../molecules";
 
 interface DamageBoxProps {
   healthTotal: number;
@@ -29,7 +28,7 @@ function DamageBox({
 }: DamageBoxProps) {
   const [amount, setAmount] = useState(0);
 
-  const onChange = (e) => setAmount(e.target.value);
+  const onChange = (e: any) => setAmount(e.target.value);
 
   const isDying = currentDamage >= healthTotal;
   return (

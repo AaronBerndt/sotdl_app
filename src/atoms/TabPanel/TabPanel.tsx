@@ -1,5 +1,4 @@
 import React from "react";
-import { Box } from "@material-ui/core";
 
 interface TabPanelProps {
   children?: any;
@@ -10,6 +9,7 @@ interface TabPanelProps {
 function TabPanel({ children, value, index, ...other }: TabPanelProps) {
   return (
     <div
+      style={{ maxHeight: "500px", overflow: "auto" }}
       role="tabpanel"
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}

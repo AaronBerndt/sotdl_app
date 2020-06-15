@@ -1,10 +1,5 @@
 import React from "react";
 import { AttributeBox } from "../../molecules";
-import {
-  filterByLevelAndName,
-  filterByLevelAndMutiple,
-  sumArray,
-} from "../../utilities";
 
 interface CharacteristicsBoxProps {
   characteristicsArray: any;
@@ -18,9 +13,9 @@ function CharacteristicsBox({
 }: CharacteristicsBoxProps) {
   return (
     <>
-      {characteristicsArray.map(({ name, value }, i) => {
+      {characteristicsArray.map(({ name, value }, i: any) => {
         return (
-          <>
+          <div key={i}>
             {name === "Speed" ? (
               <AttributeBox
                 name={name}
@@ -38,7 +33,7 @@ function CharacteristicsBox({
                 withNoRoll={false}
               />
             )}
-          </>
+          </div>
         );
       })}
     </>

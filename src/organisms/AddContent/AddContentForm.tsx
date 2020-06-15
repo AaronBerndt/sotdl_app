@@ -65,7 +65,7 @@ function AddContentForm({
   const [characteristicsArray, setCharacteristicsArray] = useState([]);
   const [featuresArray, setFeaturesArray] = useState([]);
 
-  const onSubmit = (values) => {
+  const onSubmit = (values: any) => {
     onChangeFunction({
       ...values,
       characteristics: characteristicsArray,
@@ -77,21 +77,21 @@ function AddContentForm({
       <CardHeader title={`Add ${contentType}`} />
       <Form
         onSubmit={onSubmit}
-        render={({ handleSubmit, values, form }) => (
+        render={({ handleSubmit, form }) => (
           <form>
             <CardContent>
               <FormInput label="Name" name="name" />
               <FormInput label="Description." name="description" />
-              {contentType == "Ancestry" ? (
+              {contentType === "Ancestry" ? (
                 <>
                   <FormInput label="Languages" name="languages" />
                   <FormInput label="Professions" name="professions" />
                 </>
               ) : null}
-              {contentType == "Path" ? (
+              {contentType === "Path" ? (
                 <FormDropdown label="Type" name="type" data={typeArray} />
               ) : null}
-              {contentType == "Spell" ? (
+              {contentType === "Spell" ? (
                 <>
                   <FormDropdown
                     label="Tradition"
@@ -105,7 +105,7 @@ function AddContentForm({
                   />
                 </>
               ) : null}
-              {contentType == "Ancestry" || contentType === "Path" ? (
+              {contentType === "Ancestry" || contentType === "Path" ? (
                 <>
                   <AddContentTable
                     name="Features"

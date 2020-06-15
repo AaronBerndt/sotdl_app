@@ -1,5 +1,6 @@
 import React from "react";
 import PathDialog from "./PathDialog";
+import {action} from "@storybook/addon-actions";
 
 export default {
   title: "Organisms/PathDialog",
@@ -90,4 +91,10 @@ const pathInfo = {
   ],
 };
 
-export const withProps = () => <PathDialog pathInfo={pathInfo} isOpen={true} />;
+export const withProps = () => (
+  <PathDialog
+    pathInfo={pathInfo}
+    isOpen={true}
+    onClickFuncion={action("button-click")}
+  />
+);

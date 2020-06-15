@@ -12,8 +12,12 @@ interface DiceResultSnackBarProps {
   modifier: number;
 }
 
+interface RollTypeProps {
+  rollType: string;
+}
+
 const RollType = styled.h2`
-  color: ${({ rollType }) => {
+  color: ${({ rollType }: RollTypeProps) => {
     const colorObject = {
       attack: "#1b9af0",
       damage: "#d54f4f",

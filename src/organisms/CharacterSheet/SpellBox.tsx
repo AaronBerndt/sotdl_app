@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { SpellTable, FilterTextField } from "../../atoms";
-import { filterByNumber } from "../../utilities";
+import { FilterTextField } from "../../atoms";
 import { SpellList } from "../../molecules";
 
 interface SpellListProps {
@@ -28,7 +27,7 @@ function SpellBox({ spellArray, power }: SpellListProps) {
   const castings = castingObject[power];
   const [filteredSpellList, setFilteredSpellList] = useState(spellArray);
 
-  const onChange = (e) => {
+  const onChange = (e: any) => {
     const inputValue = e.target.value;
 
     const newList = spellArray.filter(
