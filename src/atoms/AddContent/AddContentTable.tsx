@@ -49,7 +49,7 @@ function AddContentTable({
         };
 
   return (
-    <MuiThemeProvider theme={""}>
+    <MuiThemeProvider>
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/icon?family=Material+Icons"

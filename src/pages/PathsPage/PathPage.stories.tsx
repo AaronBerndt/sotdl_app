@@ -9,7 +9,7 @@ export default {
 };
 
 const mock = (apiMock) => {
-  apiMock.onGet("http://localhost:3000/paths").reply(200, pathData);
+  apiMock.onGet("https://sotdl-api.herokuapp.com/paths").reply(200, pathData);
 };
 
 export const withComp = () => (

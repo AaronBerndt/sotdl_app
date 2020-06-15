@@ -9,7 +9,9 @@ export default {
 };
 
 const mock = (apiMock) => {
-  apiMock.onGet("http://localhost:3000/ancestries").reply(200, ancestriesData);
+  apiMock
+    .onGet("https://sotdl-api.herokuapp.com/ancestries")
+    .reply(200, ancestriesData);
 };
 
 export const withComp = () => (

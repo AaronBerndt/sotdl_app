@@ -10,7 +10,7 @@ export default {
 
 const mock = (level) => (apiMock) => {
   apiMock
-    .onGet("http://localhost:3000/characters?name=Ordo")
+    .onGet("https://sotdl-api.herokuapp.com/characters?name=Ordo")
     .reply(200, mockCharacter(level));
 };
 
