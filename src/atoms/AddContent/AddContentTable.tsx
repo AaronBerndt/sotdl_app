@@ -17,6 +17,7 @@ import Remove from "@material-ui/icons/Remove";
 import SaveAlt from "@material-ui/icons/SaveAlt";
 import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
+import TextField from "@material-ui/core/TextField";
 
 const tableIcons = {
   Add: forwardRef((props, ref: React.Ref<SVGSVGElement>) => (
@@ -101,21 +102,26 @@ function AddContentTable({
 }: AddContentTableProps) {
   const label = name === "Features" ? "Description" : "Value";
   const cell = name === "Features" ? "description" : "value";
-  const nameRow =
-    name === "Features"
-      ? { title: "Name", field: "name" }
-      : {
-          title: "Name",
-          field: "name",
-          editComponent: (props) => (
-            <DropDown
-              label="Name"
-              data={characteristicsArray}
-              filterBy="name"
-              onChange={props.onChange}
-            />
-          ),
-        };
+  const nameRow = {
+    title: "Name",
+    field: "name",
+    editComponent: (props) =>
+      name === "Features" ? (
+        <TextField
+          label="Name"
+          autoFocus={true}
+          onChange={(e) => props.onChange(e.target.value)}
+        />
+      ) : (
+        <DropDown
+          label="Name"
+          data={characteristicsArray}
+          filterBy="name"
+          onChange={props.onChange}
+          autoFocus={true}
+        />
+      ),
+  };
 
   return (
     <MaterialTable

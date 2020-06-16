@@ -4,9 +4,10 @@ import { TextField as MaterialTextField } from "@material-ui/core";
 interface TextFieldProps {
   name: string;
   value: any;
+  autoFocus?: any;
 }
 
-function TextField({ name, value }: TextFieldProps) {
+function TextField({ name, value, autoFocus }: TextFieldProps) {
   return (
     <>
       <MaterialTextField
@@ -14,6 +15,7 @@ function TextField({ name, value }: TextFieldProps) {
         variant="outlined"
         defaultValue={value}
         size="small"
+        autoFocus={autoFocus}
         disabled
       />
     </>

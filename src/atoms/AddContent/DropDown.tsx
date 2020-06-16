@@ -7,9 +7,16 @@ interface DropDownProps {
   data: Array<any>;
   filterBy: string;
   onChange?: any;
+  autoFocus?: boolean;
 }
 
-function DropDown({ label, data, filterBy, onChange }: DropDownProps) {
+function DropDown({
+  label,
+  data,
+  filterBy,
+  onChange,
+  autoFocus,
+}: DropDownProps) {
   return (
     <Autocomplete
       options={data}
@@ -18,7 +25,12 @@ function DropDown({ label, data, filterBy, onChange }: DropDownProps) {
       getOptionLabel={(option) => option[filterBy]}
       style={{ width: 300 }}
       renderInput={(params) => (
-        <TextField {...params} label={label} variant="outlined" />
+        <TextField
+          {...params}
+          label={label}
+          variant="outlined"
+          autoFocus={autoFocus}
+        />
       )}
     />
   );
