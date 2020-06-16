@@ -109,11 +109,11 @@ function AddContentForm({
       <CardHeader title={`Add ${contentType}`} />
       <Form
         onSubmit={onSubmit}
-        render={({ handleSubmit, form, submitting }) => (
+        render={({ handleSubmit, form, submitting, pristine }) => (
           <form onSubmit={handleSubmit} noValidate>
             <CardContent>
-              <FormInput label="Name" name="name" />
-              <FormInput label="Description." name="description" />) : null}
+              <FormInput label="Name" name="name" autoFocus={true} />
+              <FormInput label="Description." name="description" />
               {contentType === "Path" ? (
                 <FormDropdown label="Type" name="type" data={typeArray} />
               ) : null}
@@ -155,6 +155,17 @@ function AddContentForm({
                 disabled={submitting}
               >
                 Submit
+              </Button>
+              <Button
+                type="button"
+                onClick={() => {
+                  setCharacteristicsArray([]);
+                  setFeaturesArray([]);
+                  form.reset();
+                }}
+                disabled={submitting || pristine}
+              >
+                Reset
               </Button>
             </CardActions>
           </form>

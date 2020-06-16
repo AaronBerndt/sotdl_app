@@ -16,6 +16,7 @@ function AddContentPage() {
         data={typeArray}
         filterBy="name"
         onChange={setContentType}
+        autoFocus={true}
       />
       <>
         {contentType !== "" ? (

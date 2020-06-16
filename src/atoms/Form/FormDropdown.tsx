@@ -12,6 +12,7 @@ function FormDropdown({ label, name, data }: FormDropdown) {
     <Autocomplete
       label={label}
       name={name}
+      autoHighlight
       getOptionValue={(option) => option.value}
       getOptionLabel={(option) => option.label}
       options={data.map(({ name }) => ({ label: name, value: name }))}
