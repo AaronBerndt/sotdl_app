@@ -78,8 +78,14 @@ function AddContentForm({
       contentType === "Ancestry" || contentType === "Path"
         ? {
             ...values,
-            features: featuresArray,
-            characteristics: characteristicsArray,
+            features: featuresArray.map(({ name, description, level }) => ({
+              name,
+              description,
+              level,
+            })),
+            characteristics: characteristicsArray.map(
+              ({ name, value, level }) => ({ name, value, level })
+            ),
           }
         : { ...values };
     try {
@@ -107,13 +113,7 @@ function AddContentForm({
           <form onSubmit={handleSubmit} noValidate>
             <CardContent>
               <FormInput label="Name" name="name" />
-              <FormInput label="Description." name="description" />
-              {contentType === "Ancestry" ? (
-                <>
-                  <FormInput label="Languages" name="languages" />
-                  <FormInput label="Professions" name="professions" />
-                </>
-              ) : null}
+              <FormInput label="Description." name="description" />) : null}
               {contentType === "Path" ? (
                 <FormDropdown label="Type" name="type" data={typeArray} />
               ) : null}
