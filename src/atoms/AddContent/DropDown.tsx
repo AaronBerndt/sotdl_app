@@ -14,7 +14,7 @@ function DropDown({ label, data, filterBy, onChange }: DropDownProps) {
     <Autocomplete
       options={data}
       autoHighlight
-      onInputChange={(e: any) => onChange(e.target.value)}
+      onBlurCapture={(e: any) => onChange(`${e.target.value}`)}
       getOptionLabel={(option) => option[filterBy]}
       style={{ width: 300 }}
       renderInput={(params) => (
