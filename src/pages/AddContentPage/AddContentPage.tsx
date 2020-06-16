@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { DropDown, DataPreview } from "../../atoms";
+import { DropDown } from "../../atoms";
 import { AddContentForm } from "../../organisms";
 
 function AddContentPage() {
-  const [contentData, setContentData] = useState({});
+  const [message, setMessage] = useState("");
   const [contentType, setContentType] = useState("");
   const typeArray = ["Ancestry", "Path", "Spell", "Item"].map((name) => ({
     name,
@@ -22,9 +22,9 @@ function AddContentPage() {
           <>
             <AddContentForm
               contentType={contentType}
-              onChangeFunction={setContentData}
+              onChangeFunction={setMessage}
             />
-            <DataPreview data={contentData} />
+            <p hidden={message === ""}>{message}</p>
           </>
         ) : null}
       </>

@@ -13,7 +13,8 @@ function DropDown({ label, data, filterBy, onChange }: DropDownProps) {
   return (
     <Autocomplete
       options={data}
-      onChange={(e: any) => onChange(`${e.target.innerHTML}`)}
+      autoHighlight
+      onInputChange={(e: any) => onChange(e.target.value)}
       getOptionLabel={(option) => option[filterBy]}
       style={{ width: 300 }}
       renderInput={(params) => (

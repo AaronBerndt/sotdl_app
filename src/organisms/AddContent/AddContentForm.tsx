@@ -9,6 +9,7 @@ import {
 import { Form } from "react-final-form";
 
 import { FormInput, FormDropdown, AddContentTable } from "../../atoms";
+import axios from "axios";
 
 interface AddContentFormProps {
   contentType: any;
@@ -65,20 +66,45 @@ function AddContentForm({
   const [characteristicsArray, setCharacteristicsArray] = useState([]);
   const [featuresArray, setFeaturesArray] = useState([]);
 
-  const onSubmit = (values: any) => {
-    onChangeFunction({
-      ...values,
-      characteristics: characteristicsArray,
-      features: featuresArray,
-    });
+  const onSubmit = async (values: any) => {
+    const typObject = {
+      Ancestry: "ancestries",
+      Path: "paths",
+      Spell: "spells",
+      Item: "items",
+    };
+
+    const contentObject =
+      contentType === "Ancestry" || contentType === "Path"
+        ? {
+            ...values,
+            features: featuresArray,
+            characteristics: characteristicsArray,
+          }
+        : { ...values };
+    try {
+      await axios({
+        /* url: "https://sotdl-api.herokuapp.com/insertInto", */
+        url: "http://sotdl-api.herokuapp.com/insertInto",
+        method: "post",
+        params: {
+          collectionName: typObject[contentType],
+          documentObject: contentObject,
+        },
+      });
+
+      onChangeFunction("Added to DB");
+    } catch (e) {
+      onChangeFunction("Failed to add to DB");
+    }
   };
   return (
     <Card>
       <CardHeader title={`Add ${contentType}`} />
       <Form
         onSubmit={onSubmit}
-        render={({ handleSubmit, form }) => (
-          <form>
+        render={({ handleSubmit, form, submitting }) => (
+          <form onSubmit={handleSubmit} noValidate>
             <CardContent>
               <FormInput label="Name" name="name" />
               <FormInput label="Description." name="description" />
@@ -122,7 +148,14 @@ function AddContentForm({
             </CardContent>
 
             <CardActions>
-              <Button onClick={() => handleSubmit()}>Submit</Button>
+              <Button
+                variant="outlined"
+                color="primary"
+                type="submit"
+                disabled={submitting}
+              >
+                Submit
+              </Button>
             </CardActions>
           </form>
         )}
