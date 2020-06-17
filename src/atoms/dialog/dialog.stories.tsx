@@ -1,6 +1,6 @@
-import React, { createContext } from "react";
+import React from "react";
 
-import Dialog from "./index";
+import Dialog from "./Dialog";
 import { action } from "@storybook/addon-actions/dist/preview";
 
 export default {

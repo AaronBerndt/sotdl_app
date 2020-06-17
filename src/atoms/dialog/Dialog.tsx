@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import {
-  Dialog,
+  Dialog as MaterialDialog,
   DialogTitle,
   DialogContent,
   DialogActions,
@@ -26,7 +26,7 @@ const StyledButton = styled(Button)`
   color: white;
 `;
 
-function DynamicDialog({
+function Dialog({
   title,
   children,
   actionName,
@@ -37,16 +37,16 @@ function DynamicDialog({
 
   return (
     <>
-      <Dialog open={open}>
+      <MaterialDialog open={open}>
         <StyledDialogTitle>{title}</StyledDialogTitle>
         <DialogContent>{children}</DialogContent>
         <DialogActions>
           <StyledButton>{actionName}</StyledButton>
           <Button onClick={onClickFuncion}>CANCEL</Button>
         </DialogActions>
-      </Dialog>
+      </MaterialDialog>
     </>
   );
 }
 
-export default DynamicDialog;
+export default Dialog;
