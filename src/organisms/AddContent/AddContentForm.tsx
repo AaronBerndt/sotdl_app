@@ -15,8 +15,11 @@ interface AddContentFormProps {
   contentType: any;
   onChangeFunction: any;
 }
-const typeArray = [{ name: "Novice" }, { name: "Expert" }, { name: "Master" }];
-const traditionArray = [
+const convertToNameArray = (arrayOfString) =>
+  arrayOfString.map((name) => ({ name }));
+
+const typeArray = convertToNameArray(["Novice", "Expert", "Master"]);
+const traditionArray = convertToNameArray([
   "Air",
   "Alchemy",
   "Alteration",
@@ -57,7 +60,15 @@ const traditionArray = [
   "Time",
   "Transformation",
   "Water",
-].map((name) => ({ name: name }));
+]);
+const itemTypeArray = convertToNameArray(["Armor", "Weapon", "Other"]);
+
+const availabilityArray = convertToNameArray([
+  "Common",
+  "Uncommon",
+  "Rage",
+  "Exotic",
+]);
 
 function AddContentForm({
   contentType,
@@ -65,6 +76,7 @@ function AddContentForm({
 }: AddContentFormProps) {
   const [characteristicsArray, setCharacteristicsArray] = useState([]);
   const [featuresArray, setFeaturesArray] = useState([]);
+  const [propertiesArray, setPropertiesArray] = useState([]);
 
   const onSubmit = async (values: any) => {
     const typObject = {
@@ -109,7 +121,7 @@ function AddContentForm({
       <CardHeader title={`Add ${contentType}`} />
       <Form
         onSubmit={onSubmit}
-        render={({ handleSubmit, form, submitting, pristine }) => (
+        render={({ handleSubmit, form, submitting, pristine, values }) => (
           <form onSubmit={handleSubmit} noValidate>
             <CardContent>
               <FormInput label="Name" name="name" autoFocus={true} />
@@ -129,6 +141,11 @@ function AddContentForm({
                     name="type"
                     data={[{ name: "Attack" }, { name: "Utility" }]}
                   />
+                  <FormDropdown
+                    label="Type"
+                    name="type"
+                    data={[{ name: "Attack" }, { name: "Utility" }]}
+                  />
                 </>
               ) : null}
               {contentType === "Ancestry" || contentType === "Path" ? (
@@ -142,6 +159,32 @@ function AddContentForm({
                     name="Characteristics"
                     data={characteristicsArray}
                     onChangeFunction={setCharacteristicsArray}
+                  />
+                </>
+              ) : null}
+              {contentType == "Item" ? (
+                <>
+                  <FormInput label="Price." name="price" />
+                  <FormDropdown
+                    label="Item Type"
+                    name="type"
+                    data={itemTypeArray}
+                  />
+                  <FormDropdown
+                    label="Availability"
+                    name="availability"
+                    data={availabilityArray}
+                  />
+                  {values.type === "Weapon" ? (
+                    <>
+                      <FormInput label="Damage." name="damage" />
+                      <FormInput label="Hands" name="hands" />
+                    </>
+                  ) : null}
+                  <AddContentTable
+                    name="Properties"
+                    data={propertiesArray}
+                    onChangeFunction={setPropertiesArray}
                   />
                 </>
               ) : null}
