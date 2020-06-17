@@ -1,6 +1,6 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
-import Panel from "./index";
+import Panel from "./Panel";
 
 export default {
   title: "Atoms/Panel",
