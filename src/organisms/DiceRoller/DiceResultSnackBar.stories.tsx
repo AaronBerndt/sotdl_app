@@ -54,8 +54,35 @@ export const damageRoll = () => (
     rollReason="Long Sword"
     rollType="Damage"
     diceResult={10}
-    modifier={3}
-    boonResult={0}
-    baneResult={0}
+    extraNumber={0}
   />
 );
+
+export const damageRollWithExtraNumber = () => (
+  <DiceResultSnackBar
+    rollReason="Long Sword"
+    rollType="Damage"
+    diceResult={10}
+    extraNumber={3}
+  />
+);
+
+export const damageRollWithExtraNumberAndMod = () => (
+  <DiceResultSnackBar
+    rollReason="Long Sword"
+    rollType="Damage"
+    diceResult={10}
+    modifier={3}
+    extraNumber={3}
+  />
+);
+
+export const damageRollWithAndMod = () => (
+  <DiceResultSnackBar
+    rollReason="Long Sword"
+    rollType="Damage"
+    diceResult={10}
+    modifier={3}
+  />
+);
+

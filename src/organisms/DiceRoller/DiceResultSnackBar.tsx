@@ -1,15 +1,16 @@
 import React from "react";
 import { Snackbar } from "@material-ui/core";
 import styled from "styled-components";
-import { isZero, sumArray } from "../../utilities";
+import { isZero, sumArray, notZeroAndUndefined } from "../../utilities";
 
 interface DiceResultSnackBarProps {
   rollReason: any;
   rollType: string;
   diceResult: number;
-  boonResult: number;
-  baneResult: number;
-  modifier: number;
+  boonResult?: number;
+  baneResult?: number;
+  modifier?: number;
+  extraNumber?: number;
 }
 
 interface RollTypeProps {
@@ -57,17 +58,26 @@ function DiceResultSnackBar({
   modifier,
   boonResult,
   baneResult,
+  extraNumber,
 }: DiceResultSnackBarProps) {
-  const finalResult = sumArray(
-    [diceResult, boonResult, modifier, -baneResult].map((number) =>
-      parseInt(`${number}`)
-    )
-  );
+  const isUndefined = (value: number) => (value === undefined ? 0 : value);
+
+  const finalResult =
+    rollType === "Damage"
+      ? sumArray([
+          diceResult + isUndefined(extraNumber) + isUndefined(modifier),
+        ])
+      : sumArray(
+          [diceResult, boonResult, modifier, -baneResult].map((number) =>
+            parseInt(`${number}`)
+          )
+        );
 
   const finalResultMessage =
     rollType === "Challenge"
       ? `${finalResult >= 10 ? "Pass" : "Fail"}(${finalResult})`
       : finalResult;
+
   return (
     <>
       <Snackbar
@@ -80,12 +90,21 @@ function DiceResultSnackBar({
               <RollType rollType={rollType}>{rollType}</RollType>
             </div>
             <div>
-              <DiceResult>{`${diceResult} + (${modifier}) `}</DiceResult>
-              {!isZero(boonResult) && (
-                <BoonResult>{` + ${boonResult}`}</BoonResult>
-              )}
-              {!isZero(baneResult) && (
-                <BaneResult>{` - ${baneResult}`}</BaneResult>
+              {rollType === "Damage" ? (
+                <DiceResult>{`${diceResult} ${
+                  notZeroAndUndefined(modifier) ? `+ (${modifier})` : ""
+                }
+			${notZeroAndUndefined(extraNumber) ? `+ ${extraNumber}` : ""}`}</DiceResult>
+              ) : (
+                <>
+                  <DiceResult>{`${diceResult} + (${modifier}) `}</DiceResult>
+                  {!isZero(boonResult) && (
+                    <BoonResult>{` + ${boonResult}`}</BoonResult>
+                  )}
+                  {!isZero(baneResult) && (
+                    <BaneResult>{` - ${baneResult}`}</BaneResult>
+                  )}
+                </>
               )}
               <FinalResult>{finalResultMessage}</FinalResult>
             </div>

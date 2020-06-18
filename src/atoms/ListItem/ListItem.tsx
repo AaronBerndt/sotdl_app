@@ -14,6 +14,7 @@ const StyledListItem = styled(ListItem)`
 `;
 
 function DynamicListItem({ title, onClickFunction }: ListItemType) {
+  console.log(title);
   return (
     <>
       <StyledListItem button onClick={onClickFunction} divider>

@@ -6,20 +6,21 @@ export default {
   component: SpellList,
 };
 
-const createSpell = (level: number, type: string) => ({
+const createSpell = (level: number, type: string, damage: string) => ({
   name: `Level ${level} Spell`,
   tradition: "Air",
-  type: "Attack",
+  type: type,
+  damage: damage,
   level: level,
   characteristics: {},
   description: "",
   extra_effects: [],
 });
 const spellArray = [
-  createSpell(0, "Attack"),
-  createSpell(0, "Attack"),
-  createSpell(1, "Utility"),
-  createSpell(2, "Attack"),
+  createSpell(0, "Attack", "1d6"),
+  createSpell(0, "Attack", "2d6 + 1"),
+  createSpell(1, "Utility", ""),
+  createSpell(2, "Attack", "3d6"),
 ];
 
 export const powerZero = () => (

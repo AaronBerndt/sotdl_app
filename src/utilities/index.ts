@@ -6,7 +6,12 @@ import {
 } from "./filterUtil";
 import sumArray from "./sumArray";
 import mockCharacter from "./CharacterMock";
-import { isZero, lengthIsZero, lengthIsOne } from "./Logic";
+import {
+  isZero,
+  lengthIsZero,
+  lengthIsOne,
+  notZeroAndUndefined,
+} from "./Logic";
 
 export {
   filterByLevelAndName,
@@ -18,4 +23,5 @@ export {
   lengthIsZero,
   lengthIsOne,
   mockCharacter,
+  notZeroAndUndefined,
 };

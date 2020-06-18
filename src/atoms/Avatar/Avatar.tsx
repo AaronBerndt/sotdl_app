@@ -37,7 +37,11 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function DynamicAvatar({ type, isLarge }: AvatarProps) {
   const { large } = useStyles();
-  return (
+  const image = imageObject[type];
+
+  return image === undefined ? (
+    <Avatar className={isLarge ? large : ""} variant="square" />
+  ) : (
     <Avatar
       className={isLarge ? large : ""}
       src={imageObject[type.toLowerCase()]}

@@ -6,8 +6,11 @@ import {
   TableRow,
   TableCell,
   Checkbox,
+  Button,
 } from "@material-ui/core";
-import {lengthIsZero} from "../../utilities";
+import { lengthIsZero } from "../../utilities";
+import TextField from "../TextField";
+import RollDamageBox from "../../molecules/CharacterSheetComponents/RollDamageBox";
 
 interface SpellTableProps {
   spellArray: Array<any>;
@@ -30,30 +33,46 @@ function SpellCheckBox() {
 }
 
 function SpellTable({ spellArray, casting, onClickFuncion }: SpellTableProps) {
-  const cells = ["name", "type", "casting"];
+  const cells = ["name", "type", "attack", "damage", "casting"];
+
   return (
     <>
       {lengthIsZero(spellArray) ? null : (
         <Table>
           <TableHead>
             <TableRow>
-              {["Name", "Type", "Casting"].map((header, i) => (
-                <TableCell key={i}>{header}</TableCell>
-              ))}
+              {["Name", "Type", "Attack", "Damage", "Casting"].map(
+                (header, i) => (
+                  <TableCell key={i}>{header}</TableCell>
+                )
+              )}
             </TableRow>
           </TableHead>
           <TableBody>
             {spellArray.map((item, i) => (
               <TableRow key={i} onClick={onClickFuncion}>
-                {cells.map((cell, i) => (
-                  <TableCell key={i}>
-                    {cell === "casting"
-                      ? [...Array(casting).keys()].map((item, i) => (
+                {cells.map((cell, i) => {
+                  return (
+                    <TableCell key={i}>
+                      {cell === "casting" ? (
+                        [...Array(casting).keys()].map((item, i) => (
                           <SpellCheckBox key={i} />
                         ))
-                      : item[cell]}
-                  </TableCell>
-                ))}
+                      ) : cell === "attack" ? (
+                        <Button />
+                      ) : cell === "damage" ? (
+                        item[cell] === "" ? null : (
+                          <RollDamageBox
+                            value={item[cell]}
+                            onClickFuncion={onClickFuncion}
+                          />
+                        )
+                      ) : (
+                        item[cell]
+                      )}
+                    </TableCell>
+                  );
+                })}
               </TableRow>
             ))}
           </TableBody>
