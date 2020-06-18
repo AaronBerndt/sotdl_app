@@ -6,7 +6,7 @@ import {
 } from "./filterUtil";
 import sumArray from "./sumArray";
 import mockCharacter from "./CharacterMock";
-import { isZero, lengthIsZero } from "./Logic";
+import { isZero, lengthIsZero, lengthIsOne } from "./Logic";
 
 export {
   filterByLevelAndName,
@@ -16,5 +16,6 @@ export {
   sumArray,
   isZero,
   lengthIsZero,
+  lengthIsOne,
   mockCharacter,
 };

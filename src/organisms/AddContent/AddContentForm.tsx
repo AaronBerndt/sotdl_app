@@ -77,6 +77,7 @@ function AddContentForm({
   const [characteristicsArray, setCharacteristicsArray] = useState([]);
   const [featuresArray, setFeaturesArray] = useState([]);
   const [propertiesArray, setPropertiesArray] = useState([]);
+  const [spellPropertiesArray, setSpellPropertiesArray] = useState([]);
 
   const onSubmit = async (values: any) => {
     const typObject = {
@@ -137,14 +138,19 @@ function AddContentForm({
                     data={traditionArray}
                   />
                   <FormDropdown
-                    label="Type"
-                    name="type"
-                    data={[{ name: "Attack" }, { name: "Utility" }]}
+                    label="Attribute"
+                    name="attribute"
+                    data={[{ name: "Will" }, { name: "intellect" }]}
                   />
                   <FormDropdown
                     label="Type"
                     name="type"
                     data={[{ name: "Attack" }, { name: "Utility" }]}
+                  />
+                  <AddContentTable
+                    name="Spell Proprieties"
+                    data={spellPropertiesArray}
+                    onChangeFunction={setSpellPropertiesArray}
                   />
                 </>
               ) : null}
@@ -204,6 +210,8 @@ function AddContentForm({
                 onClick={() => {
                   setCharacteristicsArray([]);
                   setFeaturesArray([]);
+                  setSpellPropertiesArray([]);
+                  setPropertiesArray([]);
                   form.reset();
                 }}
                 disabled={submitting || pristine}

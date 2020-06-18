@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Panel, Avatar } from "../../atoms/";
+import { groupBy } from "lodash";
+import { sumArray, lengthIsOne } from "../../utilities";
 
 interface PathDialogContentProps {
   pathInfo: any;
@@ -8,7 +10,7 @@ interface PathDialogContentProps {
 }
 
 const StyledHeader = styled.h1`
-position:: 'abosolute'
+position:: ''
 `;
 
 const StyledAvatar = styled(Avatar)`
@@ -25,21 +27,11 @@ function PathDialogContent({ pathInfo, isPath }: PathDialogContentProps) {
     characteristics,
   } = pathInfo;
 
-  characteristics.map(({ name, value, level }, i: number) => (
-    <Panel
-      title={name}
-      summary={`Level ${level}`}
-      details={`+ ${value}`}
-      key={i}
-    />
-  ));
   return (
     <>
       <div>
         <StyledHeader>{name}</StyledHeader>
-        <StyledAvatar type={name} isLarge />
       </div>
-
       <p>{description}</p>
 
       {features.map(({ name, description, level }, i: number) => (
@@ -52,14 +44,33 @@ function PathDialogContent({ pathInfo, isPath }: PathDialogContentProps) {
       ))}
       <Panel title={"Professitons"} summary={`Level 1`} details={professions} />
 
-      {characteristics.map(({ name, value, level }, i: number) => (
-        <Panel
-          title={name}
-          summary={`Level ${level}`}
-          details={`+ ${value}`}
-          key={i}
-        />
-      ))}
+      {Object.entries(groupBy(characteristics, ({ name }) => name)).map(
+        (array: any, i) => {
+          const name = array[0];
+          const arrayValue = array[1];
+
+          const levelArray = arrayValue
+            .map(({ level }: any) => level)
+            .join(",");
+
+          const valueArray = arrayValue.map(({ value }: any) => value);
+
+          const formula = valueArray.join("+");
+
+          return (
+            <Panel
+              title={name}
+              summary={`Level ${levelArray}`}
+              details={
+                lengthIsOne(valueArray)
+                  ? `+ ${valueArray}`
+                  : `${formula} = ${sumArray(valueArray)}`
+              }
+              key={i}
+            />
+          );
+        }
+      )}
     </>
   );
 }

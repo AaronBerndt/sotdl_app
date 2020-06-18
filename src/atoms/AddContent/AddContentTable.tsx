@@ -83,7 +83,10 @@ const levelArray = [...Array(10).keys()].map((value) => ({
   name: `${value + 1}`,
 }));
 
-const characteristicsArray = [
+const convertToNameArray = (arrayOfString) =>
+  arrayOfString.map((name) => ({ name }));
+
+const characteristicsArray = convertToNameArray([
   "Strength",
   "Health",
   "Intellect",
@@ -93,7 +96,36 @@ const characteristicsArray = [
   "Size",
   "Speed",
   "Corruption",
-].map((name) => ({ name }));
+]);
+const spellproprietiesArray = convertToNameArray([
+  "Target",
+  "Duration",
+  "Attack Roll 20+",
+  "Triggered",
+  "Sacrifice",
+  "Permanence",
+  "Requirement",
+]);
+const proprietiesArray = convertToNameArray([
+  "Finesse",
+  "Thrown",
+  "Range(Short)",
+  "Range(Medium)",
+  "Range(Long)",
+  "Uses Ammo",
+  "Size",
+  "Reach",
+  "Cumbersome",
+  "Mounted 1 Hand",
+  "Defensive",
+  "Requires Strength",
+  "Requires Agility",
+]);
+const nameObject = {
+  Characteristics: characteristicsArray,
+  Properties: proprietiesArray,
+  "Spell Proprieties": spellproprietiesArray,
+};
 
 function AddContentTable({
   name,
@@ -115,7 +147,7 @@ function AddContentTable({
       ) : (
         <DropDown
           label="Name"
-          data={characteristicsArray}
+          data={nameObject[name]}
           filterBy="name"
           onChange={props.onChange}
           autoFocus={true}
@@ -158,25 +190,36 @@ function AddContentTable({
             }, 1000);
           }),
       }}
-      columns={[
-        nameRow,
-        {
-          title: label,
-          field: cell,
-        },
-        {
-          title: "Level",
-          field: "level",
-          editComponent: (props) => (
-            <DropDown
-              label="Level"
-              data={levelArray}
-              filterBy="name"
-              onChange={props.onChange}
-            />
-          ),
-        },
-      ]}
+      columns={
+        name === "Properties" || name === "Spell Properties"
+          ? [
+              nameRow,
+
+              {
+                title: label,
+                field: cell,
+              },
+            ]
+          : [
+              nameRow,
+              {
+                title: label,
+                field: cell,
+              },
+              {
+                title: "Level",
+                field: "level",
+                editComponent: (props) => (
+                  <DropDown
+                    label="Level"
+                    data={levelArray}
+                    filterBy="name"
+                    onChange={props.onChange}
+                  />
+                ),
+              },
+            ]
+      }
       data={data}
       title={name}
       options={{
