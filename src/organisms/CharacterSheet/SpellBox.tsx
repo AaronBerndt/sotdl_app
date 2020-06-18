@@ -5,6 +5,7 @@ import { SpellList } from "../../molecules";
 interface SpellListProps {
   spellArray: any;
   power: number;
+  onClickFuncion: any;
 }
 
 const createCastingObject = (castArray: Array<number>) =>
@@ -23,7 +24,7 @@ const castingObject = {
   10: createCastingObject([11, 3, 3, 3, 3, 2, 1, 1, 1, 1, 1]),
 };
 
-function SpellBox({ spellArray, power }: SpellListProps) {
+function SpellBox({ spellArray, power, onClickFuncion }: SpellListProps) {
   const castings = castingObject[power];
   const [filteredSpellList, setFilteredSpellList] = useState(spellArray);
 
@@ -45,7 +46,11 @@ function SpellBox({ spellArray, power }: SpellListProps) {
         onChangeFunction={onChange}
       />
       <>
-        <SpellList spellArray={filteredSpellList} castings={castings} />
+        <SpellList
+          spellArray={filteredSpellList}
+          castings={castings}
+          onClickFuncion={onClickFuncion}
+        />
       </>
     </>
   );

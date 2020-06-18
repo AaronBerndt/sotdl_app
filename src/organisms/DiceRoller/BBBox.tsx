@@ -33,7 +33,6 @@ function BBBox({
     ? boonAmount
     : baneAmount;
 
-  console.log(defaultAmount);
   return (
     <>
       <BBTextField

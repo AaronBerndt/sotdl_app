@@ -64,15 +64,14 @@ function DiceResultSnackBar({
 
   const finalResult =
     rollType === "Damage"
-      ? sumArray([
-          diceResult + isUndefined(extraNumber) + isUndefined(modifier),
-        ])
+      ? sumArray([diceResult, isUndefined(extraNumber), isUndefined(modifier)])
       : sumArray(
           [diceResult, boonResult, modifier, -baneResult].map((number) =>
             parseInt(`${number}`)
           )
         );
 
+  console.log(finalResult);
   const finalResultMessage =
     rollType === "Challenge"
       ? `${finalResult >= 10 ? "Pass" : "Fail"}(${finalResult})`

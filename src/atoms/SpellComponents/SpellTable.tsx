@@ -52,6 +52,7 @@ function SpellTable({ spellArray, casting, onClickFuncion }: SpellTableProps) {
             {spellArray.map((item, i) => (
               <TableRow key={i} onClick={onClickFuncion}>
                 {cells.map((cell, i) => {
+                  const spellName = item["name"];
                   const spellType = item["type"];
                   const isAttackSpell = spellType === "Attack";
                   return (
@@ -69,6 +70,7 @@ function SpellTable({ spellArray, casting, onClickFuncion }: SpellTableProps) {
                       ) : cell === "damage" ? (
                         isAttackSpell ? (
                           <RollDamageBox
+                            rollReason={spellName}
                             value={item[cell]}
                             onClickFuncion={onClickFuncion}
                           />

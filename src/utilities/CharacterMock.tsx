@@ -186,6 +186,7 @@ const mockCharacter = (level) => [
         tradition: "Air",
         type: "Attack",
         level: 1,
+        damage: "2d6 + 3",
         characteristics: {
           target: "One creature or object within short range",
           duration: 0,

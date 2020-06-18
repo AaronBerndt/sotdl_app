@@ -20,7 +20,6 @@ function reducer(state, action) {
     "add bane": () => ({ boonAmount: 0, baneAmount: state.baneAmount + 1 }),
     reset: () => ({ boonAmount: 0, baneAmount: 0 }),
   };
-  console.log(state);
   return actionObject[action.type]();
 }
 
@@ -58,8 +57,6 @@ function CharacterSheetPage() {
     setCharacterData(data[0]);
   };
 
-  const [rollReason, setRollReason] = useState("");
-  const [rollType, setRollType] = useState("");
   const [modifier, setModifier] = useState(0);
 
   const [{ boonAmount, baneAmount }, dispatch] = useReducer(reducer, {
@@ -68,8 +65,16 @@ function CharacterSheetPage() {
   });
 
   const {
-    diceResult: { diceResult, boonResult, baneResult },
+    diceResult: {
+      rollReason,
+      rollType,
+      diceResult,
+      boonResult,
+      baneResult,
+      extraNumber,
+    },
     rollAttackRoll,
+    rollDamageRoll,
   } = useDice();
 
   useEffect(() => {
@@ -121,9 +126,7 @@ function CharacterSheetPage() {
   ];
 
   const makeChallengeRoll = (mod, name) => {
-    rollAttackRoll(boonAmount, baneAmount);
-    setRollReason(name);
-    setRollType("Challenge");
+    rollAttackRoll(name, "Challenge", boonAmount, baneAmount);
     setModifier(mod);
   };
 
@@ -156,7 +159,11 @@ function CharacterSheetPage() {
             <p>Tab 1</p>
             <FeaturesBox featuresArray={features} level={level} />
             <EquipmentBox itemsObject={items} strength={strength} />
-            <SpellBox spellArray={spells} power={power} />
+            <SpellBox
+              spellArray={spells}
+              power={power}
+              onClickFuncion={rollDamageRoll}
+            />
           </CharacterContentBox>
           <DiceResultSnackBar
             rollType={rollType}
@@ -165,6 +172,7 @@ function CharacterSheetPage() {
             diceResult={diceResult}
             boonResult={boonResult}
             baneResult={baneResult}
+            extraNumber={extraNumber}
           />
         </>
       )}
