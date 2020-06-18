@@ -106,7 +106,7 @@ function DiceResultSnackBar({
                   )}
                 </>
               )}
-              <FinalResult>{finalResultMessage}</FinalResult>
+              <FinalResult>{` = ${finalResultMessage}`}</FinalResult>
             </div>
           </div>
         }
