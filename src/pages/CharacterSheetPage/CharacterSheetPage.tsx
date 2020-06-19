@@ -91,16 +91,11 @@ function CharacterSheet() {
           {/* /> */}
 
           <CharacteristicsBox />
-          {/* <CharacterContentBox power={power} spellArrayLength={spells.length}> */}
-          {/*   <p>Tab 1</p> */}
-          <FeaturesBox />
-          {/*   <EquipmentBox itemsObject={items} strength={strength} /> */}
-          {/*   <SpellBox */}
-          {/*     spellArray={spells} */}
-          {/*     power={power} */}
-          {/*     onClickFuncion={rollDamageRoll} */}
-          {/*   /> */}
-          {/* </CharacterContentBox> */}
+          <CharacterContentBox>
+            <p>Tab 1</p>
+            <FeaturesBox />
+            <EquipmentBox itemsObject={items} />
+          </CharacterContentBox>
           {/* <DiceResultSnackBar */}
           {/*   rollType={rollType} */}
           {/*   rollReason={rollReason} */}

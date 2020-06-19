@@ -47,16 +47,15 @@ type Items = {
 
 interface EquipmentBoxProps {
   itemsObject: Items;
-  strength: number;
 }
 
-function EquipmentBox({ itemsObject, strength }: EquipmentBoxProps) {
+function EquipmentBox({ itemsObject }: EquipmentBoxProps) {
   const { money } = itemsObject;
   const { weapons, armor, other } = itemsObject;
   const inventoryArray = [weapons, armor, other].map((array) => array).flat(1);
   return (
     <>
-      <EncumbranceBox inventoryArray={inventoryArray} strength={strength} />
+      <EncumbranceBox inventoryArray={inventoryArray} />
       <MoneyBox moneyObject={money} />
       <InventoryBox inventoryArray={inventoryArray} />
     </>
