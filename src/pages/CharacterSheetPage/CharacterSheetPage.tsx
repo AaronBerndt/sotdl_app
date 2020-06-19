@@ -45,68 +45,37 @@ function CharacterSheet() {
   /*   rollDamageRoll, */
   /* } = useDice(); */
 
-  const {
-    name,
-    level,
-    ancestry,
-    novicePath,
-    expertPath,
-    masterPath,
-    health,
-    spells,
-    items,
-    strength,
-    agility,
-    intellect,
-    will,
-    perception,
-    speed,
-  } = useContext(ChracaterPageContext);
-  const createCharacteristic = (name, value) => ({
-    name,
-    value,
-  });
+  const { health, items } = useContext(ChracaterPageContext);
 
   /* const makeChallengeRoll = (mod, name) => { */
   /*   rollAttackRoll(name, "Challenge", boonAmount, baneAmount); */
   /*   setModifier(mod); */
   return (
     <>
-      {name === "" ? null : (
-        <>
-          <DetailsBox
-            name={name}
-            ancestry={ancestry}
-            novicePath={novicePath}
-            expertPath={expertPath}
-            masterPath={masterPath}
-            level={level}
-          />
-          <LifeWorkSpaceBox health={health} />
-          {/* <BBBox */}
-          {/*   boonAmount={boonAmount} */}
-          {/*   baneAmount={baneAmount} */}
-          {/*   baneOnClick={() => dispatch({ type: "add bane" })} */}
-          {/*   boonOnClick={() => dispatch({ type: "add boon" })} */}
-          {/* /> */}
+      <DetailsBox />
+      <LifeWorkSpaceBox health={health} />
+      {/* <BBBox */}
+      {/*   boonAmount={boonAmount} */}
+      {/*   baneAmount={baneAmount} */}
+      {/*   baneOnClick={() => dispatch({ type: "add bane" })} */}
+      {/*   boonOnClick={() => dispatch({ type: "add boon" })} */}
+      {/* /> */}
 
-          <CharacteristicsBox />
-          <CharacterContentBox>
-            <p>Tab 1</p>
-            <FeaturesBox />
-            <EquipmentBox itemsObject={items} />
-          </CharacterContentBox>
-          {/* <DiceResultSnackBar */}
-          {/*   rollType={rollType} */}
-          {/*   rollReason={rollReason} */}
-          {/*   modifier={modifier} */}
-          {/*   diceResult={diceResult} */}
-          {/*   boonResult={boonResult} */}
-          {/*   baneResult={baneResult} */}
-          {/*   extraNumber={extraNumber} */}
-          {/* /> */}
-        </>
-      )}
+      <CharacteristicsBox />
+      <CharacterContentBox>
+        <p>Tab 1</p>
+        <FeaturesBox />
+        <EquipmentBox itemsObject={items} />
+      </CharacterContentBox>
+      {/* <DiceResultSnackBar */}
+      {/*   rollType={rollType} */}
+      {/*   rollReason={rollReason} */}
+      {/*   modifier={modifier} */}
+      {/*   diceResult={diceResult} */}
+      {/*   boonResult={boonResult} */}
+      {/*   baneResult={baneResult} */}
+      {/*   extraNumber={extraNumber} */}
+      {/* /> */}
     </>
   );
 }
@@ -142,6 +111,11 @@ function CharacterSheetPage() {
       getData();
     }
   }, [characterData]);
+
+  /* const [{ boonAmount, baneAmount }, dispatch] = useReducer(reducer, { */
+  /*   boonAmount: 0, */
+  /*   baneAmount: 0, */
+  /* }); */
 
   const {
     name,
