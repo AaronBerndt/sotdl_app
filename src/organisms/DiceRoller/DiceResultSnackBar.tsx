@@ -52,7 +52,6 @@ function DiceResultSnackBar() {
     baneResult,
     boonResult,
   } = useContext(DiceRollContext);
-
   const isUndefined = (value: number) => (value === undefined ? 0 : value);
 
   const finalResult =

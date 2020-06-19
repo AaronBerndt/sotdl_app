@@ -45,6 +45,7 @@ export function DiceRollProvider({ children }: any) {
       extraNumber,
       baneResult,
       boonResult,
+      modifier,
     },
     rollAttackRoll,
     rollDamageRoll,
@@ -57,19 +58,22 @@ export function DiceRollProvider({ children }: any) {
   const makeChallengeRoll = (
     rollReason: string,
     boonAmount: number,
-    baneAmount: number
-  ) => rollAttackRoll(rollReason, "Chollenge", boonAmount, baneAmount);
+    baneAmount: number,
+    modifier: number
+  ) =>
+    rollAttackRoll(rollReason, "Challenge", boonAmount, baneAmount, modifier);
 
   const makeAttackRoll = (
     rollReason: string,
     boonAmount: number,
-    baneAmount: number
-  ) => rollAttackRoll(rollReason, "Attack", boonAmount, baneAmount);
+    baneAmount: number,
+    modifier: number
+  ) => rollAttackRoll(rollReason, "Attack", boonAmount, baneAmount, modifier);
 
   return (
     <DiceRollContext.Provider
       value={{
-        modifier: 0,
+        modifier,
         rollReason,
         rollType,
         diceResult,

@@ -26,25 +26,7 @@ function reducer(state, action) {
 }
 
 function CharacterSheet() {
-  /* const [modifier, setModifier] = useState(0); */
-
-  /* const [{ boonAmount, baneAmount }, dispatch] = useReducer(reducer, { */
-  /*   boonAmount: 0, */
-  /*   baneAmount: 0, */
-  /* }); */
-
-  /* const { */
-  /*   diceResult: { */
-  /*     rollReason, */
-  /*     rollType, */
-  /*     diceResult, */
-  /*     boonResult, */
-  /*     baneResult, */
-  /*     extraNumber, */
-  /*   }, */
-  /*   rollAttackRoll, */
-  /*   rollDamageRoll, */
-  /* } = useDice(); */
+  const [modifier, setModifier] = useState(0);
 
   const { health, items } = useContext(ChracaterPageContext);
 
@@ -63,15 +45,7 @@ function CharacterSheet() {
           <FeaturesBox />
           <EquipmentBox itemsObject={items} />
         </CharacterContentBox>
-        {/* <DiceResultSnackBar */}
-        {/*   rollType={rollType} */}
-        {/*   rollReason={rollReason} */}
-        {/*   modifier={modifier} */}
-        {/*   diceResult={diceResult} */}
-        {/*   boonResult={boonResult} */}
-        {/*   baneResult={baneResult} */}
-        {/*   extraNumber={extraNumber} */}
-        {/* /> */}
+        <DiceResultSnackBar />
       </DiceRollProvider>
     </>
   );
