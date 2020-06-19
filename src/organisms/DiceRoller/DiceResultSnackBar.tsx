@@ -71,7 +71,6 @@ function DiceResultSnackBar({
           )
         );
 
-  console.log(finalResult);
   const finalResultMessage =
     rollType === "Challenge"
       ? `${finalResult >= 10 ? "Pass" : "Fail"}(${finalResult})`

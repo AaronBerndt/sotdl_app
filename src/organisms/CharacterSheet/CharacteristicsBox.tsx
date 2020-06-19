@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import { AttributeBox } from "../../molecules";
 
-interface CharacteristicsBoxProps {
-  characteristicsArray: any;
-  level: number;
-  onClickFuncion: any;
-}
+import ChracaterPageContext from "../../context/CharacterContext";
 
-function CharacteristicsBox({
-  characteristicsArray,
-  onClickFuncion,
-}: CharacteristicsBoxProps) {
+function CharacteristicsBox() {
+  const { strength, agility, intellect, will, perception, speed } = useContext(
+    ChracaterPageContext
+  );
+  const createCharacteristic = (name, value) => ({
+    name,
+    value,
+  });
+
+  const characteristicsArray = [
+    createCharacteristic("Strength", strength),
+    createCharacteristic("Agility", agility),
+    createCharacteristic("Intellect", intellect),
+    createCharacteristic("Will", will),
+    createCharacteristic("Perception", perception),
+    createCharacteristic("Speed", speed),
+  ];
+
   return (
     <>
       {characteristicsArray.map(({ name, value }, i: any) => {
@@ -20,7 +30,7 @@ function CharacteristicsBox({
               <AttributeBox
                 name={name}
                 value={value}
-                onClickFuncion={onClickFuncion}
+                onClickFuncion={() => null}
                 withMod={false}
                 withNoRoll={true}
               />
@@ -28,7 +38,7 @@ function CharacteristicsBox({
               <AttributeBox
                 name={name}
                 value={value}
-                onClickFuncion={onClickFuncion}
+                onClickFuncion={() => null}
                 withMod={true}
                 withNoRoll={false}
               />

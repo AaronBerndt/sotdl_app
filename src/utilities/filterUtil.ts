@@ -7,6 +7,7 @@ function filterByLevelAndName(array: any, name: string, level: number) {
 }
 
 function filterByLevelAndMutiple(array: any, nameArray: any, level: number) {
+  console.log(nameArray);
   const filteredArray = nameArray
     .map((name) =>
       array.filter((value) => value.name === name && value.level <= level)
