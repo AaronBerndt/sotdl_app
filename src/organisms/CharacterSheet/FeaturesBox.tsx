@@ -1,17 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { List } from "@material-ui/core";
 import { filterByLevel } from "../../utilities";
+import ChracaterPageContext from "../../context/CharacterContext";
 
-interface FeaturesBoxProps {
-  featuresArray: any;
-  level: number;
-}
-
-function FeaturesBox({ featuresArray, level }: FeaturesBoxProps) {
+function FeaturesBox() {
+  const { features, level } = useContext(ChracaterPageContext);
   return (
     <>
       <List>
-        {filterByLevel(featuresArray, level).map(
+        {filterByLevel(features, level).map(
           ({ name, description, page, book }, i: number) => (
             <div key={i}>
               <h4>{`${name} ${book}, pg. ${page}`}</h4>

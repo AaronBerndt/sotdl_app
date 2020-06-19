@@ -53,7 +53,6 @@ function CharacterSheet() {
     expertPath,
     masterPath,
     health,
-    features,
     spells,
     items,
     strength,
@@ -94,7 +93,7 @@ function CharacterSheet() {
           <CharacteristicsBox />
           {/* <CharacterContentBox power={power} spellArrayLength={spells.length}> */}
           {/*   <p>Tab 1</p> */}
-          {/*   <FeaturesBox featuresArray={features} level={level} /> */}
+          <FeaturesBox />
           {/*   <EquipmentBox itemsObject={items} strength={strength} /> */}
           {/*   <SpellBox */}
           {/*     spellArray={spells} */}
