@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   DetailsBox,
   CharacteristicsBox,
@@ -14,6 +14,7 @@ import axios from "axios";
 import { sumArray, filterByLevelAndMutiple } from "../../utilities";
 import { useDice } from "../../hooks";
 import ChracaterPageContext from "../../context/CharacterContext";
+import { DiceRollProvider } from "../../context/DiceRollContext";
 
 function reducer(state, action) {
   const actionObject = {
@@ -54,28 +55,24 @@ function CharacterSheet() {
     <>
       <DetailsBox />
       <LifeWorkSpaceBox health={health} />
-      {/* <BBBox */}
-      {/*   boonAmount={boonAmount} */}
-      {/*   baneAmount={baneAmount} */}
-      {/*   baneOnClick={() => dispatch({ type: "add bane" })} */}
-      {/*   boonOnClick={() => dispatch({ type: "add boon" })} */}
-      {/* /> */}
-
-      <CharacteristicsBox />
-      <CharacterContentBox>
-        <p>Tab 1</p>
-        <FeaturesBox />
-        <EquipmentBox itemsObject={items} />
-      </CharacterContentBox>
-      {/* <DiceResultSnackBar */}
-      {/*   rollType={rollType} */}
-      {/*   rollReason={rollReason} */}
-      {/*   modifier={modifier} */}
-      {/*   diceResult={diceResult} */}
-      {/*   boonResult={boonResult} */}
-      {/*   baneResult={baneResult} */}
-      {/*   extraNumber={extraNumber} */}
-      {/* /> */}
+      <DiceRollProvider>
+        <BBBox />
+        <CharacteristicsBox />
+        <CharacterContentBox>
+          <p>Tab 1</p>
+          <FeaturesBox />
+          <EquipmentBox itemsObject={items} />
+        </CharacterContentBox>
+        {/* <DiceResultSnackBar */}
+        {/*   rollType={rollType} */}
+        {/*   rollReason={rollReason} */}
+        {/*   modifier={modifier} */}
+        {/*   diceResult={diceResult} */}
+        {/*   boonResult={boonResult} */}
+        {/*   baneResult={baneResult} */}
+        {/*   extraNumber={extraNumber} */}
+        {/* /> */}
+      </DiceRollProvider>
     </>
   );
 }
