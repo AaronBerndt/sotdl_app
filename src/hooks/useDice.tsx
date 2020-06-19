@@ -23,6 +23,7 @@ function useDice() {
     diceResult: result,
     rollAttackRoll: useCallback(
       (rollReason, rollType, boonAmount, baneAmount) => {
+        console.log(rollReason, rollType, boonAmount, baneAmount);
         const d20Result = rollDice(20);
         const amountIsZero = (amount) =>
           isZero(amount) ? 0 : Math.max(...rollMutipleDice("d6", amount));

@@ -2,11 +2,15 @@ import React, { useContext } from "react";
 import { AttributeBox } from "../../molecules";
 
 import ChracaterPageContext from "../../context/CharacterContext";
+import DiceRollContext from "../../context/DiceRollContext";
 
 function CharacteristicsBox() {
   const { strength, agility, intellect, will, perception, speed } = useContext(
     ChracaterPageContext
   );
+
+  const { makeChallengeRoll } = useContext(DiceRollContext);
+
   const createCharacteristic = (name, value) => ({
     name,
     value,
@@ -30,7 +34,7 @@ function CharacteristicsBox() {
               <AttributeBox
                 name={name}
                 value={value}
-                onClickFuncion={() => null}
+                onClickFuncion={makeChallengeRoll}
                 withMod={false}
                 withNoRoll={true}
               />

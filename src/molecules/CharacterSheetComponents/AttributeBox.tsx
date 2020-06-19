@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Badge, Button } from "@material-ui/core";
 import { TextField } from "../../atoms";
+import DiceRollContext from "../../context/DiceRollContext";
 
 interface AttributeBoxProps {
   name: string;
@@ -19,10 +20,14 @@ function AttributeBox({
 }: AttributeBoxProps) {
   const mod = value - 10 > 0 ? `${value - 10}` : value - 10;
   const modLabel = value - 10 > 0 ? `+ ${value - 10}` : value - 10;
+
+  const { boonAmount, baneAmount, makeChallengeRoll } = useContext(
+    DiceRollContext
+  );
   return (
     <>
       <Button
-        onClick={() => onClickFuncion(mod, name)}
+        onClick={() => makeChallengeRoll(name, boonAmount, baneAmount)}
         size="small"
         disabled={withNoRoll}
       >
