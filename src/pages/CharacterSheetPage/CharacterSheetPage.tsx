@@ -6,7 +6,7 @@ import {
   CharacterContentBox,
   EquipmentBox,
   LifeWorkSpaceBox,
-  SpellBox,
+  ActionBox,
   BBBox,
   DiceResultSnackBar,
 } from "../../organisms";
@@ -41,7 +41,7 @@ function CharacterSheet() {
         <BBBox />
         <CharacteristicsBox />
         <CharacterContentBox>
-          <p>Tab 1</p>
+          <ActionBox />
           <FeaturesBox />
           <EquipmentBox itemsObject={items} />
         </CharacterContentBox>

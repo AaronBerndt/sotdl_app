@@ -49,6 +49,7 @@ function useDice() {
         const diceSum = sumArray(
           rollMutipleDice(diceType, parseInt(amount, 10))
         );
+
         setResult({
           rollReason,
           rollType,

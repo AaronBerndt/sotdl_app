@@ -17,21 +17,19 @@ function AttributeBox({ name, value, withMod, withNoRoll }: AttributeBoxProps) {
     DiceRollContext
   );
   return (
-    <>
-      <Button
-        onClick={() => makeChallengeRoll(name, boonAmount, baneAmount, mod)}
-        size="small"
-        disabled={withNoRoll}
-      >
-        {withMod ? (
-          <Badge badgeContent={value} color="primary">
-            <TextField name={name} value={modLabel} />
-          </Badge>
-        ) : (
-          <TextField name={name} value={value} />
-        )}
-      </Button>
-    </>
+    <Button
+      onClick={() => makeChallengeRoll(name, boonAmount, baneAmount, mod)}
+      size="small"
+      disabled={withNoRoll}
+    >
+      {withMod ? (
+        <Badge badgeContent={value} color="primary">
+          <TextField name={name} value={modLabel} />
+        </Badge>
+      ) : (
+        <TextField name={name} value={value} />
+      )}
+    </Button>
   );
 }
 

@@ -69,7 +69,10 @@ function SpellTable({ spellArray, casting, onClickFuncion }: SpellTableProps) {
                         )
                       ) : cell === "damage" ? (
                         isAttackSpell ? (
-                          <p>Damage</p>
+                          <RollDamageBox
+                            value={item[cell]}
+                            rollReason={spellName}
+                          />
                         ) : (
                           "----"
                         )
