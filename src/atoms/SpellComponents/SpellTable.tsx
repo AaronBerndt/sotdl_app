@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Table,
   TableBody,
@@ -6,12 +6,11 @@ import {
   TableRow,
   TableCell,
   Checkbox,
-  Button,
 } from "@material-ui/core";
-import { lengthIsZero } from "../../utilities";
-import TextField from "../TextField";
+import { lengthIsZero, filterByName } from "../../utilities";
 import RollDamageBox from "../../molecules/CharacterSheetComponents/RollDamageBox";
 import RollAttackBox from "../../molecules/CharacterSheetComponents/RollAttackBox";
+import ChracaterPageContext from "../../context/CharacterContext";
 
 interface SpellTableProps {
   spellArray: Array<any>;
@@ -19,14 +18,15 @@ interface SpellTableProps {
   onClickFuncion: any;
 }
 
-function SpellCheckBox() {
+function SpellCheckBox({ isChecked }) {
   const [checked, setChecked] = React.useState(false);
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
   };
+  console.log(isChecked);
   return (
     <Checkbox
-      checked={checked}
+      checked={checked || isChecked}
       onChange={onChange}
       inputProps={{ "aria-label": "primary checkbox" }}
     />
@@ -36,6 +36,7 @@ function SpellCheckBox() {
 function SpellTable({ spellArray, casting, onClickFuncion }: SpellTableProps) {
   const cells = ["name", "type", "attack", "damage", "casting"];
 
+  const { spellsCast } = useContext(ChracaterPageContext);
   return (
     <>
       {lengthIsZero(spellArray) ? null : (
@@ -62,9 +63,15 @@ function SpellTable({ spellArray, casting, onClickFuncion }: SpellTableProps) {
                   return (
                     <TableCell key={i}>
                       {cell === "casting" ? (
-                        [...Array(casting).keys()].map((item, i) => (
-                          <SpellCheckBox key={i} />
-                        ))
+                        [...Array(casting).keys()].map((item, i) => {
+                          const [{ uses }] = filterByName(spellsCast, [
+                            spellName,
+                          ]);
+                          const isChecked = i + 1 <= uses;
+                          return (
+                            <SpellCheckBox key={i} isChecked={isChecked} />
+                          );
+                        })
                       ) : cell === "attack" ? (
                         isAttackSpell ? (
                           <RollAttackBox

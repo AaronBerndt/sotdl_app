@@ -6,6 +6,7 @@ import { ListItem, ListItemText, ListItemAvatar } from "@material-ui/core";
 export type ListItemType = {
   title: string;
   onClickFunction?: any;
+  secondaryText?: string;
 };
 
 const StyledListItem = styled(ListItem)`
@@ -13,15 +14,18 @@ const StyledListItem = styled(ListItem)`
   font: gray;
 `;
 
-function DynamicListItem({ title, onClickFunction }: ListItemType) {
-  console.log(title);
+function DynamicListItem({
+  title,
+  onClickFunction,
+  secondaryText,
+}: ListItemType) {
   return (
     <>
       <StyledListItem button onClick={onClickFunction} divider>
         <ListItemAvatar>
           <Avatar type={title.toLowerCase()} />
         </ListItemAvatar>
-        <ListItemText primary={title} />
+        <ListItemText primary={title} secondary={secondaryText} />
       </StyledListItem>
     </>
   );

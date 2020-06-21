@@ -243,6 +243,15 @@ const mockCharacter = (level) => [
         gold: 0,
       },
     },
+    characterState: {
+      currentDamage: 0,
+      spellsCast: [
+        {
+          name: "Flense",
+          uses: 0,
+        },
+      ],
+    },
   },
 ];
 

@@ -137,5 +137,6 @@ const ChracaterPageContext = createContext({
   features: [],
   spells: [],
   items: {},
+  spellsCast: [],
 });
 export default ChracaterPageContext;

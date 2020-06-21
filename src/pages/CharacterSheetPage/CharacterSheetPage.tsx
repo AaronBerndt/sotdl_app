@@ -68,6 +68,7 @@ function CharacterSheetPage() {
     features: [],
     spells: [],
     items: {},
+    characterState: { spellsCast: [] },
   });
 
   const getData = async () => {
@@ -99,6 +100,7 @@ function CharacterSheetPage() {
     features,
     spells,
     items,
+    characterState: { spellsCast },
   } = characterData;
 
   const filterAndSum = (nameArray) =>
@@ -145,6 +147,7 @@ function CharacterSheetPage() {
             features,
             spells,
             items,
+            spellsCast,
           }}
         >
           <CharacterSheet />
