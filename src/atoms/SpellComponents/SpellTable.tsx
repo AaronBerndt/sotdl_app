@@ -11,6 +11,7 @@ import {
 import { lengthIsZero } from "../../utilities";
 import TextField from "../TextField";
 import RollDamageBox from "../../molecules/CharacterSheetComponents/RollDamageBox";
+import RollAttackBox from "../../molecules/CharacterSheetComponents/RollAttackBox";
 
 interface SpellTableProps {
   spellArray: Array<any>;
@@ -55,6 +56,9 @@ function SpellTable({ spellArray, casting, onClickFuncion }: SpellTableProps) {
                   const spellName = item["name"];
                   const spellType = item["type"];
                   const isAttackSpell = spellType === "Attack";
+                  const attackModName =
+                    item["attribute"] == "Will" ? "will" : "intellect";
+
                   return (
                     <TableCell key={i}>
                       {cell === "casting" ? (
@@ -63,7 +67,10 @@ function SpellTable({ spellArray, casting, onClickFuncion }: SpellTableProps) {
                         ))
                       ) : cell === "attack" ? (
                         isAttackSpell ? (
-                          <Button />
+                          <RollAttackBox
+                            rollReason={spellName}
+                            attackModName={attackModName}
+                          />
                         ) : (
                           "----"
                         )

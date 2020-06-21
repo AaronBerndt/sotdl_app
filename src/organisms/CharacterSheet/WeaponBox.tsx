@@ -9,17 +9,21 @@ import {
 } from "@material-ui/core";
 import RollDamageBox from "../../molecules/CharacterSheetComponents/RollDamageBox";
 import ChracaterPageContext from "../../context/CharacterContext";
+import RollAttackBox from "../../molecules/CharacterSheetComponents/RollAttackBox";
+import { filterByName, lengthIsZero } from "../../utilities";
 
 function WeaponBox() {
-  const cells = ["name", "type", "attack", "damage", "casting"];
+  const cells = ["name", "attack", "damage"];
   const {
     items: { weapons },
+    strength,
+    agility,
   } = useContext(ChracaterPageContext);
   return (
     <Table>
       <TableHead>
         <TableRow>
-          {["Name", "Attack", "Damage", "Properties"].map((header, i) => (
+          {["Name", "Attack", "Damage"].map((header, i) => (
             <TableCell key={i}>{header}</TableCell>
           ))}
         </TableRow>
@@ -29,10 +33,22 @@ function WeaponBox() {
           <TableRow key={i}>
             {cells.map((cell, i) => {
               const weaponName = weapon["name"];
+              const properties = weapon["properties"];
+              const attackModName = !lengthIsZero(
+                filterByName(properties, ["Finesse"])
+              )
+                ? agility > strength
+                  ? "agility"
+                  : "strength"
+                : "strength";
+
               return (
                 <TableCell key={i}>
                   {cell === "attack" ? (
-                    <Button />
+                    <RollAttackBox
+                      rollReason={weaponName}
+                      attackModName={attackModName}
+                    />
                   ) : cell === "damage" ? (
                     <RollDamageBox
                       value={weapon[cell]}

@@ -3,6 +3,7 @@ import {
   filterByLevel,
   filterByNumber,
   filterByLevelAndMutiple,
+  filterByName,
 } from "./filterUtil";
 import sumArray from "./sumArray";
 import mockCharacter from "./CharacterMock";
@@ -17,6 +18,7 @@ export {
   filterByLevelAndName,
   filterByLevel,
   filterByLevelAndMutiple,
+  filterByName,
   filterByNumber,
   sumArray,
   isZero,
