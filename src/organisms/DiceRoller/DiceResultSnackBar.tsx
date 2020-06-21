@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
-import { Snackbar } from "@material-ui/core";
+import { Snackbar, IconButton } from "@material-ui/core";
 import styled from "styled-components";
 import { isZero, sumArray, notZeroAndUndefined } from "../../utilities";
 import DiceRollContext from "../../context/DiceRollContext";
+import { Close } from "@material-ui/icons";
 
 interface RollTypeProps {
   rollType: string;
@@ -51,6 +52,7 @@ function DiceResultSnackBar() {
     extraNumber,
     baneResult,
     boonResult,
+    clearResult,
   } = useContext(DiceRollContext);
   const isUndefined = (value: number) => (value === undefined ? 0 : value);
 
@@ -99,6 +101,17 @@ function DiceResultSnackBar() {
               <FinalResult>{` = ${finalResultMessage}`}</FinalResult>
             </div>
           </div>
+        }
+        action={
+          <>
+            <IconButton
+              aria-label="close"
+              color="inherit"
+              onClick={() => clearResult()}
+            >
+              <Close />
+            </IconButton>
+          </>
         }
       ></Snackbar>
     </>

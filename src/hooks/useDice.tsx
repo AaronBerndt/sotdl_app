@@ -61,6 +61,16 @@ function useDice() {
       },
       []
     ),
+    clearResult: useCallback(() => {
+      setResult({
+        rollReason: "",
+        rollType: "",
+        diceResult: 0,
+        extraNumber: 0,
+        baneResult: 0,
+        boonResult: 0,
+      });
+    }, []),
   };
 }
 

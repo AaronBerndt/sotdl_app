@@ -15,6 +15,7 @@ import { sumArray, filterByLevelAndMutiple } from "../../utilities";
 import { useDice } from "../../hooks";
 import ChracaterPageContext from "../../context/CharacterContext";
 import { DiceRollProvider } from "../../context/DiceRollContext";
+import { Grid } from "@material-ui/core";
 
 function reducer(state, action) {
   const actionObject = {
@@ -34,12 +35,18 @@ function CharacterSheet() {
   /*   rollAttackRoll(name, "Challenge", boonAmount, baneAmount); */
   /*   setModifier(mod); */
   return (
-    <>
-      <DetailsBox />
-      <LifeWorkSpaceBox health={health} />
+    <Grid>
+      <Grid container direction="row" justify="center" alignItems="center">
+        <DetailsBox />
+      </Grid>
+      <Grid container direction="row" justify="center" alignItems="center">
+        <LifeWorkSpaceBox health={health} />
+      </Grid>
       <DiceRollProvider>
         <BBBox />
-        <CharacteristicsBox />
+        <Grid container direction="row" justify="center" alignItems="center">
+          <CharacteristicsBox />
+        </Grid>
         <CharacterContentBox>
           <ActionBox />
           <FeaturesBox />
@@ -47,7 +54,7 @@ function CharacterSheet() {
         </CharacterContentBox>
         <DiceResultSnackBar />
       </DiceRollProvider>
-    </>
+    </Grid>
   );
 }
 

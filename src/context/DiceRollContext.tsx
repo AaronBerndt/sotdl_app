@@ -14,8 +14,11 @@ const DiceRollContext = createContext({
   addBanes: () => {},
   resetBBCount: () => {},
   makeChallengeRoll: () => {},
-  makeAttackRoll: () => {},
-  rollDamageRoll: () => {},
+  clearResult: () => {},
+  makeAttackRoll: (rollReason, boonAmount, baneAmount, modifier) =>
+    console.log("null"),
+  rollDamageRoll: (rollReason, boonAmount, baneAmount, modifier) =>
+    console.log("nulll"),
 });
 
 interface DiceRollProviderProps {
@@ -49,6 +52,7 @@ export function DiceRollProvider({ children }: any) {
     },
     rollAttackRoll,
     rollDamageRoll,
+    clearResult,
   } = useDice();
 
   const addBoons = () => dispatch({ type: "add boon" });
@@ -88,6 +92,7 @@ export function DiceRollProvider({ children }: any) {
         makeAttackRoll,
         makeChallengeRoll,
         rollDamageRoll,
+        clearResult,
       }}
     >
       {children}
