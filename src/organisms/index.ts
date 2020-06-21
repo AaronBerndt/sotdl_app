@@ -7,7 +7,7 @@ import {
   FeaturesBox,
   CharacterContentBox,
   EquipmentBox,
-  SpellBox,
+  ActionBox,
 } from "./CharacterSheet";
 
 import { BBBox, DiceResultSnackBar } from "./DiceRoller";
@@ -23,7 +23,7 @@ export {
   FeaturesBox,
   CharacterContentBox,
   EquipmentBox,
-  SpellBox,
+  ActionBox,
   BBBox,
   DiceResultSnackBar,
 };

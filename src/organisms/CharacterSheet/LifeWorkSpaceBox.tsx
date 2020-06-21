@@ -1,6 +1,7 @@
 import React, { useReducer } from "react";
 import { AttributeBox, DamageBox } from "../../molecules";
-import { Grid } from "@material-ui/core";
+import { Grid, Button } from "@material-ui/core";
+import { TextField } from "../../atoms";
 
 interface LifeWorkSpaceBoxProps {
   health: number;
@@ -41,17 +42,14 @@ function LifeWorkSpaceBox({ health }: LifeWorkSpaceBoxProps) {
         <AttributeBox
           name="Health"
           value={health}
-          onClickFuncion={() => null}
           withMod={false}
           withNoRoll={true}
         />
-        <AttributeBox
-          name="Healing Rate"
-          value={Math.floor(health / 4)}
-          onClickFuncion={() => removeDamage(healingRate)}
-          withMod={false}
-          withNoRoll={false}
-        />
+
+        <Button onClick={() => removeDamage(healingRate)}>
+          <TextField name="Healing Rate" value={Math.floor(health / 4)} />
+        </Button>
+
         <DamageBox
           healthTotal={health}
           currentDamage={damage}

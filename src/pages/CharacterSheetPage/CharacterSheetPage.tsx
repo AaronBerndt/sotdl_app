@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   DetailsBox,
   CharacteristicsBox,
@@ -6,13 +6,15 @@ import {
   CharacterContentBox,
   EquipmentBox,
   LifeWorkSpaceBox,
-  SpellBox,
+  ActionBox,
   BBBox,
   DiceResultSnackBar,
 } from "../../organisms";
 import axios from "axios";
 import { sumArray, filterByLevelAndMutiple } from "../../utilities";
 import { useDice } from "../../hooks";
+import ChracaterPageContext from "../../context/CharacterContext";
+import { DiceRollProvider } from "../../context/DiceRollContext";
 
 function reducer(state, action) {
   const actionObject = {
@@ -21,6 +23,32 @@ function reducer(state, action) {
     reset: () => ({ boonAmount: 0, baneAmount: 0 }),
   };
   return actionObject[action.type]();
+}
+
+function CharacterSheet() {
+  const [modifier, setModifier] = useState(0);
+
+  const { health, items } = useContext(ChracaterPageContext);
+
+  /* const makeChallengeRoll = (mod, name) => { */
+  /*   rollAttackRoll(name, "Challenge", boonAmount, baneAmount); */
+  /*   setModifier(mod); */
+  return (
+    <>
+      <DetailsBox />
+      <LifeWorkSpaceBox health={health} />
+      <DiceRollProvider>
+        <BBBox />
+        <CharacteristicsBox />
+        <CharacterContentBox>
+          <ActionBox />
+          <FeaturesBox />
+          <EquipmentBox itemsObject={items} />
+        </CharacterContentBox>
+        <DiceResultSnackBar />
+      </DiceRollProvider>
+    </>
+  );
 }
 
 function CharacterSheetPage() {
@@ -34,20 +62,13 @@ function CharacterSheetPage() {
     masterPath: "",
     languages: [],
     profession: [],
+
     characteristics: [],
+
     features: [],
     spells: [],
-    items: {
-      weapons: [],
-      armor: [],
-      other: [],
-      money: {
-        bits: 0,
-        copper: 0,
-        silver: 0,
-        gold: 0,
-      },
-    },
+    items: {},
+    characterState: { spellsCast: [] },
   });
 
   const getData = async () => {
@@ -57,31 +78,16 @@ function CharacterSheetPage() {
     setCharacterData(data[0]);
   };
 
-  const [modifier, setModifier] = useState(0);
-
-  const [{ boonAmount, baneAmount }, dispatch] = useReducer(reducer, {
-    boonAmount: 0,
-    baneAmount: 0,
-  });
-
-  const {
-    diceResult: {
-      rollReason,
-      rollType,
-      diceResult,
-      boonResult,
-      baneResult,
-      extraNumber,
-    },
-    rollAttackRoll,
-    rollDamageRoll,
-  } = useDice();
-
   useEffect(() => {
     if (characterData.name === "") {
       getData();
     }
   }, [characterData]);
+
+  /* const [{ boonAmount, baneAmount }, dispatch] = useReducer(reducer, { */
+  /*   boonAmount: 0, */
+  /*   baneAmount: 0, */
+  /* }); */
 
   const {
     name,
@@ -94,6 +100,7 @@ function CharacterSheetPage() {
     features,
     spells,
     items,
+    characterState: { spellsCast },
   } = characterData;
 
   const filterAndSum = (nameArray) =>
@@ -102,10 +109,6 @@ function CharacterSheetPage() {
         ({ value }) => value
       )
     );
-  const createCharacteristic = (name, value) => ({
-    name,
-    value,
-  });
 
   const health = filterAndSum(["Strength", "Health"]);
   const strength = filterAndSum(["Strength"]);
@@ -115,66 +118,40 @@ function CharacterSheetPage() {
   const perception = filterAndSum(["Intellect", "Perception"]);
   const speed = filterAndSum(["Speed"]);
   const power = filterAndSum(["Power"]);
-
-  const characteristicsArray = [
-    createCharacteristic("Strength", strength),
-    createCharacteristic("Agility", agility),
-    createCharacteristic("Intellect", intellect),
-    createCharacteristic("Will", will),
-    createCharacteristic("Perception", perception),
-    createCharacteristic("Speed", speed),
-  ];
-
-  const makeChallengeRoll = (mod, name) => {
-    rollAttackRoll(name, "Challenge", boonAmount, baneAmount);
-    setModifier(mod);
-  };
+  const corruption = filterAndSum(["Corruption"]);
+  const insanity = filterAndSum(["Insanity"]);
+  const size = filterAndSum(["Size"]);
 
   return (
     <>
-      {characterData.name === "" ? null : (
-        <>
-          <DetailsBox
-            name={name}
-            ancestry={ancestry}
-            novicePath={novicePath}
-            expertPath={expertPath}
-            masterPath={masterPath}
-            level={level}
-          />
-          <LifeWorkSpaceBox health={health} />
-          <BBBox
-            boonAmount={boonAmount}
-            baneAmount={baneAmount}
-            baneOnClick={() => dispatch({ type: "add bane" })}
-            boonOnClick={() => dispatch({ type: "add boon" })}
-          />
-
-          <CharacteristicsBox
-            characteristicsArray={characteristicsArray}
-            onClickFuncion={makeChallengeRoll}
-            level={level}
-          />
-          <CharacterContentBox power={power} spellArrayLength={spells.length}>
-            <p>Tab 1</p>
-            <FeaturesBox featuresArray={features} level={level} />
-            <EquipmentBox itemsObject={items} strength={strength} />
-            <SpellBox
-              spellArray={spells}
-              power={power}
-              onClickFuncion={rollDamageRoll}
-            />
-          </CharacterContentBox>
-          <DiceResultSnackBar
-            rollType={rollType}
-            rollReason={rollReason}
-            modifier={modifier}
-            diceResult={diceResult}
-            boonResult={boonResult}
-            baneResult={baneResult}
-            extraNumber={extraNumber}
-          />
-        </>
+      {name === "" ? null : (
+        <ChracaterPageContext.Provider
+          value={{
+            name,
+            level,
+            ancestry,
+            novicePath,
+            expertPath,
+            masterPath,
+            strength,
+            agility,
+            intellect,
+            will,
+            perception,
+            health,
+            size,
+            speed,
+            power,
+            insanity,
+            corruption,
+            features,
+            spells,
+            items,
+            spellsCast,
+          }}
+        >
+          <CharacterSheet />
+        </ChracaterPageContext.Provider>
       )}
     </>
   );

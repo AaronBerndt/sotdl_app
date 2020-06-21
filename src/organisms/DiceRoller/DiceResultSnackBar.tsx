@@ -1,17 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Snackbar } from "@material-ui/core";
 import styled from "styled-components";
 import { isZero, sumArray, notZeroAndUndefined } from "../../utilities";
-
-interface DiceResultSnackBarProps {
-  rollReason: any;
-  rollType: string;
-  diceResult: number;
-  boonResult?: number;
-  baneResult?: number;
-  modifier?: number;
-  extraNumber?: number;
-}
+import DiceRollContext from "../../context/DiceRollContext";
 
 interface RollTypeProps {
   rollType: string;
@@ -51,15 +42,16 @@ const FinalResult = styled.h2`
   float: right;
 `;
 
-function DiceResultSnackBar({
-  rollReason,
-  diceResult,
-  rollType,
-  modifier,
-  boonResult,
-  baneResult,
-  extraNumber,
-}: DiceResultSnackBarProps) {
+function DiceResultSnackBar() {
+  const {
+    modifier,
+    rollReason,
+    rollType,
+    diceResult,
+    extraNumber,
+    baneResult,
+    boonResult,
+  } = useContext(DiceRollContext);
   const isUndefined = (value: number) => (value === undefined ? 0 : value);
 
   const finalResult =
@@ -71,7 +63,6 @@ function DiceResultSnackBar({
           )
         );
 
-  console.log(finalResult);
   const finalResultMessage =
     rollType === "Challenge"
       ? `${finalResult >= 10 ? "Pass" : "Fail"}(${finalResult})`

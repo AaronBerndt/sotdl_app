@@ -3,12 +3,9 @@ import styled from "styled-components";
 import { Card, CardContent } from "@material-ui/core";
 import { TabPanel } from "../../atoms";
 import { TabBar } from "../../molecules";
-import { isZero } from "../../utilities";
 
 interface CharacterContentBoxProps {
   children: any;
-  spellArrayLength: number;
-  power: number;
 }
 
 const StyledCard = styled(Card)`
@@ -16,17 +13,15 @@ const StyledCard = styled(Card)`
   height: 600px;
 `;
 
-function CharacterContentBox({ children, power }: CharacterContentBoxProps) {
+function CharacterContentBox({ children }: CharacterContentBoxProps) {
   const [currentTab, selectCurrentTab] = useState(0);
   const onChange = (e, newValue) => selectCurrentTab(newValue);
-  const tabArray = isZero(power)
-    ? ["Action", "Talents", "Equipment"]
-    : ["Action", "Talents", "Equipment", "Spells"];
+
   return (
     <>
       <StyledCard>
         <TabBar
-          tabArray={tabArray}
+          tabArray={["Action", "Talents", "Equipment"]}
           currentTab={currentTab}
           onChangeFunction={onChange}
         />

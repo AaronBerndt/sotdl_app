@@ -255,4 +255,49 @@ const pathData = [
     ],
   },
 ];
-export { ancestriesData, pathData };
+
+const characterData = [
+  {
+    name: "Ordo",
+    level: 4,
+    ancestry: "Dwarf",
+    novicePath: "Warrior",
+    expertPath: "Berserker",
+    masterPath: "",
+    languages: [],
+    profession: [],
+    characteristics: [],
+    features: [],
+    spells: [],
+    items: {},
+  },
+  {
+    name: "Mike",
+    level: 0,
+    ancestry: "Elf",
+    novicePath: "",
+    expertPath: "",
+    masterPath: "",
+    languages: [],
+    profession: [],
+    characteristics: [],
+    features: [],
+    spells: [],
+    items: {},
+  },
+  {
+    name: "Essenza",
+    level: 10,
+    ancestry: "Gnome",
+    novicePath: "Rogue",
+    expertPath: "Assassin",
+    masterPath: "Blade",
+    languages: [],
+    profession: [],
+    characteristics: [],
+    features: [],
+    spells: [],
+    items: {},
+  },
+];
+export { ancestriesData, pathData, characterData };

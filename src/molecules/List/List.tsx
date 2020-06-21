@@ -10,11 +10,12 @@ interface ListProps {
 function List({ listItemArray, onClickFunction }: ListProps) {
   return (
     <MaterialList>
-      {listItemArray.map(({ name }, i) => (
+      {listItemArray.map(({ name, secondaryText }, i) => (
         <>
           <ListItem
             title={name}
             onClickFunction={() => onClickFunction(i)}
+            secondaryText={secondaryText}
             key={i}
           />
         </>

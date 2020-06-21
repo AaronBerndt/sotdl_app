@@ -1,18 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from "@material-ui/core";
 import { TextField } from "../../atoms";
+import DiceRollContext from "../../context/DiceRollContext";
 
 interface RollDamageBoxProps {
   value: string;
-  onClickFuncion: any;
   rollReason: string;
 }
 
-function RollDamageBox({
-  value,
-  onClickFuncion,
-  rollReason,
-}: RollDamageBoxProps) {
+function RollDamageBox({ value, rollReason }: RollDamageBoxProps) {
   const regex = /(-?\d+)/g;
   const result = value.match(regex);
 
@@ -20,11 +16,19 @@ function RollDamageBox({
   const type = result[1];
   const extra = result[2];
 
+  const { rollDamageRoll } = useContext(DiceRollContext);
+
   return (
     <>
       <Button
         onClick={() =>
-          onClickFuncion(rollReason, "Damage", amount, `d${type}`, extra)
+          rollDamageRoll(
+            rollReason,
+            "Damage",
+            amount,
+            `d${type}`,
+            extra ? extra : 0
+          )
         }
         size="small"
       >

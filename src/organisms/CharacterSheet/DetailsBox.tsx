@@ -1,21 +1,16 @@
-import React from "react";
-interface DetailsBoxProps {
-  name: string;
-  ancestry: string;
-  novicePath: string;
-  expertPath: string;
-  masterPath: string;
-  level: number;
-}
+import React, { useContext } from "react";
+import ChracaterPageContext from "../../context/CharacterContext";
 
-function DetailsBox({
-  name,
-  ancestry,
-  novicePath,
-  expertPath,
-  masterPath,
-  level,
-}: DetailsBoxProps) {
+function DetailsBox() {
+  const {
+    name,
+    ancestry,
+    novicePath,
+    expertPath,
+    masterPath,
+    level,
+  } = useContext(ChracaterPageContext);
+
   const isNovice = (type: string) => type === "Novice";
   const ifExists = (path: string, type: string) =>
     path ? (isNovice(type) ? path : `/ ${path}`) : "";

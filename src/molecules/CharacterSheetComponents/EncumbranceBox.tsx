@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import ChracaterPageContext from "../../context/CharacterContext";
 
 interface EncumbranceBoxProps {
   inventoryArray: Array<any>;
-  strength: number;
 }
 
 interface StyledParagraphProps {
@@ -15,7 +15,8 @@ const StyledParagraph = styled.p`
     isEncumbered ? "red" : "green"};
 `;
 
-function EncumbranceBox({ inventoryArray, strength }: EncumbranceBoxProps) {
+function EncumbranceBox({ inventoryArray }: EncumbranceBoxProps) {
+  const { strength } = useContext(ChracaterPageContext);
   const itemAmount = inventoryArray.length;
   const totalCarryingWeight = strength * 2;
   const isEncumbered = itemAmount > totalCarryingWeight;

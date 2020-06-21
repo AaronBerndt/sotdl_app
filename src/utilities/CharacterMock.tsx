@@ -184,6 +184,7 @@ const mockCharacter = (level) => [
       {
         name: "Flense",
         tradition: "Air",
+        attribute: "Will",
         type: "Attack",
         level: 1,
         damage: "2d6 + 3",
@@ -207,7 +208,11 @@ const mockCharacter = (level) => [
           name: "Greataxe",
           damage: "3d6",
           hands: "two",
-          properties: "Cumbersome",
+          properties: [
+            {
+              name: "Cumbersome",
+            },
+          ],
           type: "Heavy",
           price: "2 gc",
           availability: "R",
@@ -237,6 +242,15 @@ const mockCharacter = (level) => [
         silver: 0,
         gold: 0,
       },
+    },
+    characterState: {
+      currentDamage: 0,
+      spellsCast: [
+        {
+          name: "Flense",
+          uses: 0,
+        },
+      ],
     },
   },
 ];

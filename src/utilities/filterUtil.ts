@@ -28,9 +28,18 @@ function filterByNumber(array: any, number: number) {
   return filteredArray;
 }
 
+function filterByName(array: any, nameArray: any) {
+  const filteredArray = nameArray
+    .map((name) => array.filter((value) => value.name === name))
+    .flat(1);
+
+  return filteredArray;
+}
+
 export {
   filterByLevelAndName,
   filterByLevel,
   filterByNumber,
   filterByLevelAndMutiple,
+  filterByName,
 };
