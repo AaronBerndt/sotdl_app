@@ -13,7 +13,9 @@ function RollAttackBox({ attackModName, rollReason }: RollAttackBoxProps) {
   const { strength, agility, will, intellect } = useContext(
     ChracaterPageContext
   );
-  const { makeAttackRoll } = useContext(DiceRollContext);
+  const { makeAttackRoll, boonAmount, baneAmount } = useContext(
+    DiceRollContext
+  );
 
   const modObject = {
     strength,

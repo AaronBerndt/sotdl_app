@@ -51,16 +51,6 @@ export function DiceRollProvider({ children }: any) {
     rollDamageRoll,
   } = useDice();
 
-  console.log(
-    rollReason,
-    rollType,
-    diceResult,
-    extraNumber,
-    baneResult,
-    boonResult,
-    modifier
-  );
-
   const addBoons = () => dispatch({ type: "add boon" });
   const addBanes = () => dispatch({ type: "add bane" });
   const resetBBCount = () => dispatch({ type: "reset" });
