@@ -32,7 +32,7 @@ function RollDamageBox({ value, rollReason }: RollDamageBoxProps) {
         }
         size="small"
       >
-        <TextField name="Roll Damage" value={value} />
+        <TextField name="Damage" value={value} />
       </Button>
     </>
   );
