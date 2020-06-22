@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Button, ButtonGroup } from "@material-ui/core";
 import { isZero } from "../../utilities";
 import DiceRollContext from "../../context/DiceRollContext";
 
@@ -46,9 +46,11 @@ function BBBox() {
         }}
       />
 
-      <BoonButton onClick={() => addBoons()}>Add Boon</BoonButton>
-      <BoonButton onClick={() => resetBBCount()}>Reset</BoonButton>
-      <BaneButton onClick={() => addBanes()}>Add Bane</BaneButton>
+      <ButtonGroup size="small">
+        <BoonButton onClick={() => addBoons()}>Boon</BoonButton>
+        <BoonButton onClick={() => resetBBCount()}>Reset</BoonButton>
+        <BaneButton onClick={() => addBanes()}>Add Bane</BaneButton>
+      </ButtonGroup>
     </>
   );
 }
