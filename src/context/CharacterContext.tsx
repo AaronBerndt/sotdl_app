@@ -113,7 +113,7 @@ import React, { createContext, useState } from "react";
 /*   }; */
 /* }); */
 
-const ChracaterPageContext = createContext({
+const CharacterPageContext = createContext({
   name: "",
   description: "",
   level: 0,
@@ -139,4 +139,4 @@ const ChracaterPageContext = createContext({
   items: {},
   spellsCast: [],
 });
-export default ChracaterPageContext;
+export default CharacterPageContext;

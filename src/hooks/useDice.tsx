@@ -57,6 +57,7 @@ function useDice() {
           extraNumber: parseInt(extraNumber, 10),
           baneResult: 0,
           boonResult: 0,
+          modifier: 0,
         });
       },
       []
@@ -69,6 +70,7 @@ function useDice() {
         extraNumber: 0,
         baneResult: 0,
         boonResult: 0,
+        modifier: 0,
       });
     }, []),
   };

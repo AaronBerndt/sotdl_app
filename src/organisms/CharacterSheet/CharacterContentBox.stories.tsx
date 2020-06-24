@@ -7,7 +7,7 @@ export default {
 };
 
 export const withSpells = () => (
-  <CharacterContentBox spellArrayLength={1} power={1}>
+  <CharacterContentBox>
     <p>Tab 1</p>
     <p>Tab 2</p>
     <p>Tab 3</p>
@@ -15,7 +15,7 @@ export const withSpells = () => (
 );
 
 export const noSpells = () => (
-  <CharacterContentBox spellArrayLength={0} power={1}>
+  <CharacterContentBox>
     <p>Tab 1</p>
     <p>Tab 2</p>
     <p>Tab 3</p>

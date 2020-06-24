@@ -35,7 +35,7 @@ function CharacterSheet() {
   /*   rollAttackRoll(name, "Challenge", boonAmount, baneAmount); */
   /*   setModifier(mod); */
   return (
-    <Grid>
+    <Grid container direction="column" justify="center" alignItems="flex-start">
       <Grid container direction="row" justify="center" alignItems="center">
         <DetailsBox />
       </Grid>

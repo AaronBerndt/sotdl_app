@@ -12,9 +12,9 @@ function RollDamageBox({ value, rollReason }: RollDamageBoxProps) {
   const regex = /(-?\d+)/g;
   const result = value.match(regex);
 
-  const amount = result[0];
-  const type = result[1];
-  const extra = result[2];
+  const amount = result![0];
+  const type = result![1];
+  const extra = result![2];
 
   const { rollDamageRoll } = useContext(DiceRollContext);
 

@@ -1,7 +1,6 @@
 import React from "react";
 import FeaturesBox from "./FeaturesBox";
-import { action } from "@storybook/addon-actions";
-
+import { withCharacterContext } from "../../utilities";
 export default {
   title: "Organisms/CharacterSheetComponents/FeaturesBox",
   component: FeaturesBox,
@@ -34,14 +33,12 @@ const sampleData = [
   },
 ];
 
-const onClick = action("button-click");
+const withLevel = (level: number) =>
+  withCharacterContext(<FeaturesBox />, {
+    level,
+    features: sampleData,
+  });
 
-export const levelZero = () => (
-  <FeaturesBox featuresArray={sampleData} level={0} />
-);
-export const levelOne = () => (
-  <FeaturesBox featuresArray={sampleData} level={1} />
-);
-export const levelThree = () => (
-  <FeaturesBox featuresArray={sampleData} level={4} />
-);
+export const levelZero = () => withLevel(0);
+export const levelOne = () => withLevel(1);
+export const levelThree = () => withLevel(3);

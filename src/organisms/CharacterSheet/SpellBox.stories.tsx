@@ -1,5 +1,6 @@
 import React from "react";
 import SpellBox from "./SpellBox";
+import { withCharacterContext } from "../../utilities";
 
 export default {
   title: "Organisms/CharacterSheetComponents/SpellBox",
@@ -22,7 +23,9 @@ const spellArray = [
   createSpell(2, "Attack"),
 ];
 
-export const powerZero = () => <SpellBox spellArray={spellArray} power={0} />;
-export const powerOne = () => <SpellBox spellArray={spellArray} power={1} />;
-export const powerTwo = () => <SpellBox spellArray={spellArray} power={2} />;
-
+export const withContext = () =>
+  withCharacterContext(<SpellBox />, {
+    spells: spellArray,
+    power: 1,
+    spellsCast: [],
+  });
