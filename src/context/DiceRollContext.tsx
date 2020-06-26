@@ -1,27 +1,30 @@
 import React, { createContext, useReducer } from "react";
 import { useDice } from "../hooks";
-const DiceRollContext = createContext({
-  modifier: 0,
-  rollReason: "",
-  rollType: "",
-  diceResult: 0,
-  extraNumber: 0,
-  baneResult: 0,
-  boonResult: 0,
-  boonAmount: 0,
-  baneAmount: 0,
-  addBoons: () => {},
-  addBanes: () => {},
-  resetBBCount: () => {},
-  makeChallengeRoll: () => {},
-  makeAttackRoll: () => {},
-  rollDamageRoll: () => {},
-});
 
 interface DiceRollProviderProps {
   children: any;
 }
 
+interface DiceContextType {
+  modifier: number;
+  rollReason: string;
+  rollType: string;
+  diceResult: number;
+  extraNumber: number;
+  baneResult: number;
+  boonResult: number;
+  baneAmount: number;
+  boonAmount: number;
+  addBoons: any;
+  addBanes: any;
+  resetBBCount: any;
+  makeAttackRoll: any;
+  makeChallengeRoll: any;
+  rollDamageRoll: any;
+  clearResult: any;
+}
+
+const DiceRollContext = createContext({} as DiceContextType);
 export function DiceRollProvider({ children }: any) {
   function reducer(state, action) {
     const actionObject = {
@@ -49,6 +52,7 @@ export function DiceRollProvider({ children }: any) {
     },
     rollAttackRoll,
     rollDamageRoll,
+    clearResult,
   } = useDice();
 
   const addBoons = () => dispatch({ type: "add boon" });
@@ -88,6 +92,7 @@ export function DiceRollProvider({ children }: any) {
         makeAttackRoll,
         makeChallengeRoll,
         rollDamageRoll,
+        clearResult,
       }}
     >
       {children}

@@ -8,6 +8,7 @@ function SpellBox() {
   const { spells } = useContext(ChracaterPageContext);
   const [filteredSpellList, setFilteredSpellList] = useState(spells);
 
+  console.log(spells);
   const onChange = (e: any) => {
     const inputValue = e.target.value;
 

@@ -5,7 +5,7 @@ import {
   TableRow,
   TableCell,
   TableBody,
-  Button,
+  ButtonGroup,
 } from "@material-ui/core";
 import RollDamageBox from "../../molecules/CharacterSheetComponents/RollDamageBox";
 import ChracaterPageContext from "../../context/CharacterContext";
@@ -13,55 +13,58 @@ import RollAttackBox from "../../molecules/CharacterSheetComponents/RollAttackBo
 import { filterByName, lengthIsZero } from "../../utilities";
 
 function WeaponBox() {
-  const cells = ["name", "attack", "damage"];
   const {
     items: { weapons },
     strength,
     agility,
-  } = useContext(ChracaterPageContext);
+  } = useContext<any>(ChracaterPageContext);
   return (
-    <Table>
+    <Table size="small">
       <TableHead>
         <TableRow>
-          {["Name", "Attack", "Damage"].map((header, i) => (
+          {["Name", "Attack/Damage", "Properties"].map((header, i) => (
             <TableCell key={i}>{header}</TableCell>
           ))}
         </TableRow>
       </TableHead>
       <TableBody>
-        {weapons.map((weapon, i) => (
-          <TableRow key={i}>
-            {cells.map((cell, i) => {
-              const weaponName = weapon["name"];
-              const properties = weapon["properties"];
-              const attackModName = !lengthIsZero(
-                filterByName(properties, ["Finesse"])
-              )
-                ? agility > strength
-                  ? "agility"
-                  : "strength"
-                : "strength";
+        {weapons.map((weapon, i) => {
+          const weaponName = weapon["name"];
+          const properties = weapon["properties"];
 
-              return (
-                <TableCell key={i}>
-                  {cell === "attack" ? (
+          const attackModName = !lengthIsZero(
+            filterByName(properties, ["Finesse"])
+          )
+            ? agility > strength
+              ? "agility"
+              : "strength"
+            : "strength";
+
+          const propertiesList = weapon["properties"]
+            .map(({ name }) => name)
+            .join(",");
+          return (
+            <TableRow key={i}>
+              <TableCell>{weapon["name"]}</TableCell>
+              <TableCell>
+                <div style={{ width: "50%" }}>
+                  <ButtonGroup color="primary">
                     <RollAttackBox
                       rollReason={weaponName}
                       attackModName={attackModName}
                     />
-                  ) : cell === "damage" ? (
                     <RollDamageBox
-                      value={weapon[cell]}
+                      value={weapon["damage"]}
                       rollReason={weaponName}
                     />
-                  ) : (
-                    weapon[cell]
-                  )}
-                </TableCell>
-              );
-            })}
-          </TableRow>
-        ))}
+                  </ButtonGroup>
+                </div>
+              </TableCell>
+
+              <TableCell>{propertiesList}</TableCell>
+            </TableRow>
+          );
+        })}
       </TableBody>
     </Table>
   );

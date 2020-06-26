@@ -57,10 +57,22 @@ function useDice() {
           extraNumber: parseInt(extraNumber, 10),
           baneResult: 0,
           boonResult: 0,
+          modifier: 0,
         });
       },
       []
     ),
+    clearResult: useCallback(() => {
+      setResult({
+        rollReason: "",
+        rollType: "",
+        diceResult: 0,
+        extraNumber: 0,
+        baneResult: 0,
+        boonResult: 0,
+        modifier: 0,
+      });
+    }, []),
   };
 }
 

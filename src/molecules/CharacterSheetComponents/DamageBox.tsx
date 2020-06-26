@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Button, TextField } from "@material-ui/core";
+import { Button, TextField, ButtonGroup } from "@material-ui/core";
 
 interface DamageBoxProps {
   healthTotal: number;
@@ -37,19 +37,21 @@ function DamageBox({
       {isDying ? <p>Make Death Saves</p> : null}
       <TextField onChange={onChange} />
 
-      <DamageButton
-        variant="contained"
-        onClick={() => damageButtonClick(amount)}
-        disabled={isDying}
-      >
-        Damage
-      </DamageButton>
-      <HealButton
-        variant="contained"
-        onClick={() => healingButtonClick(amount)}
-      >
-        Heal
-      </HealButton>
+      <ButtonGroup size="small">
+        <DamageButton
+          variant="contained"
+          onClick={() => damageButtonClick(amount)}
+          disabled={isDying}
+        >
+          Damage
+        </DamageButton>
+        <HealButton
+          variant="contained"
+          onClick={() => healingButtonClick(amount)}
+        >
+          Heal
+        </HealButton>
+      </ButtonGroup>
     </>
   );
 }

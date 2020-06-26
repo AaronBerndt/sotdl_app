@@ -37,10 +37,11 @@ function SpellTable({ spellArray, casting, onClickFuncion }: SpellTableProps) {
   const cells = ["name", "type", "attack", "damage", "casting"];
 
   const { spellsCast } = useContext(ChracaterPageContext);
+  console.log(spellsCast);
   return (
     <>
       {lengthIsZero(spellArray) ? null : (
-        <Table>
+        <Table size="small">
           <TableHead>
             <TableRow>
               {["Name", "Type", "Attack", "Damage", "Casting"].map(
@@ -64,10 +65,11 @@ function SpellTable({ spellArray, casting, onClickFuncion }: SpellTableProps) {
                     <TableCell key={i}>
                       {cell === "casting" ? (
                         [...Array(casting).keys()].map((item, i) => {
-                          const [{ uses }] = filterByName(spellsCast, [
-                            spellName,
-                          ]);
-                          const isChecked = i + 1 <= uses;
+                          const useArray =
+                            filterByName(spellsCast, [spellName]) || ``;
+                          const isChecked = lengthIsZero(useArray)
+                            ? false
+                            : i + 1 <= useArray[0].uses;
                           return (
                             <SpellCheckBox key={i} isChecked={isChecked} />
                           );

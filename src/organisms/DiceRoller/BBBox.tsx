@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { TextField as MaterialTextField, Button } from "@material-ui/core";
+import { TextField, Button, ButtonGroup } from "@material-ui/core";
 import { isZero } from "../../utilities";
 import DiceRollContext from "../../context/DiceRollContext";
 
@@ -10,10 +10,6 @@ const BaneButton = styled(Button)`
 
 const BoonButton = styled(Button)`
   background-color: lightBlue;
-`;
-
-const BBTextField = styled(MaterialTextField)`
-  color: "red";
 `;
 
 function BBBox() {
@@ -30,20 +26,31 @@ function BBBox() {
     ? boonAmount
     : baneAmount;
 
+  const color = isZero(boonAmount - baneAmount)
+    ? "black"
+    : boonAmount > baneAmount
+    ? "lightBlue"
+    : "red";
   return (
     <>
-      <BBTextField
+      <TextField
         label="Boon/Banes"
         variant="outlined"
         defaultValue={0}
         value={defaultAmount}
         size="small"
-        disabled
+        InputProps={{
+          style: {
+            color: color,
+          },
+        }}
       />
 
-      <BoonButton onClick={() => addBoons()}>Add Boon</BoonButton>
-      <BoonButton onClick={() => resetBBCount()}>Reset</BoonButton>
-      <BaneButton onClick={() => addBanes()}>Add Bane</BaneButton>
+      <ButtonGroup size="small">
+        <BoonButton onClick={() => addBoons()}>Boon</BoonButton>
+        <BoonButton onClick={() => resetBBCount()}>Reset</BoonButton>
+        <BaneButton onClick={() => addBanes()}>Add Bane</BaneButton>
+      </ButtonGroup>
     </>
   );
 }

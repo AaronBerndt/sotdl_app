@@ -12,34 +12,26 @@ import {
 } from "../../organisms";
 import axios from "axios";
 import { sumArray, filterByLevelAndMutiple } from "../../utilities";
-import { useDice } from "../../hooks";
 import ChracaterPageContext from "../../context/CharacterContext";
 import { DiceRollProvider } from "../../context/DiceRollContext";
-
-function reducer(state, action) {
-  const actionObject = {
-    "add boon": () => ({ boonAmount: state.boonAmount + 1, baneAmount: 0 }),
-    "add bane": () => ({ boonAmount: 0, baneAmount: state.baneAmount + 1 }),
-    reset: () => ({ boonAmount: 0, baneAmount: 0 }),
-  };
-  return actionObject[action.type]();
-}
+import { Grid } from "@material-ui/core";
 
 function CharacterSheet() {
-  const [modifier, setModifier] = useState(0);
+  const { health, items } = useContext<any>(ChracaterPageContext);
 
-  const { health, items } = useContext(ChracaterPageContext);
-
-  /* const makeChallengeRoll = (mod, name) => { */
-  /*   rollAttackRoll(name, "Challenge", boonAmount, baneAmount); */
-  /*   setModifier(mod); */
   return (
-    <>
-      <DetailsBox />
-      <LifeWorkSpaceBox health={health} />
+    <Grid container direction="column" justify="center" alignItems="flex-start">
+      <Grid container direction="row" justify="center" alignItems="center">
+        <DetailsBox />
+      </Grid>
+      <Grid container direction="row" justify="center" alignItems="center">
+        <LifeWorkSpaceBox health={health} />
+      </Grid>
       <DiceRollProvider>
         <BBBox />
-        <CharacteristicsBox />
+        <Grid container direction="row" justify="center" alignItems="center">
+          <CharacteristicsBox />
+        </Grid>
         <CharacterContentBox>
           <ActionBox />
           <FeaturesBox />
@@ -47,7 +39,7 @@ function CharacterSheet() {
         </CharacterContentBox>
         <DiceResultSnackBar />
       </DiceRollProvider>
-    </>
+    </Grid>
   );
 }
 

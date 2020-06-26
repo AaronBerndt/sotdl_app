@@ -1,5 +1,7 @@
 import React from "react";
 import SpellList from "./SpellList";
+import { action } from "@storybook/addon-actions";
+import { withCharacterContext } from "../../utilities";
 
 export default {
   title: "Molecules/SpellList",
@@ -14,6 +16,8 @@ const createSpell = (level: number, type: string, damage: string) => ({
   level: level,
   characteristics: {},
   description: "",
+
+  attribute: "Will",
   extra_effects: [],
 });
 const spellArray = [
@@ -23,17 +27,18 @@ const spellArray = [
   createSpell(2, "Attack", "3d6"),
 ];
 
-export const powerZero = () => (
-  <SpellList spellArray={spellArray} castings={[{ 0: 1 }]} />
-);
+const onClick = action("button-click");
 
-export const powerOne = () => (
-  <SpellList spellArray={spellArray} castings={[{ 0: 2 }, { 1: 1 }]} />
-);
+const withContext = (power: number) =>
+  withCharacterContext(
+    <SpellList spellArray={spellArray} onClickFuncion={onClick} />,
+    { power, will: 10, spellsCast: [] }
+  );
 
-export const powerTwo = () => (
-  <SpellList
-    spellArray={spellArray}
-    castings={[{ 0: 3 }, { 1: 2 }, { 2: 1 }]}
-  />
-);
+export const powerZero = () => withContext(0);
+
+export const powerOne = () => withContext(1);
+
+export const powerTwo = () => withContext(2);
+
+export const powerTen = () => withContext(10);

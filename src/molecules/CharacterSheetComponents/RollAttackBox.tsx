@@ -35,7 +35,7 @@ function RollAttackBox({ attackModName, rollReason }: RollAttackBoxProps) {
         onClick={() => makeAttackRoll(rollReason, boonAmount, baneAmount, mod)}
         size="small"
       >
-        <TextField name="Roll Attack" value={modLabel} />
+        <TextField name="Attack" value={modLabel} />
       </Button>
     </>
   );

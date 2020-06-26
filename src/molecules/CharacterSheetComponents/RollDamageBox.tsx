@@ -12,9 +12,9 @@ function RollDamageBox({ value, rollReason }: RollDamageBoxProps) {
   const regex = /(-?\d+)/g;
   const result = value.match(regex);
 
-  const amount = result[0];
-  const type = result[1];
-  const extra = result[2];
+  const amount = result![0];
+  const type = result![1];
+  const extra = result![2];
 
   const { rollDamageRoll } = useContext(DiceRollContext);
 
@@ -32,7 +32,7 @@ function RollDamageBox({ value, rollReason }: RollDamageBoxProps) {
         }
         size="small"
       >
-        <TextField name="Roll Damage" value={value} />
+        <TextField name="Damage" value={value} />
       </Button>
     </>
   );

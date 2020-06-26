@@ -46,6 +46,7 @@ function LifeWorkSpaceBox({ health }: LifeWorkSpaceBoxProps) {
           withNoRoll={true}
         />
 
+        <TextField name="Health/Damage" value={`${health}/ ${damage}`} />
         <Button onClick={() => removeDamage(healingRate)}>
           <TextField name="Healing Rate" value={Math.floor(health / 4)} />
         </Button>
