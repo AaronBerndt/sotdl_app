@@ -1,88 +1,51 @@
 import React from "react";
 import DiceResultSnackBar from "./DiceResultSnackBar";
+import { withCharacterContext } from "../../utilities";
 
 export default {
   title: "Organisms/DiceRoller/DiceResultSnackBar",
   component: DiceResultSnackBar,
 };
 
-export const challengeRoll = () => (
-  <DiceResultSnackBar
-    rollReason="Strength"
-    rollType="Challenge"
-    diceResult={10}
-    modifier={3}
-    boonResult={0}
-    baneResult={0}
-  />
-);
+const withContext = (
+  rollReason,
+  rollType,
+  diceResult,
+  extraNumber,
+  baneResult,
+  boonResult,
+  modifier
+) =>
+  withCharacterContext(<DiceResultSnackBar />, {
+    modifier,
+    rollReason,
+    rollType,
+    diceResult,
+    extraNumber,
+    baneResult,
+    boonResult,
+  });
 
-export const withBoon = () => (
-  <DiceResultSnackBar
-    rollReason="Strength"
-    rollType="Challenge"
-    diceResult={10}
-    modifier={3}
-    boonResult={1}
-    baneResult={0}
-  />
-);
-export const withBane = () => (
-  <DiceResultSnackBar
-    rollReason="Strength"
-    rollType="Challenge"
-    diceResult={1}
-    modifier={3}
-    boonResult={0}
-    baneResult={3}
-  />
-);
+export const challengeRoll = () =>
+  withContext("Strength", "Challenge", 10, 3, 0, 0, 0);
 
-export const attackRoll = () => (
-  <DiceResultSnackBar
-    rollReason="Long Sword"
-    rollType="Attack"
-    diceResult={10}
-    modifier={3}
-    boonResult={0}
-    baneResult={0}
-  />
-);
+export const withBoon = () =>
+  withContext("Strength", "Challenge", 10, 3, 1, 0, 0);
 
-export const damageRoll = () => (
-  <DiceResultSnackBar
-    rollReason="Long Sword"
-    rollType="Damage"
-    diceResult={10}
-    extraNumber={0}
-  />
-);
+export const withBane = () =>
+  withContext("Strength", "Challenge", 10, 3, 0, 1, 0);
 
-export const damageRollWithExtraNumber = () => (
-  <DiceResultSnackBar
-    rollReason="Long Sword"
-    rollType="Damage"
-    diceResult={10}
-    extraNumber={3}
-  />
-);
+export const attackRoll = () =>
+  withContext("Long Sword", "Attack", 10, 0, 0, 0, 0);
 
-export const damageRollWithExtraNumberAndMod = () => (
-  <DiceResultSnackBar
-    rollReason="Long Sword"
-    rollType="Damage"
-    diceResult={10}
-    modifier={3}
-    extraNumber={3}
-  />
-);
+export const damageRoll = () =>
+  withContext("Long Sword", "Damage", 10, 0, 0, 0, 0);
 
-export const damageRollWithAndMod = () => (
-  <DiceResultSnackBar
-    rollReason="Long Sword"
-    rollType="Damage"
-    diceResult={10}
-    modifier={3}
-  />
-);
+export const damageRollWithExtraNumber = () =>
+  withContext("Long Sword", "Damage", 10, 3, 0, 0, 0);
 
+export const damageRollWithExtraNumberAndMod = () =>
+  withContext("Long Sword", "Damage", 10, 3, 0, 0, 3);
+
+export const damageRollWithAndMod = () =>
+  withContext("Long Sword", "Damage", 10, 0, 0, 0, 3);

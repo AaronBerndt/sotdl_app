@@ -7,6 +7,8 @@ import {
 } from "./filterUtil";
 import sumArray from "./sumArray";
 import mockCharacter from "./CharacterMock";
+
+import { withCharacterContext, withDiceRollCointext } from "./ContextMock";
 import {
   isZero,
   lengthIsZero,
@@ -26,4 +28,6 @@ export {
   lengthIsOne,
   mockCharacter,
   notZeroAndUndefined,
+  withDiceRollCointext,
+  withCharacterContext,
 };

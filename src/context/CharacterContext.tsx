@@ -1,4 +1,7 @@
-import React, { createContext, useState } from "react";
+import React, {
+  createContext,
+  useState,
+} from "react"; /*   name: string; */ /*   ancestry: string; */ /* } */ /*   level: number; */ /* interface CharacterData { */ /*   description: string; */ /*   money: Array<any>; */
 
 /* interface Money { */
 /*   bits: number; */
@@ -10,16 +13,7 @@ import React, { createContext, useState } from "react";
 /* interface Items { */
 /*   weapons: Array<any>; */
 /*   armor: Array<any>; */
-/*   other: Array<any>; */
-/*   money: Array<any>; */
-/* } */
-
-/* interface CharacterData { */
-/*   name: string; */
-/*   description: string; */
-/*   level: number; */
-/*   ancestry: string; */
-/*   novicePath: string; */
+/*   other: Array<any>; */ /*   novicePath: string; */
 /*   expertPath: string; */
 /*   masterPath: string; */
 /*   languages: Array<string>; */
@@ -113,7 +107,7 @@ import React, { createContext, useState } from "react";
 /*   }; */
 /* }); */
 
-const CharacterPageContext = createContext({
+const CharacterPageContext = createContext<any>({
   name: "",
   description: "",
   level: 0,

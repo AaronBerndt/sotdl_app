@@ -12,28 +12,13 @@ import {
 } from "../../organisms";
 import axios from "axios";
 import { sumArray, filterByLevelAndMutiple } from "../../utilities";
-import { useDice } from "../../hooks";
 import ChracaterPageContext from "../../context/CharacterContext";
 import { DiceRollProvider } from "../../context/DiceRollContext";
 import { Grid } from "@material-ui/core";
 
-function reducer(state, action) {
-  const actionObject = {
-    "add boon": () => ({ boonAmount: state.boonAmount + 1, baneAmount: 0 }),
-    "add bane": () => ({ boonAmount: 0, baneAmount: state.baneAmount + 1 }),
-    reset: () => ({ boonAmount: 0, baneAmount: 0 }),
-  };
-  return actionObject[action.type]();
-}
-
 function CharacterSheet() {
-  const [modifier, setModifier] = useState(0);
+  const { health, items } = useContext<any>(ChracaterPageContext);
 
-  const { health, items } = useContext(ChracaterPageContext);
-
-  /* const makeChallengeRoll = (mod, name) => { */
-  /*   rollAttackRoll(name, "Challenge", boonAmount, baneAmount); */
-  /*   setModifier(mod); */
   return (
     <Grid container direction="column" justify="center" alignItems="flex-start">
       <Grid container direction="row" justify="center" alignItems="center">

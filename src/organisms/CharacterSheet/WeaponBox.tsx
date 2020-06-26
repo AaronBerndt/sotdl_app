@@ -6,7 +6,6 @@ import {
   TableCell,
   TableBody,
   ButtonGroup,
-  Button,
 } from "@material-ui/core";
 import RollDamageBox from "../../molecules/CharacterSheetComponents/RollDamageBox";
 import ChracaterPageContext from "../../context/CharacterContext";
@@ -18,7 +17,7 @@ function WeaponBox() {
     items: { weapons },
     strength,
     agility,
-  } = useContext(ChracaterPageContext);
+  } = useContext<any>(ChracaterPageContext);
   return (
     <Table size="small">
       <TableHead>

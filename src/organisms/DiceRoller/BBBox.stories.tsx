@@ -1,36 +1,18 @@
 import React from "react";
 import BBBox from "./BBBox";
-import { action } from "@storybook/addon-actions";
+import { withCharacterContext } from "../../utilities";
 
 export default {
   title: "Organisms/DiceRoller/BBBox",
   component: BBBox,
 };
 
-const onClick = action("button-click");
-export const isZero = () => (
-  <BBBox
-    boonAmount={0}
-    baneAmount={0}
-    baneOnClick={onClick}
-    boonOnClick={onClick}
-  />
-);
+const withContext = (boons: number, banes: number) =>
+  withCharacterContext(<BBBox />, {
+    boonAmount: boons,
+    baneAmount: banes,
+  });
 
-export const withBoon = () => (
-  <BBBox
-    boonAmount={1}
-    baneAmount={0}
-    baneOnClick={onClick}
-    boonOnClick={onClick}
-  />
-);
-export const withBanes = () => (
-  <BBBox
-    boonAmount={0}
-    baneAmount={1}
-    baneOnClick={onClick}
-    boonOnClick={onClick}
-  />
-);
-
+export const isZero = () => withContext(0, 0);
+export const withBoon = () => withContext(1, 0);
+export const withBane = () => withContext(0, 1);
