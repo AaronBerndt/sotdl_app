@@ -14,6 +14,7 @@ export type DialogProps = {
   children?: any;
   actionName: string;
   onClickFuncion: any;
+  submitOnClickFunction: any;
   isOpen: any;
 };
 const StyledDialogTitle = styled(DialogTitle)`
@@ -31,6 +32,7 @@ function Dialog({
   children,
   actionName,
   onClickFuncion,
+  submitOnClickFunction,
   isOpen,
 }: DialogProps) {
   const { open } = isOpen;
@@ -41,7 +43,9 @@ function Dialog({
         <StyledDialogTitle>{title}</StyledDialogTitle>
         <DialogContent>{children}</DialogContent>
         <DialogActions>
-          <StyledButton>{actionName}</StyledButton>
+          <StyledButton onClick={submitOnClickFunction}>
+            {actionName}
+          </StyledButton>
           <Button onClick={onClickFuncion}>CANCEL</Button>
         </DialogActions>
       </MaterialDialog>

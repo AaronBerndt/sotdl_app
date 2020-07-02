@@ -1,7 +1,14 @@
-import React, { useState, useEffect, createContext, useReducer } from "react";
+import React, {
+  useState,
+  useEffect,
+  createContext,
+  useReducer,
+  useContext,
+} from "react";
 import { List } from "../../molecules/";
 import { AncestryDialog } from "../../organisms/";
 import axios from "axios";
+import BuildCharacterContext from "../../context/BuildCharacterContext";
 
 export const AncestryDialogContext = createContext({});
 
@@ -14,6 +21,7 @@ function reducer(state, action) {
 }
 
 export function AncestryPage() {
+  const { ancestry, setAncestry } = useContext(BuildCharacterContext);
   const [ancestryList, setAncestryList] = useState([]);
   const [selectedAncestryIndex, setSelectedAncestryIndex] = useState(0);
   const [state, dispatch] = useReducer(reducer, { open: false });
@@ -34,6 +42,12 @@ export function AncestryPage() {
     dispatch({ type: "toggle" });
   };
 
+  const submitOnClick = () => {
+    const { name } = ancestryList[selectedAncestryIndex];
+    dispatch({ type: "toggle" });
+    setAncestry(name);
+  };
+
   return (
     <>
       <List listItemArray={ancestryList} onClickFunction={listItemOnClick} />
@@ -41,6 +55,7 @@ export function AncestryPage() {
         ancestryInfo={ancestryList[selectedAncestryIndex]}
         isOpen={state}
         onClickFuncion={() => dispatch({ type: "toggle" })}
+        submitOnClickFunction={submitOnClick}
       />
     </>
   );

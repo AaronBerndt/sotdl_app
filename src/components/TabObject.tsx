@@ -1,22 +1,14 @@
 import React from "react";
 /* import PathView from "../pages/PathsPage"; */
-import { AncestryPage } from "../pages/AncestryPage";
-import CharacterSheetPage from "../pages/CharacterSheetPage/";
-import PathsPage from "../pages/PathsPage/";
 import AddContentPage from "../pages/AddContentPage/";
+import BuildCharacterPage from "../pages/BuildCharacterPage";
+import CharactersPage from "../pages/CharactersPage";
 
 const createTab = (name: string, view: any) => ({ name, view });
 const tabArray = [
-  createTab(
-    "Home",
-    <>
-      <p>Stuff</p>
-    </>
-  ),
-  createTab("Ancestry", AncestryPage),
-  createTab("Paths", PathsPage),
-  createTab("ChracterSheet", CharacterSheetPage),
-  createTab("Add Content", AddContentPage),
+  createTab("Create New Character", BuildCharacterPage),
+  createTab("Characters", CharactersPage),
+  createTab("AddContentPage", AddContentPage),
 ];
 
 export default tabArray;

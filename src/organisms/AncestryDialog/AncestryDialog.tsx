@@ -6,12 +6,14 @@ interface AncestryDialogProps {
   ancestryInfo: any;
   isOpen: any;
   onClickFuncion: any;
+  submitOnClickFunction: any;
 }
 
 function AncestryDialog({
   ancestryInfo,
   isOpen,
   onClickFuncion,
+  submitOnClickFunction,
 }: AncestryDialogProps) {
   return (
     <Dialog
@@ -19,6 +21,7 @@ function AncestryDialog({
       actionName="Confirm Ancestry"
       isOpen={isOpen}
       onClickFuncion={onClickFuncion}
+      submitOnClickFunction={submitOnClickFunction}
     >
       <AncestryContent ancestryInfo={ancestryInfo} />
     </Dialog>

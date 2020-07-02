@@ -8,7 +8,11 @@ import {
 import sumArray from "./sumArray";
 import mockCharacter from "./CharacterMock";
 
-import { withCharacterContext, withDiceRollCointext } from "./ContextMock";
+import {
+  withCharacterContext,
+  withDiceRollCointext,
+  withBuildCharacterContext,
+} from "./ContextMock";
 import {
   isZero,
   lengthIsZero,
@@ -30,4 +34,5 @@ export {
   notZeroAndUndefined,
   withDiceRollCointext,
   withCharacterContext,
+  withBuildCharacterContext,
 };

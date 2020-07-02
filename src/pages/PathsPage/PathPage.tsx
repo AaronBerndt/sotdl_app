@@ -32,6 +32,12 @@ export function PathPage() {
     dispatch({ type: "toggle" });
   };
 
+  const submitOnClick = () => {
+    const stuff = pathList[selectedPathIndex];
+    console.log(stuff);
+    dispatch({ type: "toggle" });
+  };
+
   return (
     <>
       <List listItemArray={pathList} onClickFunction={listItemOnClick} />
@@ -39,6 +45,7 @@ export function PathPage() {
         pathInfo={pathList[selectedPathIndex]}
         isOpen={state}
         onClickFuncion={() => dispatch({ type: "toggle" })}
+        submitOnClickFunction={() => submitOnClick}
       />
     </>
   );

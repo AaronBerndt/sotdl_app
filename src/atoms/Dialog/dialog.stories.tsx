@@ -16,6 +16,7 @@ export const isOpen = () => (
     actionName="Confirm Ancestry"
     isOpen={mockStatus(true)}
     onClickFuncion={action("button-click")}
+    submitOnClickFunction={action("button-click")}
   />
 );
 
@@ -25,5 +26,6 @@ export const notOpen = () => (
     actionName="Confirm Ancestry"
     isOpen={mockStatus(false)}
     onClickFuncion={action("button-click")}
+    submitOnClickFunction={action("button-click")}
   />
 );
