@@ -4,6 +4,7 @@ import { PathDialog } from "../../organisms/";
 import axios from "axios";
 import { lengthIsZero } from "../../utilities";
 import BuildCharacterContext from "../../context/BuildCharacterContext";
+import { groupBy } from "lodash";
 
 function reducer(state, action) {
   const actionSwitch = {
@@ -51,17 +52,27 @@ export function PathPage() {
     dispatch({ type: "toggle" });
   };
 
+  const pathListGrouped = Object.entries(groupBy(pathList, "type"));
+
   return (
     <>
       {lengthIsZero(pathList) ? null : (
         <>
-          <List listItemArray={pathList} onClickFunction={listItemOnClick} />
-          <PathDialog
-            pathInfo={pathList[selectedPathIndex]}
-            isOpen={state}
-            onClickFuncion={() => dispatch({ type: "toggle" })}
-            submitOnClickFunction={submitOnClick}
-          />
+          {pathListGrouped.map(([type, list]: any, i) => {
+            console.log(list, type);
+            return (
+              <div key={i}>
+                <h3>{type}</h3>
+                <List listItemArray={list} onClickFunction={listItemOnClick} />
+                <PathDialog
+                  pathInfo={pathList[selectedPathIndex]}
+                  isOpen={state}
+                  onClickFuncion={() => dispatch({ type: "toggle" })}
+                  submitOnClickFunction={submitOnClick}
+                />
+              </div>
+            );
+          })}
         </>
       )}
     </>
