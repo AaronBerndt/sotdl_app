@@ -21,7 +21,7 @@ function reducer(state, action) {
 }
 
 export function AncestryPage() {
-  const { ancestry, setAncestry } = useContext(BuildCharacterContext);
+  const { setAncestry } = useContext(BuildCharacterContext);
   const [ancestryList, setAncestryList] = useState([]);
   const [selectedAncestryIndex, setSelectedAncestryIndex] = useState(0);
   const [state, dispatch] = useReducer(reducer, { open: false });

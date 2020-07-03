@@ -1,7 +1,9 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect, useReducer, useContext } from "react";
 import { List } from "../../molecules/";
 import { PathDialog } from "../../organisms/";
 import axios from "axios";
+import { lengthIsZero } from "../../utilities";
+import BuildCharacterContext from "../../context/BuildCharacterContext";
 
 function reducer(state, action) {
   const actionSwitch = {
@@ -16,6 +18,9 @@ export function PathPage() {
   const [selectedPathIndex, setSelectedPathIndex] = useState(0);
   const [state, dispatch] = useReducer(reducer, { open: false });
 
+  const { setNovicePath, setExpertPath, setMasterPath } = useContext(
+    BuildCharacterContext
+  );
   const getData = async () => {
     const { data } = await axios("https://sotdl-api.herokuapp.com/paths");
     setPathList(data);
@@ -33,20 +38,32 @@ export function PathPage() {
   };
 
   const submitOnClick = () => {
-    const stuff = pathList[selectedPathIndex];
-    console.log(stuff);
+    const { name, type }: any = pathList[selectedPathIndex];
+    console.log(name, type);
+    const typeName = type.toLowerCase();
+    const hookObject: any = {
+      novice: () => setNovicePath(name),
+      expert: () => setExpertPath(name),
+      master: () => setMasterPath(name),
+    };
+
+    hookObject[typeName](name);
     dispatch({ type: "toggle" });
   };
 
   return (
     <>
-      <List listItemArray={pathList} onClickFunction={listItemOnClick} />
-      <PathDialog
-        pathInfo={pathList[selectedPathIndex]}
-        isOpen={state}
-        onClickFuncion={() => dispatch({ type: "toggle" })}
-        submitOnClickFunction={() => submitOnClick}
-      />
+      {lengthIsZero(pathList) ? null : (
+        <>
+          <List listItemArray={pathList} onClickFunction={listItemOnClick} />
+          <PathDialog
+            pathInfo={pathList[selectedPathIndex]}
+            isOpen={state}
+            onClickFuncion={() => dispatch({ type: "toggle" })}
+            submitOnClickFunction={submitOnClick}
+          />
+        </>
+      )}
     </>
   );
 }

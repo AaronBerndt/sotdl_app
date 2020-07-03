@@ -15,13 +15,15 @@ function PathDialog({
   onClickFuncion,
   submitOnClickFunction,
 }: PathDialogProps) {
+  const pathType = pathInfo.type;
+
   return (
     <Dialog
-      title={`Confirm ${pathInfo.type} Path`}
+      title={`Confirm ${pathType} Path`}
       actionName="Confirm Path"
       isOpen={isOpen}
       onClickFuncion={onClickFuncion}
-      submitOnClickFunction={() => submitOnClickFunction}
+      submitOnClickFunction={submitOnClickFunction}
     >
       <PathContent pathInfo={pathInfo} />
     </Dialog>

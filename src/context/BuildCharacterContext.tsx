@@ -27,9 +27,25 @@ export function BuildCharacterProvider({ children }: any) {
   const [name, setName] = useState("");
   const [ancestry, setAncestry] = useState("");
   const [level, setLevel] = useState(0);
+  const [novicePath, setNovicePath] = useState("");
+  const [expertPath, setExpertPath] = useState("");
+  const [masterPath, setMasterPath] = useState("");
   return (
     <BuildCharacterContext.Provider
-      value={{ name, setName, ancestry, setAncestry, level, setLevel }}
+      value={{
+        name,
+        setName,
+        ancestry,
+        setAncestry,
+        level,
+        setLevel,
+        novicePath,
+        setNovicePath,
+        expertPath,
+        setExpertPath,
+        masterPath,
+        setMasterPath,
+      }}
     >
       {children}
     </BuildCharacterContext.Provider>
