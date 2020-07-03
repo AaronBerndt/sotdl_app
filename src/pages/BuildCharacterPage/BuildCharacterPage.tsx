@@ -1,9 +1,9 @@
 import React from "react";
 import { BuildCharacterProvider } from "../../context/BuildCharacterContext";
+import LastStepsPage from "../LastStepsPage/LastStepPage";
 import Tabbar from "../../components/Tabbar";
 import { AncestryPage } from "../AncestryPage";
 import PathsPage from "../PathsPage";
-import LastStepsPage from "../LastStepsPage/LastStepPage";
 
 const createTab = (name: string, view: any) => ({ name, view });
 const tabArray = [
