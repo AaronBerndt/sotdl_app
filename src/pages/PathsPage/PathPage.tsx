@@ -33,14 +33,13 @@ export function PathPage() {
     }
   }, [pathList]);
 
-  const listItemOnClick = (index: number) => {
+  const listItemOnClick = ({ type }) => (index: number) => {
     setSelectedPathIndex(index);
     dispatch({ type: "toggle" });
   };
 
   const submitOnClick = () => {
     const { name, type }: any = pathList[selectedPathIndex];
-    console.log(name, type);
     const typeName = type.toLowerCase();
     const hookObject: any = {
       novice: () => setNovicePath(name),
@@ -59,13 +58,12 @@ export function PathPage() {
       {lengthIsZero(pathList) ? null : (
         <>
           {pathListGrouped.map(([type, list]: any, i) => {
-            console.log(list, type);
             return (
               <div key={i}>
                 <h3>{type}</h3>
                 <List listItemArray={list} onClickFunction={listItemOnClick} />
                 <PathDialog
-                  pathInfo={pathList[selectedPathIndex]}
+                  pathInfo={list[selectedPathIndex]}
                   isOpen={state}
                   onClickFuncion={() => dispatch({ type: "toggle" })}
                   submitOnClickFunction={submitOnClick}

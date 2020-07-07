@@ -1,19 +1,27 @@
 import React from "react";
 import BuildCharacterPage from "./BuildCharacterPage";
-import AxiosMock from "../../utilities/AxiosMock";
-import { pathData } from "../../utilities/mockData";
+import { withComp as PathsPage } from "../PathsPage/PathPage.stories";
+import { withComp as AncestryPage } from "../AncestryPage/AncestryPage.stories";
+import LastStepsPage from "../LastStepsPage/LastStepPage";
 
 export default {
   title: "Pages/BuildCharacterPage",
   component: BuildCharacterPage,
 };
 
-const mock = (apiMock) => {
-  apiMock.onGet("https://sotdl-api.herokuapp.com/paths").reply(200, pathData);
-};
+const createTab = (name: string, view: any) => ({ name, view });
+const tabArray = [
+  createTab(
+    "Home",
+    <>
+      <p>Stuff</p>
+    </>
+  ),
+  createTab("Ancestry", AncestryPage),
+  createTab("Paths", PathsPage),
+  createTab("Scores", <div>Scores</div>),
+  createTab("Equpment", <div>Equpment</div>),
+  createTab("Last Steps", LastStepsPage),
+];
 
-export const withComp = () => (
-  <AxiosMock mock={mock}>
-    <BuildCharacterPage />
-  </AxiosMock>
-);
+export const withComp = () => <BuildCharacterPage tabArray={tabArray} />;
