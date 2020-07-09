@@ -16,7 +16,7 @@ function reducer(state, action) {
 
 export function PathPage() {
   const [pathList, setPathList] = useState([]);
-  const [selectedPathIndex, setSelectedPathIndex] = useState(0);
+  const [selectedPathData, setSelectedPathData] = useState([]);
   const [state, dispatch] = useReducer(reducer, { open: false });
 
   const { setNovicePath, setExpertPath, setMasterPath } = useContext(
@@ -33,13 +33,17 @@ export function PathPage() {
     }
   }, [pathList]);
 
-  const listItemOnClick = ({ type }) => (index: number) => {
-    setSelectedPathIndex(index);
+  const listItemOnClick = (index: number, name: string) => {
+    const [pathData] = pathList.filter(
+      ({ name: pathName }) => name === pathName
+    );
+    setSelectedPathData(pathData);
     dispatch({ type: "toggle" });
   };
 
   const submitOnClick = () => {
-    const { name, type }: any = pathList[selectedPathIndex];
+    const { name, type }: any = selectedPathData;
+    console.log(name, type);
     const typeName = type.toLowerCase();
     const hookObject: any = {
       novice: () => setNovicePath(name),
@@ -47,7 +51,7 @@ export function PathPage() {
       master: () => setMasterPath(name),
     };
 
-    hookObject[typeName](name);
+    hookObject[typeName]();
     dispatch({ type: "toggle" });
   };
 
@@ -63,7 +67,7 @@ export function PathPage() {
                 <h3>{type}</h3>
                 <List listItemArray={list} onClickFunction={listItemOnClick} />
                 <PathDialog
-                  pathInfo={list[selectedPathIndex]}
+                  pathInfo={selectedPathData}
                   isOpen={state}
                   onClickFuncion={() => dispatch({ type: "toggle" })}
                   submitOnClickFunction={submitOnClick}
@@ -78,3 +82,4 @@ export function PathPage() {
 }
 
 export default PathPage;
+

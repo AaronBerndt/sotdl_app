@@ -14,7 +14,7 @@ function List({ listItemArray, onClickFunction }: ListProps) {
         <>
           <ListItem
             title={name}
-            onClickFunction={() => onClickFunction(i)}
+            onClickFunction={() => onClickFunction(i, name)}
             secondaryText={secondaryText}
             key={i}
           />
@@ -25,3 +25,4 @@ function List({ listItemArray, onClickFunction }: ListProps) {
 }
 
 export default List;
+
