@@ -43,7 +43,6 @@ export function PathPage() {
 
   const submitOnClick = () => {
     const { name, type }: any = selectedPathData;
-    console.log(name, type);
     const typeName = type.toLowerCase();
     const hookObject: any = {
       novice: () => setNovicePath(name),

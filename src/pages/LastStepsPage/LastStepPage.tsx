@@ -14,7 +14,14 @@ function LastStepsPage() {
   } = useContext(BuildCharacterContext);
 
   const createCharacterOnClick = () => {
-    const newCharacterObject = {};
+    const newCharacterObject = {
+      name,
+      level,
+      ancestry,
+      novicePath,
+      expertPath,
+      masterPath,
+    };
     console.log(newCharacterObject);
   };
   return (
@@ -32,3 +39,4 @@ function LastStepsPage() {
 }
 
 export default LastStepsPage;
+
