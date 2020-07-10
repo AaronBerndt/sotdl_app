@@ -2,7 +2,7 @@ import React from "react";
 import BuildCharacterHomePage from "./BuildCharacterHomePage";
 
 export default {
-  title: "Pages/BuildCharacterHomePage",
+  title: "Pages/CharacterBulider/BuildCharacterHomePage",
   component: BuildCharacterHomePage,
 };
 

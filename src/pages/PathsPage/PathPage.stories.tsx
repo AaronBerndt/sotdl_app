@@ -4,7 +4,7 @@ import AxiosMock from "../../utilities/AxiosMock";
 import { pathData } from "../../utilities/mockData";
 
 export default {
-  title: "Pages/PathPage",
+  title: "Pages/CharacterBulider/PathPage",
   component: PathPage,
 };
 
@@ -17,3 +17,4 @@ export const withComp = () => (
     <PathPage />
   </AxiosMock>
 );
+

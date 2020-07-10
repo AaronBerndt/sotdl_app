@@ -4,9 +4,10 @@ import { withComp as BuildCharacterHomePage } from "../BuildCharacterHomePage/Bu
 import { withComp as PathsPage } from "../PathsPage/PathPage.stories";
 import { withComp as AncestryPage } from "../AncestryPage/AncestryPage.stories";
 import LastStepsPage from "../LastStepsPage/LastStepPage";
+import ScoresPage from "../ScoresPage/ScoresPage";
 
 export default {
-  title: "Pages/BuildCharacterPage",
+  title: "Pages/CharacterBulider/BuildCharacterPage",
   component: BuildCharacterPage,
 };
 
@@ -15,7 +16,7 @@ const tabArray = [
   createTab("Home", BuildCharacterHomePage),
   createTab("Ancestry", AncestryPage),
   createTab("Paths", PathsPage),
-  createTab("Scores", <div>Scores</div>),
+  createTab("Scores", ScoresPage),
   createTab("Equpment", <div>Equpment</div>),
   createTab("Last Steps", LastStepsPage),
 ];

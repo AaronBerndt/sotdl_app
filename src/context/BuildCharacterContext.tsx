@@ -7,6 +7,8 @@ interface BuildCharacterContextType {
   level: number;
   setLevel: any;
   ancestry: string;
+  startingScores: any;
+  setStartingScores: any;
   setAncestry: any;
   novicePath: string;
   expertPath: string;
@@ -30,6 +32,13 @@ export function BuildCharacterProvider({ children }: any) {
   const [novicePath, setNovicePath] = useState("");
   const [expertPath, setExpertPath] = useState("");
   const [masterPath, setMasterPath] = useState("");
+  const [startingScores, setStartingScores] = useState({
+    strength: 0,
+    agility: 0,
+    will: 0,
+    intellect: 0,
+  });
+  const [characteristics, setCharacteristics] = useState([]);
   return (
     <BuildCharacterContext.Provider
       value={{
@@ -45,6 +54,10 @@ export function BuildCharacterProvider({ children }: any) {
         setExpertPath,
         masterPath,
         setMasterPath,
+        startingScores,
+        setStartingScores,
+        characteristics,
+        setCharacteristics,
       }}
     >
       {children}
@@ -53,3 +66,4 @@ export function BuildCharacterProvider({ children }: any) {
 }
 
 export default BuildCharacterContext;
+

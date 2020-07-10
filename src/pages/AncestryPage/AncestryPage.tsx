@@ -21,7 +21,7 @@ function reducer(state, action) {
 }
 
 export function AncestryPage() {
-  const { setAncestry } = useContext(BuildCharacterContext);
+  const { setAncestry, setStartingScores } = useContext(BuildCharacterContext);
   const [ancestryList, setAncestryList] = useState([]);
   const [selectedAncestryIndex, setSelectedAncestryIndex] = useState(0);
   const [state, dispatch] = useReducer(reducer, { open: false });
@@ -43,9 +43,20 @@ export function AncestryPage() {
   };
 
   const submitOnClick = () => {
-    const { name } = ancestryList[selectedAncestryIndex];
+    const { name, characteristics } = ancestryList[selectedAncestryIndex];
+    const filteredArray = ["Strength", "Agility", "Will", "Intellect"].map(
+      (score) => {
+        const [{ name, value }] = characteristics.filter(
+          ({ name }) => name === score
+        );
+        return { [name.toLowerCase()]: value };
+      }
+    );
+    const scoreObject = Object.assign({}, ...filteredArray);
+
     dispatch({ type: "toggle" });
     setAncestry(name);
+    setStartingScores(scoreObject);
   };
 
   return (
@@ -62,3 +73,4 @@ export function AncestryPage() {
 }
 
 export default AncestryPage;
+
