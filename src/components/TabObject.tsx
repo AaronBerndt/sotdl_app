@@ -6,18 +6,15 @@ import CharactersPage from "../pages/CharactersPage";
 import { AncestryPage } from "../pages/AncestryPage";
 import PathsPage from "../pages/PathsPage/";
 import LastStepsPage from "../pages/LastStepsPage/LastStepPage";
+import BuildCharacterHomePage from "../pages/BuildCharacterHomePage";
+import ScoresPage from "../pages/ScoresPage/ScoresPage";
 
 const createTab = (name: string, view: any) => ({ name, view });
 const buildCharacterPageArray = [
-  createTab(
-    "Home",
-    <>
-      <p>Stuff</p>
-    </>
-  ),
+  createTab("Home", BuildCharacterHomePage),
   createTab("Ancestry", AncestryPage),
   createTab("Paths", PathsPage),
-  createTab("Scores", <div>Scores</div>),
+  createTab("Scores", ScoresPage),
   createTab("Equpment", <div>Equpment</div>),
   createTab("Last Steps", LastStepsPage),
 ];
@@ -32,3 +29,4 @@ const tabArray = [
 ];
 
 export default tabArray;
+

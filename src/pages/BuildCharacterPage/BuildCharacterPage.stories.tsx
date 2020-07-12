@@ -1,7 +1,7 @@
 import React from "react";
 import BuildCharacterPage from "./BuildCharacterPage";
 import { withComp as BuildCharacterHomePage } from "../BuildCharacterHomePage/BuildCharacterHomePage.stories";
-import { withComp as PathsPage } from "../PathsPage/PathPage.stories";
+import { levelOne as PathsPage } from "../PathsPage/PathPage.stories";
 import { withComp as AncestryPage } from "../AncestryPage/AncestryPage.stories";
 import LastStepsPage from "../LastStepsPage/LastStepPage";
 import ScoresPage from "../ScoresPage/ScoresPage";

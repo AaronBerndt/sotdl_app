@@ -16,3 +16,4 @@ function BuildCharacterPage({ tabArray }: BuildCharacterPageProps) {
 }
 
 export default BuildCharacterPage;
+

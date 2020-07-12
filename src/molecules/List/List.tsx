@@ -5,9 +5,10 @@ import { List as MaterialList } from "@material-ui/core";
 interface ListProps {
   listItemArray: Array<any>;
   onClickFunction: any;
+  isDisabled?: any;
 }
 
-function List({ listItemArray, onClickFunction }: ListProps) {
+function List({ listItemArray, onClickFunction, isDisabled }: ListProps) {
   return (
     <MaterialList>
       {listItemArray.map(({ name, secondaryText }, i) => (
@@ -16,6 +17,7 @@ function List({ listItemArray, onClickFunction }: ListProps) {
             title={name}
             onClickFunction={() => onClickFunction(i, name)}
             secondaryText={secondaryText}
+            disabled={isDisabled(name)}
             key={i}
           />
         </>

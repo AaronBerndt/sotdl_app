@@ -11,6 +11,7 @@ function LastStepsPage() {
     novicePath,
     expertPath,
     masterPath,
+    characteristics,
   } = useContext(BuildCharacterContext);
 
   const createCharacterOnClick = () => {
@@ -21,6 +22,7 @@ function LastStepsPage() {
       novicePath,
       expertPath,
       masterPath,
+      characteristics,
     };
     console.log(newCharacterObject);
   };

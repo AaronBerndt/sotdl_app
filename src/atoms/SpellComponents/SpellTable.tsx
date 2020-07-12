@@ -59,7 +59,7 @@ function SpellTable({ spellArray, casting, onClickFuncion }: SpellTableProps) {
                   const spellType = item["type"];
                   const isAttackSpell = spellType === "Attack";
                   const attackModName =
-                    item["attribute"] == "Will" ? "will" : "intellect";
+                    item["attribute"] === "Will" ? "will" : "intellect";
 
                   return (
                     <TableCell key={i}>
@@ -108,3 +108,4 @@ function SpellTable({ spellArray, casting, onClickFuncion }: SpellTableProps) {
 }
 
 export default SpellTable;
+

@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { groupBy } from "lodash";
 import {
   Dialog as MaterialDialog,
   DialogTitle,
@@ -54,3 +53,4 @@ function Dialog({
 }
 
 export default Dialog;
+

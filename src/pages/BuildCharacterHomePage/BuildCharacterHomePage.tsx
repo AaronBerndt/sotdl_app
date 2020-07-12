@@ -1,17 +1,37 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import BuildCharacterContext from "../../context/BuildCharacterContext";
-import {
-  Card,
-  CardHeader,
-  CardContent,
-  CardActions,
-  Button,
-} from "@material-ui/core";
+import { Card, CardContent, CardActions, Button } from "@material-ui/core";
 import { Form } from "react-final-form";
 import { FormInput, FormDropdown } from "../../atoms";
+import axios from "axios";
+import { lengthIsZero } from "../../utilities";
 
 function BuildCharacterHomePage() {
-  const { setName, setLevel, name, level } = useContext(BuildCharacterContext);
+  const {
+    setAncestryList,
+    setPathList,
+    ancestryList,
+    setName,
+    setLevel,
+    name,
+    level,
+  } = useContext(BuildCharacterContext);
+
+  const getData = async () => {
+    const { data: ancestryData } = await axios(
+      "https://sotdl-api.herokuapp.com/ancestries"
+    );
+
+    const { data: pathData } = await axios(
+      "https://sotdl-api.herokuapp.com/paths"
+    );
+    setAncestryList(ancestryData);
+    setPathList(pathData);
+  };
+
+  useEffect(() => {
+    if (lengthIsZero(ancestryList)) getData();
+  });
 
   const levelArray = [1, 2, 3, 4, 5, 6, 7, 8, 8, 10].map((level) => ({
     name: `${level}`,

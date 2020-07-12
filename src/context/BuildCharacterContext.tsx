@@ -1,6 +1,10 @@
 import React, { createContext, useState } from "react";
 
 interface BuildCharacterContextType {
+  ancestryList: any;
+  setAncestryList: any;
+  pathList: any;
+  setPathList: any;
   name: string;
   setName: any;
   description: string;
@@ -16,6 +20,7 @@ interface BuildCharacterContextType {
   languages: any;
   profession: any;
   characteristics: any;
+  setCharacteristics: any;
   features: any;
   spells: any;
   items: any;
@@ -26,6 +31,8 @@ const BuildCharacterContext = createContext<any>(
 );
 
 export function BuildCharacterProvider({ children }: any) {
+  const [ancestryList, setAncestryList] = useState([]);
+  const [pathList, setPathList] = useState([]);
   const [name, setName] = useState("");
   const [ancestry, setAncestry] = useState("");
   const [level, setLevel] = useState(0);
@@ -42,6 +49,10 @@ export function BuildCharacterProvider({ children }: any) {
   return (
     <BuildCharacterContext.Provider
       value={{
+        ancestryList,
+        setAncestryList,
+        pathList,
+        setPathList,
         name,
         setName,
         ancestry,

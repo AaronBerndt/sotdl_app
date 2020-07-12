@@ -1,12 +1,16 @@
 import React, { useContext, useState } from "react";
 import BuildCharacterContext from "../../context/BuildCharacterContext";
 import { Button, TextField } from "@material-ui/core";
-import { isZero, sumArray } from "../../utilities";
+import { isZero } from "../../utilities";
 
 function ScoresPage() {
-  const { level, setCharacteristics, startingScores, ancestry } = useContext(
-    BuildCharacterContext
-  );
+  const {
+    level,
+    setCharacteristics,
+    startingScores,
+    ancestry,
+    characteristics,
+  } = useContext(BuildCharacterContext);
 
   const getPoints = (level: number) =>
     isZero(level) ? 0 : level < 3 ? 2 : level < 7 ? 4 : 6;

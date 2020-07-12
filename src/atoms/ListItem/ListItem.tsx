@@ -7,6 +7,7 @@ export type ListItemType = {
   title: string;
   onClickFunction?: any;
   secondaryText?: string;
+  disabled?: boolean;
 };
 
 const StyledListItem = styled(ListItem)`
@@ -18,10 +19,16 @@ function DynamicListItem({
   title,
   onClickFunction,
   secondaryText,
+  disabled,
 }: ListItemType) {
   return (
     <>
-      <StyledListItem button onClick={onClickFunction} divider>
+      <StyledListItem
+        button
+        onClick={onClickFunction}
+        divider
+        disabled={disabled}
+      >
         <ListItemAvatar>
           <Avatar type={title.toLowerCase()} />
         </ListItemAvatar>
@@ -32,3 +39,4 @@ function DynamicListItem({
 }
 
 export default DynamicListItem;
+
