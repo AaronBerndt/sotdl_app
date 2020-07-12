@@ -11,7 +11,7 @@ import { Form } from "react-final-form";
 import { FormInput, FormDropdown } from "../../atoms";
 
 function BuildCharacterHomePage() {
-  const { setName, setLevel } = useContext(BuildCharacterContext);
+  const { setName, setLevel, name, level } = useContext(BuildCharacterContext);
 
   const levelArray = [1, 2, 3, 4, 5, 6, 7, 8, 8, 10].map((level) => ({
     name: `${level}`,
@@ -30,6 +30,7 @@ function BuildCharacterHomePage() {
         </CardActions>
         <Form
           onSubmit={onSubmit}
+          initialValues={{ name, level }}
           render={({ handleSubmit, form, submitting, pristine, values }) => (
             <form onSubmit={handleSubmit} noValidate>
               <CardContent>
