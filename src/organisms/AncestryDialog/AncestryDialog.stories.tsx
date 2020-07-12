@@ -71,5 +71,6 @@ export const isOpen = () => (
     ancestryInfo={ancestryObject}
     isOpen={mockStatus(true)}
     onClickFuncion={action("button-click")}
+    submitOnClickFunction={action("button-click")}
   />
 );

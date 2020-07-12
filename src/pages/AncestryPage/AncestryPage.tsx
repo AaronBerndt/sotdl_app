@@ -1,7 +1,8 @@
-import React, { useState, useEffect, createContext, useReducer } from "react";
+import React, { useState, createContext, useReducer, useContext } from "react";
 import { List } from "../../molecules/";
 import { AncestryDialog } from "../../organisms/";
-import axios from "axios";
+import BuildCharacterContext from "../../context/BuildCharacterContext";
+import { lengthIsZero } from "../../utilities";
 
 export const AncestryDialogContext = createContext({});
 
@@ -14,36 +15,57 @@ function reducer(state, action) {
 }
 
 export function AncestryPage() {
-  const [ancestryList, setAncestryList] = useState([]);
+  const { ancestryList, setAncestry, setStartingScores, ancestry } = useContext(
+    BuildCharacterContext
+  );
   const [selectedAncestryIndex, setSelectedAncestryIndex] = useState(0);
   const [state, dispatch] = useReducer(reducer, { open: false });
-
-  const getData = async () => {
-    const { data } = await axios("https://sotdl-api.herokuapp.com/ancestries");
-    setAncestryList(data);
-  };
-
-  useEffect(() => {
-    if (ancestryList.length === 0) {
-      getData();
-    }
-  }, [ancestryList]);
 
   const listItemOnClick = (index: number) => {
     setSelectedAncestryIndex(index);
     dispatch({ type: "toggle" });
   };
 
+  const submitOnClick = () => {
+    console.log(ancestryList[selectedAncestryIndex]);
+    const { name, characteristics }: any = ancestryList[selectedAncestryIndex];
+    const filteredArray = ["Strength", "Agility", "Will", "Intellect"].map(
+      (score) => {
+        console.log();
+        const [{ name, value }] = characteristics.filter(
+          ({ name }) => name === score
+        );
+        return { [name.toLowerCase()]: value };
+      }
+    );
+    const scoreObject = Object.assign({}, ...filteredArray);
+
+    dispatch({ type: "toggle" });
+    setAncestry(name);
+    setStartingScores(scoreObject);
+  };
+
+  const isAncestry = (name: string) => name === ancestry;
   return (
     <>
-      <List listItemArray={ancestryList} onClickFunction={listItemOnClick} />
-      <AncestryDialog
-        ancestryInfo={ancestryList[selectedAncestryIndex]}
-        isOpen={state}
-        onClickFuncion={() => dispatch({ type: "toggle" })}
-      />
+      {lengthIsZero(ancestryList) ? null : (
+        <>
+          <List
+            listItemArray={ancestryList}
+            onClickFunction={listItemOnClick}
+            isDisabled={isAncestry}
+          />
+          <AncestryDialog
+            ancestryInfo={ancestryList[selectedAncestryIndex]}
+            isOpen={state}
+            onClickFuncion={() => dispatch({ type: "toggle" })}
+            submitOnClickFunction={submitOnClick}
+          />
+        </>
+      )}
     </>
   );
 }
 
 export default AncestryPage;
+

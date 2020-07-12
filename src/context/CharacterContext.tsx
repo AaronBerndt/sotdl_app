@@ -1,7 +1,4 @@
-import React, {
-  createContext,
-  useState,
-} from "react"; /*   name: string; */ /*   ancestry: string; */ /* } */ /*   level: number; */ /* interface CharacterData { */ /*   description: string; */ /*   money: Array<any>; */
+import { createContext } from "react"; /*   money: Array<any>; */ /*   novicePath: string; */ /*   name: string; */ /*   ancestry: string; */ /* } */ /*   level: number; */ /* interface CharacterData { */ /*   description: string; */
 
 /* interface Money { */
 /*   bits: number; */
@@ -13,8 +10,7 @@ import React, {
 /* interface Items { */
 /*   weapons: Array<any>; */
 /*   armor: Array<any>; */
-/*   other: Array<any>; */ /*   novicePath: string; */
-/*   expertPath: string; */
+/*   other: Array<any>; */ /*   expertPath: string; */
 /*   masterPath: string; */
 /*   languages: Array<string>; */
 /*   profession: Array<string>; */
@@ -134,3 +130,4 @@ const CharacterPageContext = createContext<any>({
   spellsCast: [],
 });
 export default CharacterPageContext;
+

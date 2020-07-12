@@ -4,7 +4,7 @@ import AxiosMock from "../../utilities/AxiosMock";
 import { ancestriesData } from "../../utilities/mockData";
 
 export default {
-  title: "Pages/AncestryPage",
+  title: "Pages/CharacterBulider/AncestryPage",
   component: AncestryPage,
 };
 
@@ -19,3 +19,4 @@ export const withComp = () => (
     <AncestryPage />
   </AxiosMock>
 );
+

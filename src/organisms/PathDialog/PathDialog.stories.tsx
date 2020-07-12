@@ -98,5 +98,6 @@ export const withProps = () => (
     pathInfo={pathInfo}
     isOpen={mockStatus(true)}
     onClickFuncion={action("button-click")}
+    submitOnClickFunction={action("button-click")}
   />
 );

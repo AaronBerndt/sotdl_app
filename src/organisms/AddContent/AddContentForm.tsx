@@ -168,7 +168,7 @@ function AddContentForm({
                   />
                 </>
               ) : null}
-              {contentType == "Item" ? (
+              {contentType === "Item" ? (
                 <>
                   <FormInput label="Price." name="price" />
                   <FormDropdown

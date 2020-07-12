@@ -4,7 +4,6 @@ import { TextField } from "mui-rff";
 interface FormInput {
   label: any;
   name: any;
-
   autoFocus?: boolean;
 }
 

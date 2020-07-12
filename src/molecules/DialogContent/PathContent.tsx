@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Panel, Avatar } from "../../atoms/";
+import { Panel } from "../../atoms/";
 import { groupBy } from "lodash";
 import { sumArray, lengthIsOne } from "../../utilities";
 
@@ -11,11 +11,6 @@ interface PathDialogContentProps {
 
 const StyledHeader = styled.h1`
 position:: ''
-`;
-
-const StyledAvatar = styled(Avatar)`
-position:: 'abosolute'
-left: 50%;
 `;
 
 function PathDialogContent({ pathInfo, isPath }: PathDialogContentProps) {
@@ -76,3 +71,4 @@ function PathDialogContent({ pathInfo, isPath }: PathDialogContentProps) {
 }
 
 export default PathDialogContent;
+

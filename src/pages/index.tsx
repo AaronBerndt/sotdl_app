@@ -1,10 +1,8 @@
 import React from "react";
 import { Router as ReachRouter } from "@reach/router";
 import AddContentPage from "./AddContentPage";
-import { AncestryPage } from "./AncestryPage";
-import PathsPage from "./PathsPage";
 import CharactersPage from "./CharactersPage";
-import CharacterSheetPage from "./CharacterSheetPage";
+import BuildCharacterPage from "./BuildCharacterPage";
 
 const createRoute = (title: string, path: string, comp: any) => ({
   title,
@@ -13,11 +11,9 @@ const createRoute = (title: string, path: string, comp: any) => ({
 });
 
 const RouteObject = [
-  createRoute("Ancestry", "/Ancestry", AncestryPage),
-  createRoute("Paths", "/Paths", PathsPage),
+  createRoute("Create New Character", "/NewCharacter", BuildCharacterPage),
   createRoute("Characters", "/Characters", CharactersPage),
   createRoute("AddContentPage", "/AddContent", AddContentPage),
-  createRoute("CharacterSheetPage", "/CharacterSheet", CharacterSheetPage),
 ];
 function Router() {
   return (

@@ -1,9 +1,9 @@
 import React from "react";
 import CharacterContext from "../context/CharacterContext";
 import DiceRollContext from "../context/DiceRollContext";
+import BuildCharacterContext from "../context/BuildCharacterContext";
 
 export const withCharacterContext = (children, context) => {
-  console.log(context);
   return (
     <CharacterContext.Provider value={context}>
       {children}
@@ -16,5 +16,13 @@ export const withDiceRollCointext = (children, context) => {
     <DiceRollContext.Provider value={context}>
       {children}
     </DiceRollContext.Provider>
+  );
+};
+
+export const withBuildCharacterContext = (children, context) => {
+  return (
+    <BuildCharacterContext.Provider value={context}>
+      {children}
+    </BuildCharacterContext.Provider>
   );
 };
