@@ -19,7 +19,7 @@ export function PathPage() {
   const [selectedPathData, setSelectedPathData] = useState([]);
   const [state, dispatch] = useReducer(reducer, { open: false });
 
-  const { setNovicePath, setExpertPath, setMasterPath } = useContext(
+  const { setNovicePath, setExpertPath, setMasterPath, level } = useContext(
     BuildCharacterContext
   );
   const getData = async () => {
@@ -61,8 +61,14 @@ export function PathPage() {
       {lengthIsZero(pathList) ? null : (
         <>
           {pathListGrouped.map(([type, list]: any, i) => {
+            const isTypeObject = {
+              Novice: level < 1,
+              Expert: level < 3,
+              Master: level < 7,
+            };
+
             return (
-              <div key={i}>
+              <div key={i} hidden={isTypeObject[type]}>
                 <h3>{type}</h3>
                 <List listItemArray={list} onClickFunction={listItemOnClick} />
                 <PathDialog
