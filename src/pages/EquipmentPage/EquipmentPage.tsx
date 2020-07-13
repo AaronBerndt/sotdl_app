@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import BuildCharacterContext from "../../context/BuildCharacterContext";
 import { Form } from "react-final-form";
-import { FormInput, FormDropdown } from "../../atoms";
-import { Card, CardActions, Button } from "@material-ui/core";
+import { FormDropdown } from "../../atoms";
+import { Card, CardContent, CardActions, Button } from "@material-ui/core";
 
 function EquipmentPage() {
   const { setItems } = useContext(BuildCharacterContext);
 
-  const onSubmit = (values: any) => {
+  const onSubmit = (values) => {
     const { weapons, armor } = values;
     const itemObject = {
       weapons,
@@ -37,36 +37,38 @@ function EquipmentPage() {
   return (
     <div>
       <Card>
-        <Form
-          onSubmit={onSubmit}
-          initialValues={{ armor: [], weapons: [] }}
-          render={({ handleSubmit, form, submitting, pristine, values }) => (
-            <>
-              <FormDropdown
-                label="Weapon"
-                name="weapons"
-                data={weaponArray}
-                multiple={true}
-              />
-              <FormDropdown
-                label="Armor"
-                name="armor"
-                data={armorArray}
-                multiple={true}
-              />
-              <h4>Other Gear</h4>
-              <p>
-                a backpack, a week of rations, a waterskin, a tinderbox, 2
-                torches, a coil of rope, a healing potion,
-              </p>
+        <CardContent>
+          <Form
+            onSubmit={onSubmit}
+            initialValues={{ armor: [], weapons: [] }}
+            render={({ handleSubmit, form, submitting, pristine, values }) => (
+              <>
+                <FormDropdown
+                  label="Weapon"
+                  name="weapons"
+                  data={weaponArray}
+                  multiple={true}
+                />
+                <FormDropdown
+                  label="Armor"
+                  name="armor"
+                  data={armorArray}
+                  multiple={true}
+                />
+                <h4>Other Gear</h4>
+                <p>
+                  a backpack, a week of rations, a waterskin, a tinderbox, 2
+                  torches, a coil of rope, a healing potion,
+                </p>
 
-              <h4>Money</h4>
-              <CardActions>
-                <Button onClick={() => handleSubmit()}>Submit</Button>
-              </CardActions>
-            </>
-          )}
-        />
+                <h4>Money</h4>
+                <CardActions>
+                  <Button onClick={() => handleSubmit()}>Submit</Button>
+                </CardActions>
+              </>
+            )}
+          />
+        </CardContent>
       </Card>
     </div>
   );
