@@ -46,6 +46,18 @@ export function BuildCharacterProvider({ children }: any) {
     intellect: 0,
   });
   const [characteristics, setCharacteristics] = useState([]);
+  const [items, setItems] = useState({
+    weapons: [],
+    armor: [],
+    magicItems: [],
+    other: [],
+    money: {
+      bits: 0,
+      copper: 0,
+      silver: 0,
+      gold: 0,
+    },
+  });
   return (
     <BuildCharacterContext.Provider
       value={{
@@ -69,6 +81,8 @@ export function BuildCharacterProvider({ children }: any) {
         setStartingScores,
         characteristics,
         setCharacteristics,
+        items,
+        setItems,
       }}
     >
       {children}
