@@ -26,6 +26,8 @@ export function PathPage() {
     novicePath,
     expertPath,
     masterPath,
+    features,
+    setFeatures,
   } = useContext(BuildCharacterContext);
 
   const listItemOnClick = (index: number, name: string) => {
@@ -37,15 +39,15 @@ export function PathPage() {
   };
 
   const submitOnClick = () => {
-    const { name, type }: any = selectedPathData;
+    const { name, type, features: pathFeatures }: any = selectedPathData;
     const typeName = type.toLowerCase();
-    console.log(name, typeName);
+
     const hookObject: any = {
       novice: () => setNovicePath(name),
       expert: () => setExpertPath(name),
       master: () => setMasterPath(name),
     };
-
+    setFeatures([...features, pathFeatures]);
     dispatch({ type: "toggle" });
     hookObject[typeName]();
   };

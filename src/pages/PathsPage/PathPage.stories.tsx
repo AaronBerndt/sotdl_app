@@ -9,17 +9,8 @@ export default {
   component: PathPage,
 };
 
-const mock = (apiMock) => {
-  apiMock.onGet("https://sotdl-api.herokuapp.com/paths").reply(200, pathData);
-};
-
 const withContext = (level: number) =>
-  withBuildCharacterContext(
-    <AxiosMock mock={mock}>
-      <PathPage />
-    </AxiosMock>,
-    { level }
-  );
+  withBuildCharacterContext(<PathPage />, { pathList: pathData, level });
 
 export const levelZero = () => withContext(0);
 export const levelOne = () => withContext(1);

@@ -8,6 +8,8 @@ import PathsPage from "../pages/PathsPage/";
 import LastStepsPage from "../pages/LastStepsPage/LastStepPage";
 import BuildCharacterHomePage from "../pages/BuildCharacterHomePage";
 import ScoresPage from "../pages/ScoresPage/ScoresPage";
+import EquipmentPage from "../pages/EquipmentPage/EquipmentPage";
+import PickSpellsPage from "../pages/PickSpellsPage/PickSpellsPage";
 
 const createTab = (name: string, view: any) => ({ name, view });
 const buildCharacterPageArray = [
@@ -15,7 +17,8 @@ const buildCharacterPageArray = [
   createTab("Ancestry", AncestryPage),
   createTab("Paths", PathsPage),
   createTab("Scores", ScoresPage),
-  createTab("Equpment", <div>Equpment</div>),
+  createTab("Spells", PickSpellsPage),
+  createTab("Equpment", EquipmentPage),
   createTab("Last Steps", LastStepsPage),
 ];
 

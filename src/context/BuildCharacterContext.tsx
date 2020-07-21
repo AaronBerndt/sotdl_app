@@ -23,6 +23,7 @@ interface BuildCharacterContextType {
   setCharacteristics: any;
   features: any;
   spells: any;
+  traditions: any;
   items: any;
 }
 
@@ -39,6 +40,7 @@ export function BuildCharacterProvider({ children }: any) {
   const [novicePath, setNovicePath] = useState("");
   const [expertPath, setExpertPath] = useState("");
   const [masterPath, setMasterPath] = useState("");
+  const [features, setFeatures] = useState([]);
   const [startingScores, setStartingScores] = useState({
     strength: 0,
     agility: 0,
@@ -46,6 +48,8 @@ export function BuildCharacterProvider({ children }: any) {
     intellect: 0,
   });
   const [characteristics, setCharacteristics] = useState([]);
+  const [spells, setSpells] = useState([]);
+  const [traditions, setTraditions] = useState([]);
   const [items, setItems] = useState({
     weapons: [],
     armor: [],
@@ -77,10 +81,16 @@ export function BuildCharacterProvider({ children }: any) {
         setExpertPath,
         masterPath,
         setMasterPath,
+        features,
+        setFeatures,
         startingScores,
         setStartingScores,
         characteristics,
         setCharacteristics,
+        spells,
+        setSpells,
+        traditions,
+        setTraditions,
         items,
         setItems,
       }}

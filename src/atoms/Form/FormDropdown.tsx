@@ -6,9 +6,10 @@ interface FormDropdown {
   name: string;
   data: any;
   multiple?: boolean;
+  disabled?: boolean;
 }
 
-function FormDropdown({ label, name, data, multiple }: FormDropdown) {
+function FormDropdown({ label, name, data, multiple, disabled }: FormDropdown) {
   return (
     <Autocomplete
       label={label}
@@ -18,6 +19,7 @@ function FormDropdown({ label, name, data, multiple }: FormDropdown) {
       getOptionValue={(option) => option.value}
       getOptionLabel={(option) => option.label}
       options={data.map(({ name }) => ({ label: name, value: name }))}
+      disabled={disabled}
     />
   );
 }
