@@ -35,21 +35,79 @@ const featuresArray = [
 const spellList = [
   {
     name: "Magic Shield",
+    attribute: "Will",
+    type: "Utility",
+    description: "Magic Shield",
     tradition: "Primal",
+    spellProperties: [
+      {
+        name: "Target",
+        value: "One creature or object within short range",
+      },
+      {
+        name: "Duration",
+        value: "0",
+      },
+
+      {
+        name: "Attack Roll 20+",
+        value: "The target takes 2d6 extra damage.",
+      },
+    ],
+
     level: 0,
   },
 
   {
     name: "Fire Shield",
+    type: "Utility",
+    attribute: "Will",
+    description: "Fire Shield",
     tradition: "Fire",
+    spellProperties: [
+      {
+        name: "Target",
+        value: "One creature or object within short range",
+      },
+      {
+        name: "Duration",
+        value: "0",
+      },
+
+      {
+        name: "Attack Roll 20+",
+        value: "The target takes 2d6 extra damage.",
+      },
+    ],
+
     level: 0,
   },
   {
     name: "Fire Strike",
+    attribute: "Will",
+    type: "Attack",
+    description: "Fire Strike",
     tradition: "Fire",
+    spellProperties: [
+      {
+        name: "Target",
+        value: "One creature or object within short range",
+      },
+      {
+        name: "Duration",
+        value: "0",
+      },
+
+      {
+        name: "Attack Roll 20+",
+        value: "The target takes 2d6 extra damage.",
+      },
+    ],
+
     level: 1,
   },
 ];
+
 export const withMagic = () => withContext(featuresArray, spellList);
 export const noMagic = () => withContext([]);
 

@@ -185,15 +185,28 @@ function PickSpellsPage() {
                         spellList,
                         traditionData,
                         "tradition"
-                      ).map(({ name, tradition, level }, i: number) => (
-                        <SpellPanel
-                          name={name}
-                          tradition={tradition}
-                          level={level}
-                          isPicked={false}
-                          key={i}
-                        />
-                      ))}
+                      ).map(
+                        (
+                          {
+                            name,
+                            tradition,
+                            description,
+                            spellProperties,
+                            level,
+                          },
+                          i: number
+                        ) => (
+                          <SpellPanel
+                            name={name}
+                            tradition={tradition}
+                            description={description}
+                            spellProperties={spellProperties}
+                            level={level}
+                            isPicked={false}
+                            key={i}
+                          />
+                        )
+                      )}
                   <CardActions>
                     <Button onClick={() => handleSubmit()}>Submit</Button>
                   </CardActions>
