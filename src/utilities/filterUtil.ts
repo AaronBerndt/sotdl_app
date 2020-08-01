@@ -36,10 +36,26 @@ function filterByName(array: any, nameArray: any) {
   return filteredArray;
 }
 
+function filterByProperties(
+  array: any,
+  propertyValueArray: any,
+  property: string
+) {
+  const filteredArray = propertyValueArray
+    .map((propertyName) =>
+      array.filter((value) => value[property] === propertyName)
+    )
+    .flat(1);
+
+  return filteredArray;
+}
+
 export {
   filterByLevelAndName,
   filterByLevel,
   filterByNumber,
   filterByLevelAndMutiple,
   filterByName,
+  filterByProperties,
 };
+

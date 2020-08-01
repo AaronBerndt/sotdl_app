@@ -4,13 +4,24 @@ import { Card, CardContent, CardActions, Button } from "@material-ui/core";
 import { Form, Field, FormSpy } from "react-final-form";
 import { OnChange } from "react-final-form-listeners";
 
-import { FormDropdown, FormInput } from "../../atoms";
-import { sumArray, isZero, lengthIsZero } from "../../utilities";
+import { FormDropdown, FormInput, SpellPanel } from "../../atoms";
+import {
+  sumArray,
+  isZero,
+  lengthIsZero,
+  filterByProperties,
+} from "../../utilities";
+import MaterialTable from "material-table";
 
 function PickSpellsPage() {
-  const { spells, setSpells, traditions, setTraditions, features } = useContext(
-    BuildCharacterContext
-  );
+  const {
+    spells,
+    setSpells,
+    traditions,
+    setTraditions,
+    features,
+    spellList,
+  } = useContext(BuildCharacterContext);
 
   const magicArray = features
     .filter(({ name }) => name === "Magic")
@@ -121,7 +132,12 @@ function PickSpellsPage() {
               bothPool: maxBothPool,
             }}
             render={({ handleSubmit, form, submitting, pristine, values }) => {
-              const { traditionData, traditionPool, bothPool } = values;
+              const {
+                traditionData,
+                traditionPool,
+                spellPool,
+                bothPool,
+              } = values;
               const setComp = !isZero(traditionPool)
                 ? "traditionPool"
                 : bothPool === maxBothPool
@@ -162,6 +178,22 @@ function PickSpellsPage() {
                     multiple={true}
                     disabled={isZero(traditionPool) && isZero(bothPool)}
                   />
+
+                  {lengthIsZero(traditionData)
+                    ? null
+                    : filterByProperties(
+                        spellList,
+                        traditionData,
+                        "tradition"
+                      ).map(({ name, tradition, level }, i: number) => (
+                        <SpellPanel
+                          name={name}
+                          tradition={tradition}
+                          level={level}
+                          isPicked={false}
+                          key={i}
+                        />
+                      ))}
                   <CardActions>
                     <Button onClick={() => handleSubmit()}>Submit</Button>
                   </CardActions>

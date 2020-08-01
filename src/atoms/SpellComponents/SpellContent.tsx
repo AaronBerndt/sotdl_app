@@ -1,37 +1,53 @@
 import React from "react";
-import { Divider } from "@material-ui/core";
+import { Divider, ListItemText, ListItem, List } from "@material-ui/core";
+import { filterByName } from "../../utilities";
 
 type Effect = {
   name: string;
-  description: string;
+  value: string;
 };
 
 interface SpellContentProps {
   level: number;
   tradition: string;
-  characteristics: any;
   description: string;
-  extraEffects: Array<Effect>;
+  spellProperties: Array<Effect>;
 }
-function SpellContent({
-  level,
-  tradition,
-  characteristics,
-  description,
-  extraEffects,
-}: SpellContentProps) {
-  const { taget, duration } = characteristics;
+
+const ContentProperty = ({ title, content }) => {
+  return (
+    <div>
+      <ListItem dense={true} disableGutters={true}>
+        <ListItemText primary={title} secondary={content} />
+      </ListItem>
+    </div>
+  );
+};
+
+function SpellContent({ description, spellProperties }: SpellContentProps) {
+  console.log(spellProperties);
+
+  const returnValue = (array) => array[0].value;
+  const target = returnValue(filterByName(spellProperties, ["Target"]));
+  const duration = returnValue(filterByName(spellProperties, ["Duration"]));
+
   return (
     <>
-      <p>{`Level ${level} ${tradition}`}</p>
       <Divider />
-      <p>{`Casting Time: 1 Action`}</p>
-      <p>{`Duration: ${duration === 0 ? "Instantaneous" : duration}`}</p>
-      <Divider />
-      <p>{description}</p>
-      <Divider />
+      <List disablePadding={true} dense={true}>
+        <ContentProperty title="Casting Time" content="1 Round" />
+        <ContentProperty
+          title="Duration"
+          content={duration === "0" ? "Instantaneous" : duration}
+        />
+        <ContentProperty title="Target" content={target} />
+        <ContentProperty title="Range/Area" content="Short Range" />
+        <Divider />
+        <p>{description}</p>
+      </List>
     </>
   );
 }
 
 export default SpellContent;
+

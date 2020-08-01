@@ -5,7 +5,7 @@ import ListItem from "./ListItem";
 import TextField from "./TextField";
 import TabPanel from "./TabPanel";
 import FilterTextField from "./FilterTextField";
-import { SpellTable } from "./SpellComponents";
+import { SpellTable, SpellPanel } from "./SpellComponents";
 import { AddContentTable, DataPreview, DropDown } from "./AddContent";
 import { FormInput, FormDropdown } from "./Form";
 export {
@@ -22,4 +22,6 @@ export {
   AddContentTable,
   FormInput,
   FormDropdown,
+  SpellPanel,
 };
+

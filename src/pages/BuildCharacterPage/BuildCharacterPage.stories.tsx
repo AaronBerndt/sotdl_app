@@ -2,7 +2,8 @@ import React from "react";
 import BuildCharacterPage from "./BuildCharacterPage";
 import { withComp as BuildCharacterHomePage } from "../BuildCharacterHomePage/BuildCharacterHomePage.stories";
 import { levelOne as PathsPage } from "../PathsPage/PathPage.stories";
-import { withComp as AncestryPage } from "../AncestryPage/AncestryPage.stories";
+import { withContext as AncestryPage } from "../AncestryPage/AncestryPage.stories";
+import { withContext as EquipmentPage } from "../EquipmentPage/EquipmentPage.stories";
 import LastStepsPage from "../LastStepsPage/LastStepPage";
 import ScoresPage from "../ScoresPage/ScoresPage";
 import { ancestriesData, pathData } from "../../utilities/mockData";
@@ -37,7 +38,7 @@ const tabArray = [
   createTab("Ancestry", AncestryPage),
   createTab("Paths", PathsPage),
   createTab("Scores", ScoresPage),
-  createTab("Equpment", <div>Equpment</div>),
+  createTab("Equpment", EquipmentPage),
   createTab("Last Steps", LastStepsPage),
 ];
 

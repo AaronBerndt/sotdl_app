@@ -23,6 +23,7 @@ function DropDown({
       autoHighlight
       onBlurCapture={(e: any) => onChange(`${e.target.value}`)}
       getOptionLabel={(option) => option[filterBy]}
+      onFocus={(e) => console.log(e)}
       style={{ width: 300 }}
       renderInput={(params) => (
         <TextField
@@ -37,3 +38,4 @@ function DropDown({
 }
 
 export default DropDown;
+
