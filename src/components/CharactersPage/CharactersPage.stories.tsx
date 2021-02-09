@@ -4,7 +4,7 @@ import AxiosMock from "../../utilities/AxiosMock";
 import { characterData } from "../../utilities/mockData";
 
 export default {
-  title: "Pages/CharactersPage",
+  title: "CharactersPage",
   component: CharactersPage,
 };
 
