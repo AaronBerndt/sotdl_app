@@ -16,7 +16,7 @@
     "axios": "^0.21.1",
     "axios-mock-adapter": "^1.18.1",
     "final-form": "^4.20.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "material-table": "^1.61.0",
     "msw": "^0.26.1",
     "mui-rff": "^3.0.3",
